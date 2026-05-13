@@ -56,6 +56,9 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
             <Link href="/unidades" className="text-sm font-medium hover:text-primary transition-colors">
               Unidades
             </Link>
+            <Link href="/facturacion" className="text-sm font-medium hover:text-primary transition-colors">
+              Facturación
+            </Link>
           </nav>
 
           <DropdownMenu>

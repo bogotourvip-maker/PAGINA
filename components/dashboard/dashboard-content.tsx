@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Activity, Bed, Building2, Users, UserPlus, Stethoscope, ClipboardList, ArrowRight } from 'lucide-react'
+import { Activity, Bed, Building2, Users, UserPlus, Stethoscope, ClipboardList, ArrowRight, DollarSign } from 'lucide-react'
 import type { DashboardStats, Unit } from '@/lib/types'
 import type { User } from '@supabase/supabase-js'
 import Link from 'next/link'
@@ -219,6 +219,20 @@ export function DashboardContent({ stats, units, user }: DashboardContentProps) 
                   </CardTitle>
                   <CardDescription>
                     Historial de pacientes
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+
+            <Link href="/facturacion">
+              <Card className="hover:bg-accent cursor-pointer transition-colors border-emerald-500/20 hover:border-emerald-500/50 h-full">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <DollarSign className="h-5 w-5 text-emerald-500" />
+                    Facturación
+                  </CardTitle>
+                  <CardDescription>
+                    Cuentas y servicios facturables
                   </CardDescription>
                 </CardHeader>
               </Card>
