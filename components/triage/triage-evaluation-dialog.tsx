@@ -301,6 +301,27 @@ export function TriageEvaluationDialog({
       const selectedUnit = units.find(u => u.id === formData.unitId)
       const diagnosisText = formData.primaryDiagnosis ? `${formData.primaryDiagnosis.code} - ${formData.primaryDiagnosis.description}` : ''
 
+      // Mapeo de tipos de unidad a códigos
+      const unitTypeToCode: Record<string, string> = {
+        'uci': 'uci',
+        'intermedios': 'intermedios',
+        'hospitalizacion': 'hospitalizacion',
+        'urgencias': 'urgencias',
+        'observacion': 'observacion',
+        'UCI': 'uci',
+        'Intermedios': 'intermedios',
+        'Hospitalización': 'hospitalizacion',
+        'Urgencias': 'urgencias',
+        'Observación': 'observacion',
+      }
+
+      // Determinar el código de unidad correcto
+      const getUnitCode = () => {
+        if (selectedUnit?.code) return selectedUnit.code.toLowerCase()
+        if (selectedUnit?.type) return unitTypeToCode[selectedUnit.type] || selectedUnit.type.toLowerCase()
+        return formData.consultationResult
+      }
+
       if (formData.consultationResult === 'hospitalizacion' || formData.consultationResult === 'observacion') {
         // Agregar a pacientes hospitalizados
         const hospitalizedPatient = {
@@ -310,7 +331,7 @@ export function TriageEvaluationDialog({
           last_name: patient.last_name,
           documentNumber: patient.document_number,
           document_number: patient.document_number,
-          unitCode: selectedUnit?.code || formData.consultationResult,
+          unitCode: getUnitCode(),
           unit: selectedUnit?.name || (formData.consultationResult === 'observacion' ? 'Observación' : 'Hospitalización'),
           bed: formData.bedNumber,
           admissionDate: patient.admission?.admission_date || new Date().toISOString(),
@@ -320,8 +341,10 @@ export function TriageEvaluationDialog({
           age: calculateAge(patient.date_of_birth),
           gender: patient.gender,
         }
+        console.log('[v0] Guardando paciente hospitalizado:', hospitalizedPatient)
         hospitalizedPatients.push(hospitalizedPatient)
         localStorage.setItem('hospitalizedPatients', JSON.stringify(hospitalizedPatients))
+        console.log('[v0] Total pacientes hospitalizados:', hospitalizedPatients.length)
 
         // Registrar movimiento de ingreso
         const movement = {
