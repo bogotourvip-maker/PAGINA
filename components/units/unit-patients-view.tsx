@@ -102,10 +102,7 @@ export function UnitPatientsView({ unitCode, unitName, unitIcon, unitColor }: Un
 
   const loadPatients = () => {
     const hospitalizedPatients = JSON.parse(localStorage.getItem('hospitalizedPatients') || '[]')
-    console.log('[v0] Todos los pacientes hospitalizados:', hospitalizedPatients)
-    console.log('[v0] Buscando unitCode:', unitCode)
     const unitPatients = hospitalizedPatients.filter((p: Record<string, unknown>) => p.unitCode === unitCode)
-    console.log('[v0] Pacientes en esta unidad:', unitPatients)
     setPatients(unitPatients)
   }
 

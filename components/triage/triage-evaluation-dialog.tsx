@@ -341,10 +341,8 @@ export function TriageEvaluationDialog({
           age: calculateAge(patient.date_of_birth),
           gender: patient.gender,
         }
-        console.log('[v0] Guardando paciente hospitalizado:', hospitalizedPatient)
         hospitalizedPatients.push(hospitalizedPatient)
         localStorage.setItem('hospitalizedPatients', JSON.stringify(hospitalizedPatients))
-        console.log('[v0] Total pacientes hospitalizados:', hospitalizedPatients.length)
 
         // Registrar movimiento de ingreso
         const movement = {
