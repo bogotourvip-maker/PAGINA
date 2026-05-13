@@ -260,7 +260,8 @@ export function PatientRegistrationForm({ user }: PatientRegistrationFormProps) 
           </div>
 
           <HabeasDataConsent 
-            onAccept={handleConsentAccepted}
+            onConsent={(consentData) => handleConsentAccepted(consentData.signature, consentData.consentDate)}
+            onCancel={() => router.push('/dashboard')}
             patientName=""
             patientDocument=""
           />
