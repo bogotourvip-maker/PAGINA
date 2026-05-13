@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { User, LogOut, Settings, Activity } from 'lucide-react'
+import { User, LogOut, Settings, Activity, BarChart3, Shield, Database } from 'lucide-react'
 import type { User as SupabaseUser } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -79,9 +79,30 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Configuración</span>
+              <DropdownMenuItem asChild>
+                <Link href="/gerencia">
+                  <BarChart3 className="mr-2 h-4 w-4" />
+                  <span>Dashboard Gerencial</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/auditoria">
+                  <Shield className="mr-2 h-4 w-4" />
+                  <span>Log de Auditoría</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/configuracion/exportar">
+                  <Database className="mr-2 h-4 w-4" />
+                  <span>Exportar Datos</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem asChild>
+                <Link href="/configuracion">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Configuración</span>
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleLogout} className="text-destructive">
