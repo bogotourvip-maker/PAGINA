@@ -12,8 +12,6 @@ export default async function TriagePage() {
     .eq('status', 'triage')
     .order('admission_date', { ascending: true })
 
-  console.log('[v0] Triage admissions query:', { admissions, admError })
-
   // Obtener los pacientes correspondientes
   const patientIds = (admissions || []).map(a => a.patient_id)
   

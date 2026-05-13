@@ -18,6 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CodeSearchInput } from '@/components/medical/code-search-input'
 import { Stethoscope, Activity, Pill, FileText, ClipboardList } from 'lucide-react'
+import { logAuditAction } from '@/lib/audit-log'
 
 interface Patient {
   id: string
@@ -131,6 +132,16 @@ export function DailyEvolutionDialog({
       }
       movements.unshift(newMovement)
       localStorage.setItem('patientMovements', JSON.stringify(movements))
+      
+      // Registrar en auditoría
+      logAuditAction('CREATE_EVOLUTION', `Evolución registrada - Pronóstico: ${formData.prognosis}`, {
+        userId: user.email || 'usuario',
+        userName: user.name,
+        patientId: patient.id,
+        patientName: patient.name,
+        recordId: newEvolution.id,
+        success: true
+      })
       
       onOpenChange(false)
       onSave()
