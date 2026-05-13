@@ -7,12 +7,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { ArrowLeft, UserPlus, FileCheck } from 'lucide-react'
+import { ArrowLeft, UserPlus } from 'lucide-react'
 import type { User } from '@supabase/supabase-js'
 import { DashboardHeader } from '@/components/dashboard/dashboard-header'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { HabeasDataConsent } from '@/components/legal/habeas-data-consent'
 import { logAuditAction } from '@/lib/audit-log'
 
 interface PatientRegistrationFormProps {
@@ -47,8 +46,6 @@ function calculateAge(dateOfBirth: string): { years: number; months: number; day
 export function PatientRegistrationForm({ user }: PatientRegistrationFormProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [step, setStep] = useState<'consent' | 'registration'>('consent')
-  const [consentData, setConsentData] = useState<{ signature: string; date: string } | null>(null)
   const router = useRouter()
   const supabase = createClient()
   
@@ -127,12 +124,6 @@ export function PatientRegistrationForm({ user }: PatientRegistrationFormProps) 
           blood_type: formData.bloodType,
           phone: formData.phone,
           insurance_provider: formData.insuranceProvider,
-          habeas_data_consent: consentData ? {
-            accepted: true,
-            signature: consentData.signature,
-            date: consentData.date,
-            ip: 'localhost'
-          } : null,
           admission: {
             id: 'adm-local-' + Date.now(),
             admission_reason: formData.chiefComplaint,
@@ -154,15 +145,6 @@ export function PatientRegistrationForm({ user }: PatientRegistrationFormProps) 
           patientName: `${formData.firstName} ${formData.lastName}`,
           success: true
         })
-        
-        if (consentData) {
-          logAuditAction('HABEAS_DATA_CONSENT', `Consentimiento Habeas Data aceptado`, {
-            userId: user.id,
-            patientId: newPatient.id,
-            patientName: `${formData.firstName} ${formData.lastName}`,
-            success: true
-          })
-        }
         
         router.push('/triage')
         router.refresh()
@@ -221,55 +203,6 @@ export function PatientRegistrationForm({ user }: PatientRegistrationFormProps) 
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
-  const handleConsentAccepted = (signature: string, date: string) => {
-    setConsentData({ signature, date })
-    setStep('registration')
-  }
-
-  // Mostrar paso de consentimiento primero
-  if (step === 'consent') {
-    return (
-      <div className="min-h-screen bg-background">
-        <DashboardHeader user={user} />
-        
-        <main className="container mx-auto px-4 py-8 max-w-4xl">
-          <div className="mb-6">
-            <Link href="/dashboard">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Volver al Dashboard
-              </Button>
-            </Link>
-          </div>
-
-          {/* Indicador de pasos */}
-          <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold">
-                1
-              </div>
-              <span className="ml-2 font-medium">Consentimiento</span>
-            </div>
-            <div className="w-16 h-1 bg-muted mx-4" />
-            <div className="flex items-center">
-              <div className="flex items-center justify-center w-10 h-10 rounded-full bg-muted text-muted-foreground font-bold">
-                2
-              </div>
-              <span className="ml-2 text-muted-foreground">Registro</span>
-            </div>
-          </div>
-
-          <HabeasDataConsent 
-            onConsent={(data) => handleConsentAccepted(data.signature, data.consentDate)}
-            onCancel={() => router.push('/dashboard')}
-            patientName=""
-            patientDocument=""
-          />
-        </main>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader user={user} />
@@ -282,23 +215,6 @@ export function PatientRegistrationForm({ user }: PatientRegistrationFormProps) 
               Volver al Dashboard
             </Button>
           </Link>
-        </div>
-
-        {/* Indicador de pasos */}
-        <div className="flex items-center justify-center mb-8">
-          <div className="flex items-center">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white">
-              <FileCheck className="h-5 w-5" />
-            </div>
-            <span className="ml-2 text-green-600 font-medium">Consentimiento</span>
-          </div>
-          <div className="w-16 h-1 bg-primary mx-4" />
-          <div className="flex items-center">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold">
-              2
-            </div>
-            <span className="ml-2 font-medium">Registro</span>
-          </div>
         </div>
 
         <Card>
