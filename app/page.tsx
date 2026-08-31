@@ -1,124 +1,191 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, Heart, Shield, Activity } from 'lucide-react'
+"use client"
 
-export default function Home() {
+import type React from "react"
+import { useState, useEffect } from "react"
+import dynamic from "next/dynamic"
+import { MessageCircle } from "lucide-react"
+import { translations } from "@/lib/translations"
+import { Header } from "@/components/header"
+import { HeroSection } from "@/components/hero-section"
+import { MarqueeSection } from "@/components/marquee-section"
+import { ServicesSection } from "@/components/services-section"
+import { ScrollProgress } from "@/components/scroll-progress"
+import { TrustBar } from "@/components/trust-bar"
+import { Reveal } from "@/components/reveal"
+
+// SSR habilitado: el HTML de estas secciones se renderiza en el servidor
+// (mejor SEO y sin parpadeo). Se aplica code-splitting para aligerar el bundle inicial.
+const FleetSection = dynamic(() => import("@/components/fleet-section").then(m => ({ default: m.FleetSection })))
+const InteractiveDestinations = dynamic(() => import("@/components/interactive-destinations").then(m => ({ default: m.InteractiveDestinations })))
+const AboutBogotaSection = dynamic(() => import("@/components/about-bogota-section").then(m => ({ default: m.AboutBogotaSection })))
+const BogotaVideoSection = dynamic(() => import("@/components/bogota-video-section").then(m => ({ default: m.BogotaVideoSection })))
+const GallerySection = dynamic(() => import("@/components/gallery-section").then(m => ({ default: m.GallerySection })))
+const TestimonialsSection = dynamic(() => import("@/components/testimonials-section").then(m => ({ default: m.TestimonialsSection })))
+const GoogleReviewsWidget = dynamic(() => import("@/components/google-reviews-widget").then(m => ({ default: m.GoogleReviewsWidget })))
+const QuoteForm2Step = dynamic(() => import("@/components/quote-form-2-step").then(m => ({ default: m.QuoteForm2Step })))
+const RecommendationsSection = dynamic(() => import("@/components/recommendations-section").then(m => ({ default: m.RecommendationsSection })))
+const SocialSection = dynamic(() => import("@/components/social-section").then(m => ({ default: m.SocialSection })))
+const Chatbot = dynamic(() => import("@/components/chatbot"), { ssr: false })
+const Footer = dynamic(() => import("@/components/footer").then(m => ({ default: m.Footer })))
+
+const WHATSAPP_LINK =
+  "https://wa.me/573108677635?text=Hola%20BogotourVIP%2C%20quiero%20cotizar%20tu%20servicio.%20%C2%BFMe%20pueden%20ayudar%20con%20la%20informacion%20y%20el%20precio%3F"
+
+export default function Page() {
+  const [language, setLanguage] = useState<keyof typeof translations>("es")
+  const t = translations[language]
+  const [showChatbot, setShowChatbot] = useState(false)
+
+  // Detecta el idioma del navegador la primera vez que un visitante entra
+  // (un extranjero con el navegador en ingles vera la pagina en ingles automaticamente).
+  // Si ya eligio un idioma manualmente antes, se respeta esa eleccion.
+  useEffect(() => {
+    const supported: (keyof typeof translations)[] = ["es", "en", "fr", "de", "pt", "it", "zh"]
+    const saved = localStorage.getItem("preferredLanguage") as keyof typeof translations | null
+    if (saved && supported.includes(saved)) {
+      setLanguage(saved)
+      return
+    }
+    const browserLang = navigator.language.slice(0, 2).toLowerCase() as keyof typeof translations
+    if (supported.includes(browserLang)) {
+      setLanguage(browserLang)
+    }
+  }, [])
+
+  // Guarda la eleccion de idioma para las proximas visitas.
+  const handleSetLanguage = (lang: keyof typeof translations) => {
+    setLanguage(lang)
+    try {
+      localStorage.setItem("preferredLanguage", lang)
+    } catch {}
+  }
+
+  const scrollToCotizacion = (e?: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e) e.preventDefault()
+    const cotizacionSection = document.getElementById("cotizacion")
+    if (cotizacionSection) {
+      cotizacionSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  }
+
+  // Carga el chatbot solo cuando el navegador esta libre o tras la primera interaccion,
+  // para no bloquear el render inicial.
+  useEffect(() => {
+    let triggered = false
+    const load = () => {
+      if (triggered) return
+      triggered = true
+      setShowChatbot(true)
+    }
+
+    const idle = "requestIdleCallback" in window
+      ? (window as any).requestIdleCallback(load, { timeout: 4000 })
+      : setTimeout(load, 3000)
+
+    const events = ["scroll", "pointerdown", "keydown", "touchstart"]
+    events.forEach((e) => window.addEventListener(e, load, { once: true, passive: true }))
+
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, load))
+      if ("cancelIdleCallback" in window) (window as any).cancelIdleCallback(idle)
+      else clearTimeout(idle as ReturnType<typeof setTimeout>)
+    }
+  }, [])
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Heart className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">Sistema Hospitalario</h1>
-          </div>
-          <nav>
-            <Link href="/dashboard">
-              <Button>Entrar</Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background text-foreground">
+      <ScrollProgress />
+      {/* Removed duplicate banner, it's now in Header */}
+      <Header
+        translations={t}
+        language={language}
+        setLanguage={handleSetLanguage}
+        scrollToCotizacion={scrollToCotizacion}
+        // Pass other props if Header needs them, e.g., mobileMenuOpen, setMobileMenuOpen
+      />
 
-      <main className="flex-1">
-        <section className="container mx-auto px-4 py-20 text-center">
-          <div className="max-w-3xl mx-auto space-y-6">
-            <h2 className="text-5xl font-bold text-balance">
-              Gestión Integral de Pacientes Hospitalarios
-            </h2>
-            <p className="text-xl text-muted-foreground text-balance">
-              Sistema completo para la administración de unidades de atención, registro de pacientes,
-              historias clínicas digitales y notas de especialidades médicas
-            </p>
-            <div className="flex gap-4 justify-center pt-4">
-              <Link href="/dashboard">
-                <Button size="lg" className="gap-2">
-                  Entrar al Sistema <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </section>
+      {/* Use HeroSection component */}
+      <HeroSection translations={t} scrollToCotizacion={scrollToCotizacion} WHATSAPP_LINK={WHATSAPP_LINK} />
 
-        <section className="bg-muted/50 py-16">
-          <div className="container mx-auto px-4">
-            <h3 className="text-3xl font-bold text-center mb-12">Funcionalidades Principales</h3>
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="bg-card p-6 rounded-lg border">
-                <div className="mb-4">
-                  <div className="inline-flex p-3 rounded-lg bg-primary/10 text-primary">
-                    <Activity className="h-8 w-8" />
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-2">Gestión de Unidades</h4>
-                <p className="text-muted-foreground">
-                  Administra múltiples unidades: Urgencias, Observación, Hospitalización,
-                  Intermedios y UCI con control de ocupación en tiempo real
-                </p>
-              </div>
+      {/* Trust signals right below the hero */}
+      <TrustBar translations={t} />
 
-              <div className="bg-card p-6 rounded-lg border">
-                <div className="mb-4">
-                  <div className="inline-flex p-3 rounded-lg bg-accent/10 text-accent">
-                    <Heart className="h-8 w-8" />
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-2">Historia Clínica Digital</h4>
-                <p className="text-muted-foreground">
-                  Registro completo de información médica, traslados entre unidades,
-                  signos vitales y seguimiento de días de estancia
-                </p>
-              </div>
+      {/* Marquee */}
+      <MarqueeSection />
 
-              <div className="bg-card p-6 rounded-lg border">
-                <div className="mb-4">
-                  <div className="inline-flex p-3 rounded-lg bg-primary/10 text-primary">
-                    <Shield className="h-8 w-8" />
-                  </div>
-                </div>
-                <h4 className="text-xl font-semibold mb-2">Notas de Especialidades</h4>
-                <p className="text-muted-foreground">
-                  Médicos, enfermeras, terapeutas y especialistas pueden documentar
-                  evoluciones, tratamientos y recomendaciones específicas
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Use ServicesSection component */}
+      <Reveal>
+        <ServicesSection translations={t} scrollToCotizacion={scrollToCotizacion} />
+      </Reveal>
 
-        <section className="py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto text-center space-y-6">
-              <h3 className="text-3xl font-bold">Especialidades Soportadas</h3>
-              <div className="flex flex-wrap gap-2 justify-center">
-                {[
-                  'Medicina General',
-                  'Enfermería',
-                  'Terapia Física',
-                  'Terapia Ocupacional',
-                  'Terapia Respiratoria',
-                  'Cardiología',
-                  'Neurología',
-                  'Cirugía',
-                  'Pediatría',
-                ].map((specialty) => (
-                  <div
-                    key={specialty}
-                    className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium"
-                  >
-                    {specialty}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+      {/* Fleet Section */}
+      <Reveal>
+        <FleetSection translations={t} />
+      </Reveal>
 
-      <footer className="border-t py-8">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>© 2026 Sistema Hospitalario. Todos los derechos reservados.</p>
-        </div>
-      </footer>
+      {/* Interactive Destinations Map (incluye guias + destinos) */}
+      <Reveal>
+        <InteractiveDestinations translations={t} />
+      </Reveal>
+
+      {/* Editorial content about Bogota tourism */}
+      <Reveal>
+        <AboutBogotaSection translations={t} />
+      </Reveal>
+
+      {/* Video aereo de Bogota con carga diferida (facade) */}
+      <Reveal>
+        <BogotaVideoSection translations={t} />
+      </Reveal>
+
+      {/* Use GallerySection component */}
+      <Reveal>
+        <GallerySection translations={t} />
+      </Reveal>
+
+      {/* Use TestimonialsSection component */}
+      <Reveal>
+        <TestimonialsSection translations={t} />
+      </Reveal>
+
+      {/* Add GoogleReviewsWidget */}
+      <Reveal>
+        <GoogleReviewsWidget translations={t} />
+      </Reveal>
+
+      {/* Recommendations Section */}
+      <Reveal>
+        <RecommendationsSection translations={t} />
+      </Reveal>
+
+      <Reveal
+        as="section"
+        id="cotizacion"
+        className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black"
+      >
+        <QuoteForm2Step translations={t} WHATSAPP_LINK={WHATSAPP_LINK} />
+      </Reveal>
+
+      <Reveal>
+        <SocialSection translations={t} />
+      </Reveal>
+
+      <Footer />
+
+      {showChatbot && <Chatbot />}
+
+      <a
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50 bg-green-500 hover:bg-green-600 text-white p-3 sm:p-3.5 md:p-4 rounded-full shadow-2xl transition-colors duration-300 transform hover:scale-110 active:scale-95 animate-whatsapp-pulse"
+        aria-label="Contactar por WhatsApp"
+      >
+        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" />
+      </a>
     </div>
   )
 }
