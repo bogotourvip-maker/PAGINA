@@ -3,33 +3,15 @@
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import {
-  Clock,
-  MapPin,
-  Star,
-  Check,
-  MessageCircle,
-  ArrowRight,
-  Building2,
-  Mountain,
-  Globe,
-  ChevronDown,
-} from "lucide-react"
-import { tours, WHATSAPP_LINK } from "@/lib/tours"
+import { Check, MessageCircle, ArrowRight, Globe, ChevronDown } from "lucide-react"
+import { WHATSAPP_NUMBERS, whatsappLinkTo } from "@/lib/tours"
 import {
   type ServiceLang,
   SERVICE_LANGS,
-  getLocalizedTour,
-  localizedWhatsappLink,
-  serviciosUI,
-} from "@/lib/tours-i18n"
-
-const BOGOTA_SLUGS = ["city-tour-bogota", "la-candelaria", "monserrate", "traslado-aeropuerto"]
-
-const toursBogota = BOGOTA_SLUGS.map((slug) => tours.find((t) => t.slug === slug)).filter(
-  (t): t is (typeof tours)[number] => Boolean(t),
-)
-const toursAlrededores = tours.filter((t) => !BOGOTA_SLUGS.includes(t.slug))
+  transportServices,
+  serviciosPageUI,
+  serviceQuoteMessage,
+} from "@/lib/servicios"
 
 const languageOptions: { code: ServiceLang; flag: string; name: string }[] = [
   { code: "es", flag: "🇨🇴", name: "Español" },
@@ -38,103 +20,73 @@ const languageOptions: { code: ServiceLang; flag: string; name: string }[] = [
   { code: "pt", flag: "🇧🇷", name: "Português" },
 ]
 
-function TourDetailCard({
-  tour,
+function ServiceCard({
+  service,
   index,
   lang,
 }: {
-  tour: (typeof tours)[number]
+  service: (typeof transportServices)[number]
   index: number
   lang: ServiceLang
 }) {
-  const ui = serviciosUI[lang]
-  const local = getLocalizedTour(tour, lang)
-  const whatsappLink = localizedWhatsappLink(local.name, lang)
-  const reversed = index % 2 === 1
+  const ui = serviciosPageUI[lang]
+  const content = service.i18n[lang]
+  const whatsappLink = whatsappLinkTo(WHATSAPP_NUMBERS[0], serviceQuoteMessage(content.name, lang))
 
   return (
-    <article className="group grid lg:grid-cols-2 gap-6 lg:gap-10 items-center bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden p-4 sm:p-5 lg:p-6 hover:border-[#d4af37]/40 transition-colors duration-300">
-      <div className={`relative aspect-[4/3] rounded-2xl overflow-hidden ${reversed ? "lg:order-2" : ""}`}>
+    <article className="group flex flex-col bg-white/[0.03] border border-white/10 rounded-3xl overflow-hidden hover:border-[#d4af37]/40 transition-colors duration-300">
+      <div className="relative h-52 sm:h-56 overflow-hidden">
         <Image
-          src={tour.heroImage || "/placeholder.svg"}
-          alt={local.name}
+          src={service.image || "/placeholder.svg"}
+          alt={content.name}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 1024px) 100vw, 50vw"
           quality={80}
           loading={index < 2 ? "eager" : "lazy"}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        <div className="absolute top-4 left-4 flex items-center gap-2">
-          <span className="px-3 py-1 bg-[#d4af37] text-black text-xs font-semibold rounded-full">{local.category}</span>
-          <span className="flex items-center gap-1 px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-full">
-            <Star className="w-3 h-3 fill-[#d4af37] text-[#d4af37]" />
-            <span className="text-white text-xs font-medium">
-              {tour.rating} ({tour.reviews})
-            </span>
-          </span>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <span className="absolute top-4 left-4 px-3 py-1 bg-[#d4af37] text-black text-xs font-semibold rounded-full">
+          {content.category}
+        </span>
       </div>
 
-      <div className={`${reversed ? "lg:order-1" : ""}`}>
-        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-1.5 text-balance">{local.name}</h3>
-        <p className="text-[#d4af37] font-medium mb-4">{local.tagline}</p>
-        <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-5 text-pretty">{local.shortDescription}</p>
-
-        <div className="flex flex-wrap gap-4 mb-5">
-          <div className="flex items-center gap-2 text-white/70 text-sm">
-            <Clock className="w-4 h-4 text-[#d4af37]" />
-            {local.duration}
-          </div>
-          <div className="flex items-center gap-2 text-white/70 text-sm">
-            <MapPin className="w-4 h-4 text-[#d4af37]" />
-            {local.distance}
-          </div>
-        </div>
-
-        <div className="mb-5">
-          <p className="text-xs uppercase tracking-wider text-white/40 mb-2.5">{ui.whatYouVisit}</p>
-          <div className="flex flex-wrap gap-2">
-            {local.highlights.map((highlight) => (
-              <span
-                key={highlight}
-                className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-white/70"
-              >
-                {highlight}
-              </span>
-            ))}
-          </div>
-        </div>
+      <div className="flex flex-col flex-1 p-6 sm:p-7">
+        <h3 className="text-xl sm:text-2xl font-bold text-white mb-1.5 text-balance">{content.name}</h3>
+        <p className="text-[#d4af37] font-medium text-sm mb-4">{content.tagline}</p>
+        <p className="text-white/60 text-sm leading-relaxed mb-6 text-pretty">{content.description}</p>
 
         <div className="mb-6">
-          <p className="text-xs uppercase tracking-wider text-white/40 mb-2.5">{ui.includes}</p>
-          <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-2">
-            {local.includes.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-white/70">
+          <p className="text-xs uppercase tracking-wider text-white/40 mb-3">{ui.includesLabel}</p>
+          <ul className="grid gap-y-2">
+            {content.features.map((feature) => (
+              <li key={feature} className="flex items-start gap-2 text-sm text-white/70">
                 <Check className="w-4 h-4 text-[#d4af37] flex-shrink-0 mt-0.5" />
-                {item}
+                {feature}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="mt-auto flex flex-col sm:flex-row gap-3">
           <a
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-[#d4af37] text-black hover:bg-[#c9a430] transition-colors font-semibold px-5 py-3 rounded-xl text-sm"
+            className="flex items-center justify-center gap-2 bg-[#d4af37] text-black hover:bg-[#c9a430] transition-colors font-semibold px-5 py-3 rounded-xl text-sm flex-1"
           >
             <MessageCircle className="w-4 h-4" />
             {ui.quoteWhatsapp}
           </a>
-          <Link
-            href={`/tours/${tour.slug}`}
-            className="flex items-center justify-center gap-1.5 border border-white/20 text-white hover:bg-white/10 transition-colors font-medium px-5 py-3 rounded-xl text-sm"
-          >
-            {ui.viewDetails}
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {service.detailHref && (
+            <Link
+              href={service.detailHref}
+              className="flex items-center justify-center gap-1.5 border border-white/20 text-white hover:bg-white/10 transition-colors font-medium px-5 py-3 rounded-xl text-sm"
+            >
+              {ui.viewDetails}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          )}
         </div>
       </div>
     </article>
@@ -145,7 +97,7 @@ export function ServiciosContent({ children }: { children?: React.ReactNode }) {
   const [lang, setLang] = useState<ServiceLang>("es")
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
-  const ui = serviciosUI[lang]
+  const ui = serviciosPageUI[lang]
 
   // Detecta el idioma guardado (compartido con la home) o el del navegador
   useEffect(() => {
@@ -256,41 +208,12 @@ export function ServiciosContent({ children }: { children?: React.ReactNode }) {
         </div>
       </section>
 
-      {/* Tours en Bogotá */}
-      <section className="pb-4 sm:pb-6 bg-black">
+      {/* Grid de servicios */}
+      <section className="pb-16 sm:pb-20 md:pb-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-[#d4af37]/15 flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-[#d4af37]" />
-            </div>
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">{ui.inBogotaTitle}</h2>
-              <p className="text-white/40 text-sm">{ui.inBogotaSubtitle}</p>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 sm:gap-8">
-            {toursBogota.map((tour, index) => (
-              <TourDetailCard key={tour.slug} tour={tour} index={index} lang={lang} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tours en los alrededores */}
-      <section className="py-12 sm:py-16 md:py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-[#d4af37]/15 flex items-center justify-center">
-              <Mountain className="w-5 h-5 text-[#d4af37]" />
-            </div>
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">{ui.aroundTitle}</h2>
-              <p className="text-white/40 text-sm">{ui.aroundSubtitle}</p>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 sm:gap-8">
-            {toursAlrededores.map((tour, index) => (
-              <TourDetailCard key={tour.slug} tour={tour} index={index} lang={lang} />
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+            {transportServices.map((service, index) => (
+              <ServiceCard key={service.id} service={service} index={index} lang={lang} />
             ))}
           </div>
         </div>
@@ -302,7 +225,7 @@ export function ServiciosContent({ children }: { children?: React.ReactNode }) {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 text-balance">{ui.ctaTitle}</h2>
           <p className="text-white/50 text-base sm:text-lg mb-8 text-pretty">{ui.ctaSubtitle}</p>
           <a
-            href={WHATSAPP_LINK}
+            href={whatsappLinkTo(WHATSAPP_NUMBERS[0])}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[#d4af37] text-black hover:bg-[#c9a430] transition-colors font-semibold px-8 py-4 rounded-xl"

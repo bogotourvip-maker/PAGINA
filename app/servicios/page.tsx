@@ -1,18 +1,18 @@
 import type { Metadata } from "next"
-import { tours } from "@/lib/tours"
+import { transportServices } from "@/lib/servicios"
 import { ServiciosContent } from "@/components/servicios-content"
 
 export const metadata: Metadata = {
-  title: "Servicios y Tours en Bogotá y alrededores | BogotourVip",
+  title: "Servicios de Transporte Privado en Bogotá | BogotourVip",
   description:
-    "Conoce en detalle todos nuestros tours privados en Bogotá y sus alrededores: qué visitarás, qué incluye cada experiencia, duración y recorrido. City Tour, Monserrate, La Candelaria, Guatavita, Catedral de Sal, Villa de Leyva y traslados.",
+    "Transporte privado en Bogotá para cada ocasión: traslados al Aeropuerto El Dorado, transporte ejecutivo, logística para eventos y grupos, y traslados intermunicipales. Conductores profesionales 24/7.",
   alternates: {
     canonical: "https://bogotourvip.com/servicios",
   },
   openGraph: {
-    title: "Servicios y Tours en Bogotá y alrededores | BogotourVip",
+    title: "Servicios de Transporte Privado en Bogotá | BogotourVip",
     description:
-      "Todos nuestros servicios turísticos detallados: tours en Bogotá, excursiones a los alrededores y transporte privado.",
+      "Traslados al aeropuerto, transporte ejecutivo, eventos y viajes intermunicipales con conductores profesionales.",
     url: "https://bogotourvip.com/servicios",
     type: "website",
   },
@@ -22,16 +22,20 @@ export default function ServiciosPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Servicios y tours en Bogotá y alrededores",
-    itemListElement: tours.map((tour, i) => ({
+    name: "Servicios de transporte privado en Bogotá",
+    itemListElement: transportServices.map((service, i) => ({
       "@type": "ListItem",
       position: i + 1,
       item: {
-        "@type": "TouristTrip",
-        name: tour.name,
-        description: tour.metaDescription,
-        image: `https://bogotourvip.com${tour.heroImage}`,
-        url: `https://bogotourvip.com/tours/${tour.slug}`,
+        "@type": "Service",
+        name: service.i18n.es.name,
+        description: service.i18n.es.description,
+        image: `https://bogotourvip.com${service.image}`,
+        areaServed: "Bogotá, Colombia",
+        provider: {
+          "@type": "TravelAgency",
+          name: "BogotourVip",
+        },
       },
     })),
   }

@@ -5,10 +5,13 @@ import { Clock, MapPin, Star, ArrowRight } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
 import { tours } from "@/lib/tours"
 
+// El traslado de aeropuerto es un servicio de transporte (vive en /servicios), no un tour
+const tourList = tours.filter((t) => t.slug !== "traslado-aeropuerto")
+
 export const metadata: Metadata = {
   title: "Tours en Bogotá y alrededores | Catálogo de experiencias",
   description:
-    "Explora todos nuestros tours privados en Bogotá y sus alrededores: City Tour, Monserrate, La Candelaria, Laguna de Guatavita, Catedral de Sal, Villa de Leyva y traslado aeropuerto.",
+    "Explora todos nuestros tours privados en Bogotá y sus alrededores: City Tour, Monserrate, La Candelaria, Laguna de Guatavita, Catedral de Sal y Villa de Leyva.",
   alternates: {
     canonical: "https://bogotourvip.com/tours",
   },
@@ -47,7 +50,7 @@ export default function ToursPage() {
       <section className="pb-16 sm:pb-20 md:pb-24 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-            {tours.map((tour) => (
+            {tourList.map((tour) => (
               <Link
                 key={tour.slug}
                 href={`/tours/${tour.slug}`}
