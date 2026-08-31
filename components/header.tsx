@@ -63,12 +63,12 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
             <Image
               src="/logo-bogotourvip.jpg"
               alt="BogotourVip"
-              width={220}
-              height={73}
-              className="h-11 sm:h-12 md:h-14 lg:h-16 w-auto object-contain"
+              width={300}
+              height={100}
+              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
               priority
               quality={90}
-              sizes="(max-width: 640px) 150px, 220px"
+              sizes="(max-width: 640px) 200px, 300px"
             />
           </a>
 
