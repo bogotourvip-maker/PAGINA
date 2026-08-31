@@ -19,6 +19,8 @@ export interface Tour {
   keywords: string[]
   // Sitios que visita el tour, con su calificación real en Google Maps
   googlePlaces?: GooglePlace[]
+  // Preguntas frecuentes específicas del tour (SEO: schema FAQPage + long-tail)
+  faq?: TourFaq[]
 }
 
 // Calificación de un sitio turístico según Google Maps
@@ -28,6 +30,12 @@ export interface GooglePlace {
   reviews: number
   description: string
   image: string
+}
+
+// Pregunta frecuente específica de un tour
+export interface TourFaq {
+  q: string
+  a: string
 }
 
 // Numeros de WhatsApp de los asesores de BogotourVIP (todos los mensajes salen hacia estos)
