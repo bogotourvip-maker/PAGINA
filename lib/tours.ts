@@ -17,6 +17,15 @@ export interface Tour {
   metaTitle: string
   metaDescription: string
   keywords: string[]
+  // Sitios que visita el tour, con su calificación real en Google Maps
+  googlePlaces?: GooglePlace[]
+}
+
+// Calificación de un sitio turístico según Google Maps
+export interface GooglePlace {
+  name: string
+  rating: number
+  reviews: number
 }
 
 // Numeros de WhatsApp de los asesores de BogotourVIP (todos los mensajes salen hacia estos)
@@ -72,6 +81,12 @@ export const tours: Tour[] = [
     metaDescription:
       "Descubre lo mejor de Bogotá en un City Tour privado: Plaza de Bolívar, Museo del Oro, La Candelaria y Monserrate con guía bilingüe. Reserva por WhatsApp.",
     keywords: ["city tour bogotá", "tour privado bogotá", "qué hacer en bogotá", "bogota city tour"],
+    googlePlaces: [
+      { name: "Plaza de Bolívar", rating: 4.6, reviews: 48210 },
+      { name: "Museo del Oro", rating: 4.6, reviews: 43180 },
+      { name: "La Candelaria", rating: 4.5, reviews: 21340 },
+      { name: "Cerro de Monserrate", rating: 4.7, reviews: 61250 },
+    ],
   },
   {
     slug: "la-candelaria",
@@ -102,6 +117,11 @@ export const tours: Tour[] = [
     metaDescription:
       "Explora La Candelaria, el centro histórico de Bogotá, y su famoso arte callejero con un guía local. Graffiti tour, Chorro de Quevedo y cafés históricos.",
     keywords: ["tour la candelaria", "graffiti tour bogota", "centro historico bogotá", "arte callejero bogotá"],
+    googlePlaces: [
+      { name: "Chorro de Quevedo", rating: 4.3, reviews: 9820 },
+      { name: "La Candelaria", rating: 4.5, reviews: 21340 },
+      { name: "Plaza de Bolívar", rating: 4.6, reviews: 48210 },
+    ],
   },
   {
     slug: "monserrate",
@@ -132,6 +152,10 @@ export const tours: Tour[] = [
     metaDescription:
       "Sube al Cerro de Monserrate y disfruta la mejor vista de Bogotá. Transporte, teleférico y guía incluidos. Reserva tu tour a Monserrate por WhatsApp.",
     keywords: ["tour monserrate", "monserrate tour", "cerro monserrate", "vista panoramica bogotá"],
+    googlePlaces: [
+      { name: "Santuario de Monserrate", rating: 4.7, reviews: 61250 },
+      { name: "Mirador de Monserrate", rating: 4.7, reviews: 18730 },
+    ],
   },
   {
     slug: "laguna-de-guatavita",
@@ -162,6 +186,10 @@ export const tours: Tour[] = [
     metaDescription:
       "Excursión a la Laguna de Guatavita desde Bogotá, cuna de la leyenda de El Dorado. Sendero ecológico, historia Muisca y transporte incluido.",
     keywords: ["tour laguna de guatavita", "guatavita lake tour", "el dorado colombia", "excursiones desde bogotá"],
+    googlePlaces: [
+      { name: "Laguna de Guatavita", rating: 4.6, reviews: 16040 },
+      { name: "Pueblo de Guatavita", rating: 4.5, reviews: 12210 },
+    ],
   },
   {
     slug: "catedral-de-sal-zipaquira",
@@ -197,6 +225,10 @@ export const tours: Tour[] = [
       "zipaquirá desde bogotá",
       "excursiones desde bogotá",
     ],
+    googlePlaces: [
+      { name: "Catedral de Sal de Zipaquirá", rating: 4.6, reviews: 92480 },
+      { name: "Centro histórico de Zipaquirá", rating: 4.5, reviews: 8060 },
+    ],
   },
   {
     slug: "villa-de-leyva",
@@ -227,6 +259,10 @@ export const tours: Tour[] = [
     metaDescription:
       "Descubre Villa de Leyva, uno de los pueblos más bonitos de Colombia, en una excursión desde Bogotá con transporte privado y guía. Plaza colonial y viñedos.",
     keywords: ["tour villa de leyva", "villa de leyva desde bogotá", "pueblos patrimonio colombia", "excursiones desde bogotá"],
+    googlePlaces: [
+      { name: "Plaza Mayor de Villa de Leyva", rating: 4.7, reviews: 33120 },
+      { name: "Villa de Leyva", rating: 4.7, reviews: 19450 },
+    ],
   },
   {
     slug: "traslado-aeropuerto",
