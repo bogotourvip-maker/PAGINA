@@ -11,8 +11,8 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [390, 640, 750, 828, 1080, 1200, 1536],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Calidades permitidas (Next.js 16). 72 reduce el peso sin perdida visible.
-    qualities: [72, 80, 90],
+    // Calidades permitidas (Next.js 16). Cubre los valores usados en todo el sitio.
+    qualities: [70, 72, 75, 80, 85, 90],
     minimumCacheTTL: 60 * 60 * 24 * 30,
     dangerouslyAllowSVG: false,
   },
