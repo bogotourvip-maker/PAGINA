@@ -12,6 +12,7 @@ import { ServicesSection } from "@/components/services-section"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { TrustBar } from "@/components/trust-bar"
 import { PopularSearches } from "@/components/popular-searches"
+import { FaqSection } from "@/components/faq-section"
 import { Reveal } from "@/components/reveal"
 
 // SSR habilitado: el HTML de estas secciones se renderiza en el servidor
@@ -173,6 +174,11 @@ export default function Page() {
         className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-gray-900 to-black"
       >
         <QuoteForm2Step translations={t} WHATSAPP_LINK={WHATSAPP_LINK} />
+      </Reveal>
+
+      {/* SEO: FAQ con schema FAQPage para resultados enriquecidos en Google */}
+      <Reveal>
+        <FaqSection language={language} />
       </Reveal>
 
       <Reveal>
