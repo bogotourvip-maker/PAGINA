@@ -52,7 +52,9 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
     <>
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          isScrolled ? "bg-black/90 backdrop-blur-xl" : "bg-transparent"
+          isScrolled
+            ? "bg-black/90 backdrop-blur-xl"
+            : "bg-gradient-to-b from-black/70 via-black/30 to-transparent"
         }`}
       >
         <nav className="max-w-[1400px] mx-auto px-3 sm:px-4 md:px-6 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 flex items-center justify-between">
