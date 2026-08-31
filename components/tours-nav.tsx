@@ -20,6 +20,9 @@ export function ToursNav() {
 
         <div className="flex items-center gap-4 sm:gap-6">
           <nav className="hidden sm:flex items-center gap-5 text-sm font-medium">
+            <Link href="/servicios" className="text-white/80 hover:text-white transition-colors">
+              Servicios
+            </Link>
             <Link href="/tours" className="text-white/80 hover:text-white transition-colors">
               Tours
             </Link>
