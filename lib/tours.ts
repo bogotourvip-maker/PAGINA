@@ -26,6 +26,8 @@ export interface GooglePlace {
   name: string
   rating: number
   reviews: number
+  description: string
+  image: string
 }
 
 // Numeros de WhatsApp de los asesores de BogotourVIP (todos los mensajes salen hacia estos)
@@ -82,10 +84,34 @@ export const tours: Tour[] = [
       "Descubre lo mejor de Bogotá en un City Tour privado: Plaza de Bolívar, Museo del Oro, La Candelaria y Monserrate con guía bilingüe. Reserva por WhatsApp.",
     keywords: ["city tour bogotá", "tour privado bogotá", "qué hacer en bogotá", "bogota city tour"],
     googlePlaces: [
-      { name: "Plaza de Bolívar", rating: 4.6, reviews: 48210 },
-      { name: "Museo del Oro", rating: 4.6, reviews: 43180 },
-      { name: "La Candelaria", rating: 4.5, reviews: 21340 },
-      { name: "Cerro de Monserrate", rating: 4.7, reviews: 61250 },
+      {
+        name: "Plaza de Bolívar",
+        rating: 4.6,
+        reviews: 48210,
+        description: "El corazón político de Colombia, rodeado por la Catedral Primada y el Capitolio Nacional.",
+        image: "/images/plaza-bolivar-catedral.jpg",
+      },
+      {
+        name: "Museo del Oro",
+        rating: 4.6,
+        reviews: 43180,
+        description: "La colección de orfebrería prehispánica más grande del mundo, con más de 34.000 piezas de oro.",
+        image: "/images/sitio-museo-del-oro.png",
+      },
+      {
+        name: "La Candelaria",
+        rating: 4.5,
+        reviews: 21340,
+        description: "El barrio colonial de calles empedradas, casas de colores y arte callejero de fama mundial.",
+        image: "/images/la-candelaria-colorful.png",
+      },
+      {
+        name: "Cerro de Monserrate",
+        rating: 4.7,
+        reviews: 61250,
+        description: "El mirador icónico a 3.152 m con la vista más impresionante de toda la ciudad.",
+        image: "/images/sitio-monserrate.png",
+      },
     ],
   },
   {
@@ -118,9 +144,27 @@ export const tours: Tour[] = [
       "Explora La Candelaria, el centro histórico de Bogotá, y su famoso arte callejero con un guía local. Graffiti tour, Chorro de Quevedo y cafés históricos.",
     keywords: ["tour la candelaria", "graffiti tour bogota", "centro historico bogotá", "arte callejero bogotá"],
     googlePlaces: [
-      { name: "Chorro de Quevedo", rating: 4.3, reviews: 9820 },
-      { name: "La Candelaria", rating: 4.5, reviews: 21340 },
-      { name: "Plaza de Bolívar", rating: 4.6, reviews: 48210 },
+      {
+        name: "Chorro de Quevedo",
+        rating: 4.3,
+        reviews: 9820,
+        description: "La plazoleta donde nació Bogotá en 1538, hoy epicentro bohemio de leyendas y música.",
+        image: "/images/sitio-chorro-quevedo.png",
+      },
+      {
+        name: "La Candelaria",
+        rating: 4.5,
+        reviews: 21340,
+        description: "Un museo a cielo abierto de arquitectura colonial y los mejores murales de Latinoamérica.",
+        image: "/images/la-candelaria-grafitis.jpg",
+      },
+      {
+        name: "Plaza de Bolívar",
+        rating: 4.6,
+        reviews: 48210,
+        description: "La plaza mayor de la ciudad, punto de encuentro entre historia, palomas y arquitectura monumental.",
+        image: "/images/plaza-bolivar-catedral.jpg",
+      },
     ],
   },
   {
@@ -153,8 +197,20 @@ export const tours: Tour[] = [
       "Sube al Cerro de Monserrate y disfruta la mejor vista de Bogotá. Transporte, teleférico y guía incluidos. Reserva tu tour a Monserrate por WhatsApp.",
     keywords: ["tour monserrate", "monserrate tour", "cerro monserrate", "vista panoramica bogotá"],
     googlePlaces: [
-      { name: "Santuario de Monserrate", rating: 4.7, reviews: 61250 },
-      { name: "Mirador de Monserrate", rating: 4.7, reviews: 18730 },
+      {
+        name: "Santuario de Monserrate",
+        rating: 4.7,
+        reviews: 61250,
+        description: "El templo del Señor Caído, uno de los santuarios de peregrinación más queridos de Colombia.",
+        image: "/images/sitio-monserrate.png",
+      },
+      {
+        name: "Mirador de Monserrate",
+        rating: 4.7,
+        reviews: 18730,
+        description: "Vista de 360° sobre la sabana de Bogotá, espectacular al atardecer cuando la ciudad se ilumina.",
+        image: "/images/tour-mirador-selfie.jpg",
+      },
     ],
   },
   {
@@ -187,8 +243,20 @@ export const tours: Tour[] = [
       "Excursión a la Laguna de Guatavita desde Bogotá, cuna de la leyenda de El Dorado. Sendero ecológico, historia Muisca y transporte incluido.",
     keywords: ["tour laguna de guatavita", "guatavita lake tour", "el dorado colombia", "excursiones desde bogotá"],
     googlePlaces: [
-      { name: "Laguna de Guatavita", rating: 4.6, reviews: 16040 },
-      { name: "Pueblo de Guatavita", rating: 4.5, reviews: 12210 },
+      {
+        name: "Laguna de Guatavita",
+        rating: 4.6,
+        reviews: 16040,
+        description: "El lago sagrado de los Muiscas, cuna de la leyenda de El Dorado, rodeado de bosque de niebla.",
+        image: "/images/guatavita.jpg",
+      },
+      {
+        name: "Pueblo de Guatavita",
+        rating: 4.5,
+        reviews: 12210,
+        description: "Un pueblo blanco de calles empedradas junto al embalse, perfecto para artesanías y fotos.",
+        image: "/images/sitio-pueblo-guatavita.png",
+      },
     ],
   },
   {
@@ -226,8 +294,20 @@ export const tours: Tour[] = [
       "excursiones desde bogotá",
     ],
     googlePlaces: [
-      { name: "Catedral de Sal de Zipaquirá", rating: 4.6, reviews: 92480 },
-      { name: "Centro histórico de Zipaquirá", rating: 4.5, reviews: 8060 },
+      {
+        name: "Catedral de Sal de Zipaquirá",
+        rating: 4.6,
+        reviews: 92480,
+        description: "Primera maravilla de Colombia: una catedral tallada a 180 m bajo tierra en una mina de sal.",
+        image: "/images/sitio-catedral-sal.png",
+      },
+      {
+        name: "Centro histórico de Zipaquirá",
+        rating: 4.5,
+        reviews: 8060,
+        description: "Pueblo colonial de casas blancas y una imponente plaza con su catedral de piedra.",
+        image: "/images/sitio-zipaquira-centro.png",
+      },
     ],
   },
   {
@@ -260,8 +340,20 @@ export const tours: Tour[] = [
       "Descubre Villa de Leyva, uno de los pueblos más bonitos de Colombia, en una excursión desde Bogotá con transporte privado y guía. Plaza colonial y viñedos.",
     keywords: ["tour villa de leyva", "villa de leyva desde bogotá", "pueblos patrimonio colombia", "excursiones desde bogotá"],
     googlePlaces: [
-      { name: "Plaza Mayor de Villa de Leyva", rating: 4.7, reviews: 33120 },
-      { name: "Villa de Leyva", rating: 4.7, reviews: 19450 },
+      {
+        name: "Plaza Mayor de Villa de Leyva",
+        rating: 4.7,
+        reviews: 33120,
+        description: "Una de las plazas empedradas más grandes de América, rodeada de casonas coloniales blancas.",
+        image: "/images/villa-de-leyva.png",
+      },
+      {
+        name: "Villa de Leyva",
+        rating: 4.7,
+        reviews: 19450,
+        description: "Pueblo Monumento Nacional detenido en el siglo XVI, entre viñedos, fósiles y desiertos.",
+        image: "/images/villa-de-leyva.png",
+      },
     ],
   },
   {

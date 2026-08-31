@@ -62,18 +62,54 @@ function GoogleG({ className = "w-4 h-4" }: { className?: string }) {
   )
 }
 
-// Fila de sitios calificados por Google
+// Sitios calificados por Google, con foto y descripción breve (para el tour destacado)
+function GooglePlacesRich({ places }: { places: GooglePlace[] }) {
+  return (
+    <ul className="grid sm:grid-cols-2 gap-3">
+      {places.map((p) => (
+        <li
+          key={p.name}
+          className="flex gap-3 rounded-xl border border-white/10 bg-black/40 p-2.5 hover:border-[#d4af37]/40 transition-colors"
+        >
+          <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+            <Image src={p.image || "/placeholder.svg"} alt={p.name} fill className="object-cover" sizes="64px" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-white text-sm font-semibold truncate">{p.name}</span>
+              <span className="flex shrink-0 items-center gap-1 text-[#d4af37] text-xs font-semibold">
+                <Star className="w-3 h-3 fill-[#d4af37] text-[#d4af37]" />
+                {p.rating.toFixed(1)}
+              </span>
+            </div>
+            <p className="text-white/50 text-[11px] leading-snug mt-0.5 line-clamp-2">{p.description}</p>
+            <span className="text-white/30 text-[10px]">{formatReviews(p.reviews)} reseñas en Google</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// Sitios calificados por Google, versión compacta con miniatura (para las tarjetas de la grilla)
 function GooglePlaces({ places }: { places: GooglePlace[] }) {
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col gap-2.5">
       {places.map((p) => (
-        <li key={p.name} className="flex items-center justify-between gap-3 text-sm">
-          <span className="text-white/70 truncate">{p.name}</span>
-          <span className="flex shrink-0 items-center gap-1.5 text-white/90">
-            <Star className="w-3.5 h-3.5 fill-[#d4af37] text-[#d4af37]" />
-            <span className="font-semibold">{p.rating.toFixed(1)}</span>
-            <span className="text-white/40 text-xs">({formatReviews(p.reviews)})</span>
-          </span>
+        <li key={p.name} className="flex items-center gap-2.5">
+          <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-md">
+            <Image src={p.image || "/placeholder.svg"} alt={p.name} fill className="object-cover" sizes="36px" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-white/80 text-[13px] font-medium truncate">{p.name}</span>
+              <span className="flex shrink-0 items-center gap-1 text-white/90 text-xs">
+                <Star className="w-3 h-3 fill-[#d4af37] text-[#d4af37]" />
+                <span className="font-semibold">{p.rating.toFixed(1)}</span>
+              </span>
+            </div>
+            <p className="text-white/40 text-[10.5px] leading-tight truncate">{p.description}</p>
+          </div>
         </li>
       ))}
     </ul>
@@ -158,10 +194,10 @@ export default function ToursPage() {
                 <div className="flex items-center gap-2 mb-3">
                   <GoogleG className="w-4 h-4" />
                   <span className="text-white/50 text-xs uppercase tracking-wider">
-                    Calificación de los sitios en Google
+                    Sitios que visitas y su calificación en Google
                   </span>
                 </div>
-                <GooglePlaces places={featured.googlePlaces} />
+                <GooglePlacesRich places={featured.googlePlaces} />
               </div>
             )}
 
