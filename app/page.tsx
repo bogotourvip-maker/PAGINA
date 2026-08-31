@@ -11,6 +11,7 @@ import { MarqueeSection } from "@/components/marquee-section"
 import { ServicesSection } from "@/components/services-section"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { TrustBar } from "@/components/trust-bar"
+import { PopularSearches } from "@/components/popular-searches"
 import { Reveal } from "@/components/reveal"
 
 // SSR habilitado: el HTML de estas secciones se renderiza en el servidor
@@ -159,6 +160,11 @@ export default function Page() {
       {/* Recommendations Section */}
       <Reveal>
         <RecommendationsSection translations={t} />
+      </Reveal>
+
+      {/* SEO: busquedas populares con enlaces internos y texto ancla optimizado */}
+      <Reveal>
+        <PopularSearches language={language} />
       </Reveal>
 
       <Reveal

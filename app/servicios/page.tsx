@@ -6,6 +6,19 @@ export const metadata: Metadata = {
   title: "Servicios de Transporte Privado en Bogotá | BogotourVip",
   description:
     "Transporte privado en Bogotá para cada ocasión: traslados al Aeropuerto El Dorado, transporte ejecutivo, logística para eventos y grupos, y traslados intermunicipales. Conductores profesionales 24/7.",
+  keywords: [
+    "transporte privado bogotá",
+    "traslado aeropuerto el dorado",
+    "transporte ejecutivo bogotá",
+    "transporte para eventos bogotá",
+    "conductor privado bogotá",
+    "van con conductor bogotá",
+    "traslados intermunicipales colombia",
+    "servicio de transporte turístico bogotá",
+    "bogota airport transfer",
+    "private driver bogota",
+    "executive transport bogota",
+  ],
   alternates: {
     canonical: "https://bogotourvip.com/servicios",
   },
@@ -14,7 +27,17 @@ export const metadata: Metadata = {
     description:
       "Traslados al aeropuerto, transporte ejecutivo, eventos y viajes intermunicipales con conductores profesionales.",
     url: "https://bogotourvip.com/servicios",
+    siteName: "BogotourVip",
     type: "website",
+    locale: "es_CO",
+    images: [
+      {
+        url: `https://bogotourvip.com${transportServices[0]?.image ?? "/images/bogota-skyline-panorama.webp"}`,
+        width: 1200,
+        height: 630,
+        alt: "Servicios de transporte privado en Bogotá - BogotourVip",
+      },
+    ],
   },
 }
 
