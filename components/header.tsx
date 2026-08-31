@@ -75,6 +75,8 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
           <div className="hidden lg:flex items-center gap-8 xl:gap-10">
             {[
               { href: "/servicios", label: t.services },
+              { href: "/tours", label: "Tours" },
+              { href: "/blog", label: "Blog" },
               { href: "#galeria", label: t.gallery },
               { href: "#cotizacion", label: t.quote },
               { href: "#contacto", label: t.contact },
@@ -147,6 +149,8 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
           <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-accent/20 px-6 sm:px-8 py-6 sm:py-8 flex flex-col gap-5 sm:gap-6 animate-slide-in-up max-h-[calc(100vh-100px)] overflow-y-auto">
             {[
               { href: "/servicios", label: t.services },
+              { href: "/tours", label: "Tours" },
+              { href: "/blog", label: "Blog" },
               { href: "#experiencia", label: t.experience },
               { href: "#galeria", label: t.gallery },
               { href: "#cotizacion", label: t.quote },
