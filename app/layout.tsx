@@ -123,6 +123,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="dns-prefetch" href="https://maps.app.goo.gl" />
+        <script src="https://analytics.ahrefs.com/analytics.js" data-key="8UM4HZNjjBdtQRWYrVUabA" async></script>
         <link
           rel="preload"
           as="image"
