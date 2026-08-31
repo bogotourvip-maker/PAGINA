@@ -131,7 +131,7 @@ export default function RootLayout({
           type="image/webp"
           fetchPriority="high"
         />
-        <meta name="google-site-verification" content="Iqtjf6WKXA1AJqpEtoJt00N4a3EtIIfUEjqTQkoYuWQ" />icos 
+        <meta name="google-site-verification" content="Iqtjf6WKXA1AJqpEtoJt00N4a3EtIIfUEjqTQkoYuWQ" />
 
         <Script
           type="application/ld+json"

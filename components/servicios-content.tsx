@@ -141,7 +141,7 @@ function TourDetailCard({
   )
 }
 
-export function ServiciosContent() {
+export function ServiciosContent({ children }: { children?: React.ReactNode }) {
   const [lang, setLang] = useState<ServiceLang>("es")
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -182,6 +182,7 @@ export function ServiciosContent() {
 
   return (
     <main className="min-h-screen bg-black">
+      {children}
       {/* Navegación */}
       <nav className="sticky top-0 z-40 bg-black/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">

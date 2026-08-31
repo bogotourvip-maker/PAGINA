@@ -37,9 +37,8 @@ export default function ServiciosPage() {
   }
 
   return (
-    <>
+    <ServiciosContent>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <ServiciosContent />
-    </>
+    </ServiciosContent>
   )
 }
