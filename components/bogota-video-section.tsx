@@ -1,24 +1,33 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Play } from "lucide-react"
 
 interface BogotaVideoSectionProps {
   translations: any
 }
 
-// ID del video de YouTube (recorrido aereo por Bogota)
-const YT_ID = "_6Dd4xgwdFs"
+// Video oficial de Bogota (Visit Bogota) alojado localmente en /public
+const VIDEO_SRC = "/bogota-video.mp4"
+const VIDEO_POSTER = "/bogota-video-poster.png"
 
 /**
  * Seccion de video con carga diferida tipo "facade":
- * de entrada SOLO se muestra una miniatura ligera + boton de play.
- * El iframe de YouTube (y todo su peso: JS, cookies, red) se monta
- * unicamente cuando el usuario hace clic, por lo que NO afecta la
- * velocidad de carga inicial de la pagina.
+ * de entrada SOLO se muestra el poster ligero + boton de play.
+ * El archivo de video se descarga y reproduce unicamente cuando el
+ * usuario hace clic, por lo que NO afecta la velocidad de carga inicial.
  */
 export function BogotaVideoSection({ translations: t }: BogotaVideoSectionProps) {
   const [playing, setPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handlePlay = () => {
+    setPlaying(true)
+    // Esperamos al render del <video> para dispararlo
+    requestAnimationFrame(() => {
+      videoRef.current?.play().catch(() => {})
+    })
+  }
 
   return (
     <section id="video" className="py-16 sm:py-20 md:py-24 bg-black">
@@ -31,24 +40,25 @@ export function BogotaVideoSection({ translations: t }: BogotaVideoSectionProps)
 
         <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
           {playing ? (
-            <iframe
-              className="absolute inset-0 h-full w-full"
-              src={`https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`}
-              title={t.videoTitle}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
+            <video
+              ref={videoRef}
+              className="absolute inset-0 h-full w-full bg-black"
+              src={VIDEO_SRC}
+              poster={VIDEO_POSTER}
+              controls
+              playsInline
+              preload="auto"
             />
           ) : (
             <button
               type="button"
-              onClick={() => setPlaying(true)}
+              onClick={handlePlay}
               className="group absolute inset-0 h-full w-full cursor-pointer"
               aria-label={t.videoCta}
             >
-              {/* Miniatura ligera de YouTube (no descarga el video) */}
+              {/* Poster ligero (no descarga el video hasta el clic) */}
               <img
-                src={`https://i.ytimg.com/vi/${YT_ID}/maxresdefault.jpg`}
+                src={VIDEO_POSTER || "/placeholder.svg"}
                 alt={t.videoTitle}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
