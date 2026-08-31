@@ -27,6 +27,8 @@ export function QuoteForm2Step({ translations: t, WHATSAPP_LINK }: QuoteForm2Ste
   const [telefono, setTelefono] = useState("")
   const [observaciones, setObservaciones] = useState("")
   const [sent, setSent] = useState(false)
+  const [sentViaApi, setSentViaApi] = useState(false)
+  const [sending, setSending] = useState(false)
   const [quoteMessage, setQuoteMessage] = useState("")
 
   const validateStep1 = () => {
@@ -43,7 +45,7 @@ export function QuoteForm2Step({ translations: t, WHATSAPP_LINK }: QuoteForm2Ste
     }
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!nombre || !telefono) {
@@ -62,16 +64,43 @@ export function QuoteForm2Step({ translations: t, WHATSAPP_LINK }: QuoteForm2Ste
       `*Observaciones:* ${observaciones || "Ninguna"}`
 
     setQuoteMessage(message)
+    setSending(true)
 
-    // Abrimos el chat del primer asesor de inmediato (gesto del usuario => no se bloquea)
+    // 1) Intentamos el envio AUTOMATICO por la API de WhatsApp (llega a los dos asesores solos).
+    try {
+      const res = await fetch("/api/cotizacion", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fecha, pasajeros, maletas, origen, destino, nombre, telefono, observaciones }),
+      })
+      const data = await res.json()
+
+      if (data?.ok && data?.configured) {
+        // La API envio a los DOS asesores automaticamente. No hace falta abrir WhatsApp.
+        setSentViaApi(true)
+        setSent(true)
+        setSending(false)
+        return
+      }
+    } catch {
+      // Si la API falla, caemos al metodo manual mas abajo.
+    }
+
+    // 2) Respaldo MANUAL: abrimos el chat del primer asesor de inmediato (gesto del usuario => no se bloquea)
     window.open(`https://wa.me/${WHATSAPP_NUMBERS[0]}?text=${encodeURIComponent(message)}`, "_blank")
-
-    // Mostramos el paso de confirmacion con el boton para enviar al segundo asesor
+    setSentViaApi(false)
     setSent(true)
+    setSending(false)
   }
 
   const sendToSecond = () => {
     window.open(`https://wa.me/${WHATSAPP_NUMBERS[1]}?text=${encodeURIComponent(quoteMessage)}`, "_blank")
+  }
+
+  const resetForm = () => {
+    setSent(false)
+    setSentViaApi(false)
+    setStep(1)
   }
 
   return (
@@ -119,24 +148,30 @@ export function QuoteForm2Step({ translations: t, WHATSAPP_LINK }: QuoteForm2Ste
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
                     ¡Tu cotizacion fue enviada!
                   </h3>
-                  <p className="text-sm sm:text-base text-white/70 mb-6">
-                    Abrimos WhatsApp con nuestro primer asesor. Para una respuesta aun mas rapida, envia la misma
-                    solicitud tambien a nuestro segundo asesor:
-                  </p>
-                  <Button
-                    type="button"
-                    onClick={sendToSecond}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white transition-all duration-300 transform hover:scale-105 h-12 sm:h-14 text-sm sm:text-base font-semibold"
-                  >
-                    <Send className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
-                    Enviar tambien al segundo asesor
-                  </Button>
+                  {sentViaApi ? (
+                    <p className="text-sm sm:text-base text-white/70 mb-6">
+                      Recibimos tu solicitud y ya les llego a <span className="text-[#d4af37] font-semibold">nuestros dos asesores</span>.
+                      Te contactaran muy pronto por WhatsApp al numero que nos dejaste.
+                    </p>
+                  ) : (
+                    <>
+                      <p className="text-sm sm:text-base text-white/70 mb-6">
+                        Abrimos WhatsApp con nuestro primer asesor. Para una respuesta aun mas rapida, envia la misma
+                        solicitud tambien a nuestro segundo asesor:
+                      </p>
+                      <Button
+                        type="button"
+                        onClick={sendToSecond}
+                        className="w-full bg-green-600 hover:bg-green-700 text-white transition-all duration-300 transform hover:scale-105 h-12 sm:h-14 text-sm sm:text-base font-semibold"
+                      >
+                        <Send className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                        Enviar tambien al segundo asesor
+                      </Button>
+                    </>
+                  )}
                   <button
                     type="button"
-                    onClick={() => {
-                      setSent(false)
-                      setStep(1)
-                    }}
+                    onClick={resetForm}
                     className="mt-4 text-sm text-white/50 hover:text-white/80 transition-colors underline"
                   >
                     Hacer otra cotizacion
@@ -311,10 +346,11 @@ export function QuoteForm2Step({ translations: t, WHATSAPP_LINK }: QuoteForm2Ste
 
                   <Button
                     type="submit"
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white transition-all duration-300 transform hover:scale-105 h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg font-semibold"
+                    disabled={sending}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white transition-all duration-300 transform hover:scale-105 h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg font-semibold disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     <Send className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
-                    {t.sendQuote || "Enviar por WhatsApp"}
+                    {sending ? "Enviando..." : t.sendQuote || "Enviar por WhatsApp"}
                   </Button>
                 </div>
               </div>
