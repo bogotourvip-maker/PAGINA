@@ -77,12 +77,28 @@ export default async function TourPage({ params }: TourPageProps) {
     },
   }
 
+  // Schema FAQPage: habilita los resultados enriquecidos de preguntas en Google
+  const faqJsonLd = tour.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: tour.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
+      }
+    : null
+
   return (
     <main className="min-h-screen bg-black">
       <ToursNav />
 
       {/* JSON-LD structured data for this specific tour */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
 
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
@@ -178,6 +194,29 @@ export default async function TourPage({ params }: TourPageProps) {
                           sizes="(max-width: 640px) 50vw, 33vw"
                         />
                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Preguntas frecuentes especificas del tour (SEO: FAQPage) */}
+              {tour.faq && tour.faq.length > 0 && (
+                <div className="mb-2">
+                  <h2 className="text-2xl font-bold text-white mb-5">Preguntas frecuentes</h2>
+                  <div className="flex flex-col gap-3">
+                    {tour.faq.map((item, index) => (
+                      <details
+                        key={index}
+                        className="group bg-white/5 border border-white/10 rounded-xl open:border-[#d4af37]/40 transition-colors"
+                      >
+                        <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-white font-medium list-none [&::-webkit-details-marker]:hidden">
+                          <span className="text-pretty">{item.q}</span>
+                          <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full border border-[#d4af37]/50 text-[#d4af37] text-lg leading-none transition-transform duration-300 group-open:rotate-45">
+                            +
+                          </span>
+                        </summary>
+                        <p className="px-5 pb-5 -mt-1 text-white/60 text-sm leading-relaxed text-pretty">{item.a}</p>
+                      </details>
                     ))}
                   </div>
                 </div>

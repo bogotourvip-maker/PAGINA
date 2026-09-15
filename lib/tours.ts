@@ -121,6 +121,24 @@ export const tours: Tour[] = [
         image: "/images/sitio-monserrate.png",
       },
     ],
+    faq: [
+      {
+        q: "¿Cuánto dura el City Tour por Bogotá?",
+        a: "El City Tour privado dura entre 4 y 5 horas e incluye la Plaza de Bolívar, el Museo del Oro, La Candelaria y una vista panorámica de la ciudad. Podemos ajustar el itinerario a tu ritmo y a tus intereses.",
+      },
+      {
+        q: "¿Qué incluye el City Tour de Bogotá?",
+        a: "Incluye transporte privado con aire acondicionado, guía bilingüe, entradas a los museos del recorrido y botella de agua. El punto de recogida puede ser tu hotel en Bogotá.",
+      },
+      {
+        q: "¿El City Tour es apto para toda la familia?",
+        a: "Sí. Es un recorrido cómodo y flexible, ideal para familias, parejas y viajeros que llegan por primera vez a Bogotá y quieren conocer lo esencial de la ciudad en un solo día.",
+      },
+      {
+        q: "¿En qué idiomas se ofrece el tour?",
+        a: "Ofrecemos guías en español e inglés. Bajo solicitud previa también coordinamos otros idiomas para grupos privados.",
+      },
+    ],
   },
   {
     slug: "la-candelaria",
@@ -174,6 +192,20 @@ export const tours: Tour[] = [
         image: "/images/plaza-bolivar-catedral.jpg",
       },
     ],
+    faq: [
+      {
+        q: "¿Qué es el Graffiti Tour de La Candelaria?",
+        a: "Es un recorrido a pie por el centro histórico de Bogotá donde descubrirás los murales y el arte urbano que han hecho famosa a la ciudad, con un guía que te explica el significado y las historias de cada obra.",
+      },
+      {
+        q: "¿Cuánto dura el tour por La Candelaria?",
+        a: "El recorrido dura aproximadamente 3 horas e incluye el Chorro de Quevedo, las principales calles coloniales, el arte callejero y una degustación de café colombiano.",
+      },
+      {
+        q: "¿Es un tour a pie o en transporte?",
+        a: "La Candelaria se recorre principalmente a pie, ya que es la mejor forma de apreciar sus calles empedradas y murales. Coordinamos la recogida en tu hotel y el desplazamiento hasta el barrio.",
+      },
+    ],
   },
   {
     slug: "monserrate",
@@ -220,6 +252,20 @@ export const tours: Tour[] = [
         image: "/images/tour-mirador-selfie.jpg",
       },
     ],
+    faq: [
+      {
+        q: "¿Cómo se sube a Monserrate?",
+        a: "Puedes subir en teleférico, en funicular o por el sendero peatonal. Nuestro servicio coordina el transporte desde tu hotel y los tiquetes de ascenso para que solo disfrutes de la experiencia.",
+      },
+      {
+        q: "¿Cuál es la mejor hora para visitar Monserrate?",
+        a: "El atardecer es el momento favorito, cuando la ciudad empieza a iluminarse y el horizonte se tiñe de dorado. También es espectacular de día para apreciar toda la sabana de Bogotá.",
+      },
+      {
+        q: "¿Monserrate es seguro y apto para todas las edades?",
+        a: "Sí. El ascenso en teleférico o funicular es cómodo y seguro para todas las edades. Ten en cuenta que Monserrate está a 3.152 m de altura, así que recomendamos subir con calma.",
+      },
+    ],
   },
   {
     slug: "laguna-de-guatavita",
@@ -264,6 +310,20 @@ export const tours: Tour[] = [
         reviews: 12210,
         description: "Un pueblo blanco de calles empedradas junto al embalse, perfecto para artesanías y fotos.",
         image: "/images/sitio-pueblo-guatavita.png",
+      },
+    ],
+    faq: [
+      {
+        q: "¿A qué distancia está la Laguna de Guatavita de Bogotá?",
+        a: "La Laguna de Guatavita está a unos 60 km de Bogotá, poco más de una hora en carro. La excursión es de día completo (6-7 horas) e incluye el transporte de ida y vuelta.",
+      },
+      {
+        q: "¿Hay que caminar mucho para llegar a la laguna?",
+        a: "Se hace una caminata guiada por un sendero ecológico de dificultad moderada, entre bosque de niebla y miradores, hasta el borde de la laguna. Recomendamos calzado cómodo y ropa abrigada.",
+      },
+      {
+        q: "¿Cuál es la leyenda de El Dorado?",
+        a: "La Laguna de Guatavita era sagrada para los Muiscas: sus caciques se cubrían de polvo de oro y se sumergían en sus aguas como ofrenda. De ese ritual nació el mito de El Dorado que obsesionó a los conquistadores.",
       },
     ],
   },
@@ -317,6 +377,20 @@ export const tours: Tour[] = [
         image: "/images/sitio-zipaquira-centro.png",
       },
     ],
+    faq: [
+      {
+        q: "¿Cuánto cuesta el tour a la Catedral de Sal de Zipaquirá?",
+        a: "El precio depende del número de personas y del punto de recogida. Escríbenos por WhatsApp con tus fechas y te enviamos una cotización personalizada. La excursión incluye transporte, guía y entrada.",
+      },
+      {
+        q: "¿A qué distancia está Zipaquirá de Bogotá?",
+        a: "Zipaquirá está a 49 km de Bogotá, aproximadamente una hora en carro. Ofrecemos la Catedral de Sal como una excursión de medio día (5-6 horas) con transporte privado.",
+      },
+      {
+        q: "¿Qué se ve dentro de la Catedral de Sal?",
+        a: "Recorrerás el Vía Crucis tallado en la roca de sal, las cámaras subterráneas y la imponente nave central con su cruz iluminada, una de las más grandes del mundo en este material, a 180 metros bajo tierra.",
+      },
+    ],
   },
   {
     slug: "villa-de-leyva",
@@ -363,6 +437,20 @@ export const tours: Tour[] = [
         image: "/images/villa-de-leyva.png",
       },
     ],
+    faq: [
+      {
+        q: "¿Cuánto se demora llegar a Villa de Leyva desde Bogotá?",
+        a: "Villa de Leyva está a unos 160 km de Bogotá, alrededor de 3 horas en carro. Por eso la ofrecemos como excursión de día completo o con opción de alojamiento, siempre con transporte privado.",
+      },
+      {
+        q: "¿Qué se puede hacer en Villa de Leyva?",
+        a: "Además de su enorme Plaza Mayor colonial, puedes visitar viñedos de altura, museos paleontológicos con fósiles, el desierto de La Candelaria y talleres de cerámica. Armamos un itinerario a tu medida.",
+      },
+      {
+        q: "¿Conviene hacer Villa de Leyva en un día o quedarse a dormir?",
+        a: "Se puede disfrutar en un día completo, pero por la distancia y la cantidad de atractivos muchos viajeros prefieren quedarse una noche. Te asesoramos según tu tiempo disponible.",
+      },
+    ],
   },
   {
     slug: "traslado-aeropuerto",
@@ -393,6 +481,20 @@ export const tours: Tour[] = [
     metaDescription:
       "Traslado privado desde y hacia el Aeropuerto El Dorado de Bogotá. Conductores profesionales, monitoreo de vuelos y tarifa fija. Reserva por WhatsApp.",
     keywords: ["traslado aeropuerto bogotá", "bogota airport transfer", "transporte aeropuerto el dorado", "transporte privado bogotá"],
+    faq: [
+      {
+        q: "¿Qué pasa si mi vuelo se retrasa?",
+        a: "Monitoreamos tu vuelo en tiempo real, así que si hay retrasos o adelantos tu conductor ajustará la hora de recogida y estará esperándote de todas formas, sin costo adicional.",
+      },
+      {
+        q: "¿Dónde me recoge el conductor en el aeropuerto El Dorado?",
+        a: "Te recibimos en la zona de llegadas con un cartel con tu nombre, te ayudamos con el equipaje y te llevamos directamente a tu hotel o destino en Bogotá.",
+      },
+      {
+        q: "¿El servicio de traslado está disponible las 24 horas?",
+        a: "Sí. El servicio de traslado al Aeropuerto El Dorado está disponible las 24 horas, todos los días del año, con tarifa fija acordada de antemano y sin sorpresas.",
+      },
+    ],
   },
 ]
 
