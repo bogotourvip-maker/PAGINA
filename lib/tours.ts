@@ -111,7 +111,7 @@ export const tours: Tour[] = [
         rating: 4.5,
         reviews: 21340,
         description: "El barrio colonial de calles empedradas, casas de colores y arte callejero de fama mundial.",
-        image: "/images/la-candelaria-colorful.png",
+        image: "/images/candelaria-calle-colonial.jpg",
       },
       {
         name: "Cerro de Monserrate",
@@ -147,8 +147,8 @@ export const tours: Tour[] = [
     category: "Centro Histórico",
     heroImage: "/images/la-candelaria-grafitis.jpg",
     gallery: [
-      "/images/la-candelaria-colorful.png",
-      "/images/plaza-bolivar-catedral.jpg",
+      "/images/calle-embudo-sombrillas.jpg",
+      "/images/candelaria-calle-colonial.jpg",
       "/images/img-0743.jpeg",
     ],
     shortDescription:
@@ -214,9 +214,9 @@ export const tours: Tour[] = [
     category: "Mirador",
     heroImage: "/images/imagen-20jpeg-286-29.jpeg",
     gallery: [
-      "/images/tour-mirador-selfie.jpg",
-      "/images/img-3590.jpeg",
-      "/images/bogota-skyline.jpg",
+      "/images/monserrate-luna-atardecer.jpg",
+      "/images/monserrate-iglesia-dia.jpg",
+      "/images/monserrate-jardines.jpg",
     ],
     shortDescription:
       "Sube a 3.152 metros de altura hasta el santuario de Monserrate y contempla toda Bogotá extendida a tus pies.",
@@ -399,9 +399,9 @@ export const tours: Tour[] = [
     category: "Pueblo Patrimonio",
     heroImage: "/images/villa-de-leyva.png",
     gallery: [
-      "/images/img-1156.jpeg",
-      "/images/guatavita.jpg",
-      "/images/img-4349.jpeg",
+      "/images/casa-terracota-villa-leyva.jpg",
+      "/images/pozos-azules-villa-leyva.jpg",
+      "/images/villa-leyva-plaza-mayor.jpg",
     ],
     shortDescription:
       "Recorre uno de los pueblos más bellos de Colombia, con su enorme plaza empedrada y casas blancas coloniales intactas.",
@@ -427,7 +427,7 @@ export const tours: Tour[] = [
         rating: 4.7,
         reviews: 33120,
         description: "Una de las plazas empedradas más grandes de América, rodeada de casonas coloniales blancas.",
-        image: "/images/villa-de-leyva.png",
+        image: "/images/villa-leyva-plaza-mayor.jpg",
       },
       {
         name: "Villa de Leyva",
