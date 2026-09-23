@@ -183,6 +183,55 @@ export default function RootLayout({
                   { "@type": "Offer", name: "Traslado Aeropuerto El Dorado" },
                 ],
               },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.9",
+                bestRating: "5",
+                worstRating: "1",
+                ratingCount: "205",
+                reviewCount: "205",
+              },
+              review: [
+                {
+                  "@type": "Review",
+                  author: { "@type": "Person", name: "Enzo Vito Bello" },
+                  datePublished: "2024-11-18",
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: "5",
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                  reviewBody:
+                    "Una esperienza magnifica, William e stato semplicemente fantastico! Gentile, disponibile e sempre col sorriso. Grazie!",
+                },
+                {
+                  "@type": "Review",
+                  author: { "@type": "Person", name: "Cliente VIP" },
+                  datePublished: "2024-09-05",
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: "5",
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                  reviewBody:
+                    "Excelente servicio de tours privados en Bogota. Guias bilingues, puntuales y muy profesionales. Recomiendo BogotourVip totalmente.",
+                },
+                {
+                  "@type": "Review",
+                  author: { "@type": "Person", name: "Grupo de Turistas" },
+                  datePublished: "2024-07-22",
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: "5",
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                  reviewBody:
+                    "A wonderful private city tour in Bogota. Great English speaking guide, comfortable transport and unforgettable views from Monserrate.",
+                },
+              ],
             }),
           }}
         />
