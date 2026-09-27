@@ -28,7 +28,14 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     title: tour.metaTitle,
     description: tour.metaDescription,
     keywords: tour.keywords,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        es: url,
+        en: `https://bogotourvip.com/en/tours/${tour.slug}`,
+        "x-default": url,
+      },
+    },
     openGraph: {
       title: tour.metaTitle,
       description: tour.metaDescription,

@@ -4,13 +4,23 @@ import { blogPosts } from "@/lib/blog"
 
 const BASE_URL = "https://bogotourvip.com"
 
+function bilingual(
+  esPath: string,
+  enPath: string,
+  changeFrequency: "weekly" | "monthly",
+  priority: number,
+): MetadataRoute.Sitemap {
+  const languages = { es: `${BASE_URL}${esPath}`, en: `${BASE_URL}${enPath}` }
+  return [
+    { url: languages.es, lastModified: new Date(), changeFrequency, priority, alternates: { languages } },
+    { url: languages.en, lastModified: new Date(), changeFrequency, priority, alternates: { languages } },
+  ]
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const tourUrls: MetadataRoute.Sitemap = tours.map((tour) => ({
-    url: `${BASE_URL}/tours/${tour.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }))
+  const tourUrls = tours.flatMap((tour) =>
+    bilingual(`/tours/${tour.slug}`, `/en/tours/${tour.slug}`, "monthly", 0.8),
+  )
 
   const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
@@ -20,18 +30,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }))
 
   return [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/tours`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
+    ...bilingual("", "/en", "weekly", 1),
+    ...bilingual("/tours", "/en/tours", "weekly", 0.9),
     {
       url: `${BASE_URL}/servicios`,
       lastModified: new Date(),

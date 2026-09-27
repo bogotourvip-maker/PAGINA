@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     "Explora todos nuestros tours privados en Bogotá y sus alrededores: City Tour, Monserrate, La Candelaria, Laguna de Guatavita, Catedral de Sal y Villa de Leyva.",
   alternates: {
     canonical: "https://bogotourvip.com/tours",
+    languages: {
+      es: "https://bogotourvip.com/tours",
+      en: "https://bogotourvip.com/en/tours",
+      "x-default": "https://bogotourvip.com/tours",
+    },
   },
   openGraph: {
     title: "Tours en Bogotá y alrededores | BogotourVip",
