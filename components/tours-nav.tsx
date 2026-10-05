@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, MessageCircle } from "lucide-react"
 import { WHATSAPP_LINK } from "@/lib/tours"
+import { LangToggle } from "@/components/lang-toggle"
 
 type NavLang = "es" | "en"
 
@@ -40,7 +41,15 @@ const NAV_COPY: Record<
   },
 }
 
-export function ToursNav({ lang = "es" }: { lang?: NavLang }) {
+export function ToursNav({
+  lang = "es",
+  esHref = "/",
+  enHref = "/en",
+}: {
+  lang?: NavLang
+  esHref?: string
+  enHref?: string
+}) {
   const t = NAV_COPY[lang]
 
   return (
@@ -66,13 +75,7 @@ export function ToursNav({ lang = "es" }: { lang?: NavLang }) {
               </Link>
             ))}
           </nav>
-          <Link
-            href={t.switchHref}
-            className="text-xs font-semibold text-white/70 hover:text-white border border-white/20 rounded-full px-2.5 py-1 transition-colors"
-            aria-label={lang === "es" ? "Switch to English" : "Cambiar a español"}
-          >
-            {t.switchLabel}
-          </Link>
+          <LangToggle current={lang} esHref={esHref} enHref={enHref} />
           <a
             href={WHATSAPP_LINK}
             target="_blank"

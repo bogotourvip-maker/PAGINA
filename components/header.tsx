@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react"
 import { Menu, X, ChevronDown, Globe } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { LangToggle, rememberLanguage } from "@/components/lang-toggle"
 
 interface HeaderProps {
   translations: any
@@ -22,11 +23,14 @@ const languages = [
   { code: "zh", flag: "🇨🇳", name: "中文" },
 ]
 
+const otherLanguages = languages.filter((l) => l.code !== "es" && l.code !== "en")
+
 export function Header({ translations: t, language, setLanguage, scrollToCotizacion }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const langMenuRef = useRef<HTMLDivElement>(null)
+  const otherLanguageActive = language !== "es" && language !== "en"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,26 +100,29 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+            <LangToggle current={language} onSelect={setLanguage} />
+
             <div className="relative" ref={langMenuRef}>
               <button
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 transition-all duration-300"
-                aria-label="Select language / Seleccionar idioma"
+                className={`flex items-center gap-1 px-2.5 py-2 rounded-full border transition-all duration-300 ${
+                  otherLanguageActive ? "bg-white text-black border-white" : "bg-white/10 hover:bg-white/20 border-white/20 text-white/90"
+                }`}
+                aria-label="Más idiomas / More languages"
+                aria-expanded={showLanguageMenu}
               >
-                <Globe className="w-4 h-4 text-white/90" />
-                <span className="text-sm font-medium text-white/90 hidden sm:inline">
-                  {languages.find((l) => l.code === language)?.name}
-                </span>
-                <span className="text-sm font-medium text-white/90 sm:hidden uppercase">{language}</span>
-                <ChevronDown className="w-3 h-3 text-white/70" />
+                <Globe className="w-4 h-4" />
+                {otherLanguageActive && <span className="text-xs font-semibold uppercase">{language}</span>}
+                <ChevronDown className="w-3 h-3 opacity-70" />
               </button>
 
               {showLanguageMenu && (
                 <div className="absolute right-0 mt-2 w-44 bg-black/95 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden animate-fade-in z-50">
-                  {languages.map((lang) => (
+                  {otherLanguages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => {
+                        rememberLanguage(lang.code)
                         setLanguage(lang.code)
                         setShowLanguageMenu(false)
                       }}

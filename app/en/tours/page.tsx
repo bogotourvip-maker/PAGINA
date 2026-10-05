@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function ToursPageEn() {
   return (
     <main className="min-h-screen bg-black">
-      <ToursNav lang="en" />
+      <ToursNav lang="en" esHref="/tours" enHref="/en/tours" />
 
       {/* Hero */}
       <section className="relative overflow-hidden">

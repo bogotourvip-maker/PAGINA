@@ -3,6 +3,8 @@
 import type React from "react"
 import { useState, useEffect } from "react"
 import dynamic from "next/dynamic"
+import { useRouter } from "next/navigation"
+import { rememberLanguage } from "@/components/lang-toggle"
 import { MessageCircle } from "lucide-react"
 import { translations } from "@/lib/translations"
 import { Header } from "@/components/header"
@@ -39,6 +41,7 @@ export function HomePage({ initialLanguage = "es" }: { initialLanguage?: HomeLan
   const [language, setLanguage] = useState<HomeLanguage>(initialLanguage)
   const t = translations[language]
   const [showChatbot, setShowChatbot] = useState(false)
+  const router = useRouter()
 
   // Detecta el idioma del navegador la primera vez que un visitante entra
   // (un extranjero con el navegador en ingles vera la pagina en ingles automaticamente).
@@ -48,22 +51,28 @@ export function HomePage({ initialLanguage = "es" }: { initialLanguage?: HomeLan
     if (initialLanguage !== "es") return
     const supported: (keyof typeof translations)[] = ["es", "en", "fr", "de", "pt", "it", "zh"]
     const saved = localStorage.getItem("preferredLanguage") as keyof typeof translations | null
-    if (saved && supported.includes(saved)) {
-      setLanguage(saved)
+    const browserLang = navigator.language.slice(0, 2).toLowerCase() as keyof typeof translations
+    const detected = saved && supported.includes(saved) ? saved : supported.includes(browserLang) ? browserLang : null
+    if (!detected) return
+    // English has its own indexable URL, so send English speakers there instead of translating in place.
+    if (detected === "en") {
+      router.replace("/en")
       return
     }
-    const browserLang = navigator.language.slice(0, 2).toLowerCase() as keyof typeof translations
-    if (supported.includes(browserLang)) {
-      setLanguage(browserLang)
-    }
-  }, [initialLanguage])
+    setLanguage(detected)
+  }, [initialLanguage, router])
 
-  // Guarda la eleccion de idioma para las proximas visitas.
   const handleSetLanguage = (lang: keyof typeof translations) => {
+    rememberLanguage(lang)
+    if (lang === "en" && initialLanguage !== "en") {
+      router.push("/en")
+      return
+    }
+    if (lang !== "en" && initialLanguage === "en") {
+      router.push("/")
+      return
+    }
     setLanguage(lang)
-    try {
-      localStorage.setItem("preferredLanguage", lang)
-    } catch {}
   }
 
   const scrollToCotizacion = (e?: React.MouseEvent<HTMLAnchorElement>) => {

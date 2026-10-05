@@ -106,7 +106,7 @@ export default async function TourPageEn({ params }: TourPageProps) {
 
   return (
     <main className="min-h-screen bg-black">
-      <ToursNav lang="en" />
+      <ToursNav lang="en" esHref={`/tours/${tour.slug}`} enHref={`/en/tours/${tour.slug}`} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {faqJsonLd && (

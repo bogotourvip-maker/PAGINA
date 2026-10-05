@@ -214,7 +214,7 @@ function TourRow({ tour, index }: { tour: Tour; index: number }) {
 export default function ToursPage() {
   return (
     <main className="min-h-screen bg-black">
-      <ToursNav />
+      <ToursNav esHref="/tours" enHref="/en/tours" />
 
       {/* Hero con imagen de fondo */}
       <section className="relative overflow-hidden">
