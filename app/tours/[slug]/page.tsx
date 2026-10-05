@@ -4,6 +4,7 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
+import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
 import { tours, getTourBySlug, whatsappLinkFor } from "@/lib/tours"
 
 interface TourPageProps {
@@ -98,7 +99,7 @@ export default async function TourPage({ params }: TourPageProps) {
     : null
 
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-black pb-20 lg:pb-0">
       <ToursNav esHref={`/tours/${tour.slug}`} enHref={`/en/tours/${tour.slug}`} />
 
       {/* JSON-LD structured data for this specific tour */}
@@ -137,6 +138,7 @@ export default async function TourPage({ params }: TourPageProps) {
               {tour.name}
             </h1>
             <p className="text-lg sm:text-xl text-[#d4af37] font-medium">{tour.tagline}</p>
+            <TourHeroCta whatsappLink={whatsappLink} />
           </div>
         </div>
       </section>
@@ -269,6 +271,8 @@ export default async function TourPage({ params }: TourPageProps) {
         </div>
       </section>
 
+      <TourFinalCta whatsappLink={whatsappLink} tourName={tour.name} />
+
       {/* Related tours */}
       <section className="py-12 sm:py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -311,6 +315,8 @@ export default async function TourPage({ params }: TourPageProps) {
           </div>
         </div>
       </section>
+
+      <TourMobileBookingBar whatsappLink={whatsappLink} price={tour.priceFrom} />
     </main>
   )
 }

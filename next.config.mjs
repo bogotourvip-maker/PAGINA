@@ -19,6 +19,16 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
+  redirects: async () => [
+    { source: "/zipaquira", destination: "/tours/catedral-de-sal-zipaquira", permanent: true },
+    { source: "/monserrate", destination: "/tours/monserrate", permanent: true },
+    { source: "/candelaria", destination: "/tours/la-candelaria", permanent: true },
+    { source: "/la-candelaria", destination: "/tours/la-candelaria", permanent: true },
+    { source: "/guatavita", destination: "/tours/laguna-de-guatavita", permanent: true },
+    { source: "/villa-de-leyva", destination: "/tours/villa-de-leyva", permanent: true },
+    { source: "/traslados-aeropuerto", destination: "/tours/traslado-aeropuerto", permanent: true },
+    { source: "/aeropuerto", destination: "/tours/traslado-aeropuerto", permanent: true },
+  ],
   headers: async () => [
     {
       source: "/:all*(svg|jpg|jpeg|png|webp|gif|ico)",
