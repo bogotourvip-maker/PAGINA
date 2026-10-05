@@ -9,7 +9,7 @@ interface BogotaVideoSectionProps {
 
 // Video oficial de Bogota (Visit Bogota) alojado localmente en /public
 const VIDEO_SRC = "/bogota-video.mp4"
-const VIDEO_POSTER = "/bogota-video-poster.png"
+const VIDEO_POSTER = "/bogota-video-poster.jpg"
 
 /**
  * Seccion de video de fondo: se reproduce automaticamente en bucle
@@ -50,7 +50,7 @@ export function BogotaVideoSection({ translations: t }: BogotaVideoSectionProps)
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
           />
           <button
             type="button"
