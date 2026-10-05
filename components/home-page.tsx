@@ -13,6 +13,7 @@ import { MarqueeSection } from "@/components/marquee-section"
 import { ServicesSection } from "@/components/services-section"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { TrustBar } from "@/components/trust-bar"
+import { SocialProofSection } from "@/components/social-proof-section"
 import { PopularSearches } from "@/components/popular-searches"
 import { FaqSection } from "@/components/faq-section"
 import { Reveal } from "@/components/reveal"
@@ -24,7 +25,6 @@ const InteractiveDestinations = dynamic(() => import("@/components/interactive-d
 const AboutBogotaSection = dynamic(() => import("@/components/about-bogota-section").then(m => ({ default: m.AboutBogotaSection })))
 const BogotaVideoSection = dynamic(() => import("@/components/bogota-video-section").then(m => ({ default: m.BogotaVideoSection })))
 const GallerySection = dynamic(() => import("@/components/gallery-section").then(m => ({ default: m.GallerySection })))
-const TestimonialsSection = dynamic(() => import("@/components/testimonials-section").then(m => ({ default: m.TestimonialsSection })))
 const GoogleReviewsWidget = dynamic(() => import("@/components/google-reviews-widget").then(m => ({ default: m.GoogleReviewsWidget })))
 const QuoteForm2Step = dynamic(() => import("@/components/quote-form-2-step").then(m => ({ default: m.QuoteForm2Step })))
 const RecommendationsSection = dynamic(() => import("@/components/recommendations-section").then(m => ({ default: m.RecommendationsSection })))
@@ -125,6 +125,9 @@ export function HomePage({ initialLanguage = "es" }: { initialLanguage?: HomeLan
       {/* Use HeroSection component */}
       <HeroSection translations={t} scrollToCotizacion={scrollToCotizacion} WHATSAPP_LINK={WHATSAPP_LINK} />
 
+      {/* Prueba social justo despues del hero: foto con Falcao, testimonios clave y widgets oficiales */}
+      <SocialProofSection translations={t} language={language} />
+
       {/* Trust signals right below the hero */}
       <TrustBar translations={t} />
 
@@ -159,11 +162,6 @@ export function HomePage({ initialLanguage = "es" }: { initialLanguage?: HomeLan
       {/* Use GallerySection component */}
       <Reveal>
         <GallerySection translations={t} />
-      </Reveal>
-
-      {/* Use TestimonialsSection component */}
-      <Reveal>
-        <TestimonialsSection translations={t} />
       </Reveal>
 
       {/* Add GoogleReviewsWidget */}
