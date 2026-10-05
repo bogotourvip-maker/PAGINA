@@ -3,32 +3,6 @@
 import { useEffect, useState, useRef } from "react"
 import { Car, MapPin, Star, Users } from "lucide-react"
 
-function useCountUp(end: number, duration: number = 2000, start: boolean = false) {
-  const [count, setCount] = useState(0)
-  
-  useEffect(() => {
-    if (!start) return
-    
-    let startTime: number
-    let animationFrame: number
-    
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      setCount(Math.floor(progress * end))
-      
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(animate)
-      }
-    }
-    
-    animationFrame = requestAnimationFrame(animate)
-    return () => cancelAnimationFrame(animationFrame)
-  }, [end, duration, start])
-  
-  return count
-}
-
 export function StatsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -55,7 +29,7 @@ export function StatsSection() {
     { icon: Star, value: 12, suffix: "", label: "Anos de Experiencia" },
   ]
   
-  const counts = stats.map(stat => useCountUp(stat.value, 2000, isVisible))
+  const counts = stats.map((stat) => stat.value)
 
   return (
     <section ref={ref} className="py-16 sm:py-20 md:py-24 bg-black relative overflow-hidden">

@@ -13,9 +13,9 @@ interface GoogleReviewsWidgetProps {
 
 export function GoogleReviewsWidget({ translations: t }: GoogleReviewsWidgetProps) {
   const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 })
-  const yearsCount = useCountUp(5, 1200, isVisible)
-  const hoursCount = useCountUp(24, 1000, isVisible)
-  const languagesCount = useCountUp(7, 800, isVisible)
+  const yearsCount = useCountUp(10)
+  const hoursCount = useCountUp(24)
+  const languagesCount = useCountUp(7)
 
   const strengths = [
     {
@@ -58,12 +58,7 @@ export function GoogleReviewsWidget({ translations: t }: GoogleReviewsWidgetProp
         </div>
 
         {/* Counter stats */}
-        <div
-          className={`grid grid-cols-3 gap-4 sm:gap-8 mb-10 sm:mb-14 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          style={{ transitionProperty: "opacity, transform", transitionDuration: "0.7s", transitionDelay: "200ms", transitionTimingFunction: "ease-out" }}
-        >
+        <div className="grid grid-cols-3 gap-4 sm:gap-8 mb-10 sm:mb-14">
           <div className="text-center">
             <p className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#d4af37]">{yearsCount}+</p>
             <p className="text-xs sm:text-sm text-muted-foreground mt-1">{t.whyYears}</p>
