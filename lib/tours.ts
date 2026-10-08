@@ -332,11 +332,11 @@ export const tours: Tour[] = [
     name: "Tour Catedral de Sal de Zipaquirá",
     tagline: "Una maravilla construida bajo tierra",
     category: "Cultura",
-    heroImage: "/images/plaza-bolivar-monserrate.jpg",
+    heroImage: "/images/sitio-catedral-sal.png",
     gallery: [
-      "/images/villa-de-leyva.png",
-      "/images/img-1156.jpeg",
-      "/images/bogota-skyline.jpg",
+      "/images/catedral-sal-cruz-iluminada.png",
+      "/images/catedral-sal-tunel.png",
+      "/images/sitio-zipaquira-centro.png",
     ],
     shortDescription:
       "Desciende a una impresionante catedral tallada dentro de una mina de sal a 180 metros de profundidad, una de las primeras maravillas de Colombia.",

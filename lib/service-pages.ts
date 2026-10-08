@@ -68,9 +68,9 @@ export const servicePages: ServicePage[] = [
     offerings: [offeringFromTour("catedral-de-sal-zipaquira", "/images/sitio-catedral-sal.png")],
     includes: getTourBySlug("catedral-de-sal-zipaquira")?.includes ?? [],
     gallery: [
-      { src: "/images/sitio-catedral-sal.png", alt: "Interior iluminado de la Catedral de Sal" },
+      { src: "/images/catedral-sal-cruz-iluminada.png", alt: "Cruz tallada en sal en la nave principal de la Catedral" },
+      { src: "/images/catedral-sal-tunel.png", alt: "Túneles iluminados de la mina de sal" },
       { src: "/images/sitio-zipaquira-centro.png", alt: "Centro histórico de Zipaquirá" },
-      { src: "/images/flota-vans-blancas.jpg", alt: "Vans privadas de BogotourVip para el tour" },
     ],
     faq: tourFaq("catedral-de-sal-zipaquira"),
     bookingName: "Tour Catedral de Sal de Zipaquirá",
@@ -140,6 +140,33 @@ export const servicePages: ServicePage[] = [
     metaDescription:
       "Sube a Monserrate y recorre La Candelaria con transporte privado y guía bilingüe. Reserva las dos experiencias juntas o por separado por WhatsApp.",
     keywords: ["tour monserrate", "tour la candelaria", "monserrate y la candelaria", "graffiti tour bogotá"],
+  },
+  {
+    slug: "villa-de-leyva",
+    eyebrow: "Servicio · Boyacá",
+    title: "Tour Villa de Leyva",
+    tagline: "El pueblo colonial más bello de Colombia y su plaza empedrada gigante",
+    heroImage: "/images/villa-de-leyva.png",
+    intro: tourIntro("villa-de-leyva"),
+    facts: [
+      { label: "Duración", value: "Día completo (10-12 h)" },
+      { label: "Distancia", value: "165 km de Bogotá" },
+      { label: "Recogida", value: "En tu hotel" },
+    ],
+    offerings: [offeringFromTour("villa-de-leyva", "/images/villa-leyva-plaza-mayor.jpg")],
+    includes: getTourBySlug("villa-de-leyva")?.includes ?? [],
+    gallery: [
+      { src: "/images/casa-terracota-villa-leyva.jpg", alt: "Casa Terracota en Villa de Leyva" },
+      { src: "/images/pozos-azules-villa-leyva.jpg", alt: "Pozos Azules en Villa de Leyva" },
+      { src: "/images/villa-leyva-plaza-mayor.jpg", alt: "Plaza Mayor empedrada de Villa de Leyva" },
+    ],
+    faq: tourFaq("villa-de-leyva"),
+    bookingName: "Tour Villa de Leyva",
+    enHref: "/en/tours/villa-de-leyva",
+    metaTitle: "Tour Villa de Leyva desde Bogotá | Servicio privado",
+    metaDescription:
+      "Tour privado a Villa de Leyva desde Bogotá: Plaza Mayor, Casa Terracota y Pozos Azules con transporte privado y guía bilingüe. Reserva por WhatsApp.",
+    keywords: ["tour villa de leyva", "villa de leyva desde bogotá", "casa terracota tour", "pozos azules villa de leyva"],
   },
   {
     slug: "aeropuerto-y-eventos",
