@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { tours } from "@/lib/tours"
 import { blogPosts } from "@/lib/blog"
+import { servicePages } from "@/lib/service-pages"
 
 const BASE_URL = "https://bogotourvip.com"
 
@@ -38,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
+    ...servicePages.map((page) => ({
+      url: `${BASE_URL}/servicios/${page.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
     {
       url: `${BASE_URL}/blog`,
       lastModified: new Date(),

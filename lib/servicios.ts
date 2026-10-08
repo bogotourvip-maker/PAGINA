@@ -23,7 +23,7 @@ export const transportServices: TransportService[] = [
   {
     id: "traslado-aeropuerto",
     image: "/images/servicio-aeropuerto.jpg",
-    detailHref: "/tours/traslado-aeropuerto",
+    detailHref: "/servicios/aeropuerto-y-eventos",
     i18n: {
       es: {
         name: "Traslado Aeropuerto El Dorado",
@@ -140,6 +140,7 @@ export const transportServices: TransportService[] = [
   {
     id: "eventos-grupos",
     image: "/images/equipo-vans.jpg",
+    detailHref: "/servicios/aeropuerto-y-eventos",
     i18n: {
       es: {
         name: "Transporte para Eventos y Grupos",
