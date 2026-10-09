@@ -20,10 +20,13 @@ const NAV_COPY: Record<
       { label: "Inicio", href: "/" },
       { label: "Servicios", href: "/servicios" },
       { label: "Tours", href: "/tours" },
-      { label: "Zipaquirá", href: "/tours/catedral-de-sal-zipaquira" },
+      { label: "Tour Zipaquirá", href: "/tours/catedral-de-sal-zipaquira" },
+      { label: "Catedral de Sal", href: "/servicios/catedral-de-sal" },
       { label: "Monserrate", href: "/servicios/monserrate-y-la-candelaria" },
-      { label: "Guatavita", href: "/tours/laguna-de-guatavita" },
-      { label: "Villa de Leyva", href: "/tours/villa-de-leyva" },
+      { label: "Tour Guatavita", href: "/tours/laguna-de-guatavita" },
+      { label: "Guatavita", href: "/servicios/guatavita" },
+      { label: "Tour Villa de Leyva", href: "/tours/villa-de-leyva" },
+      { label: "Villa de Leyva", href: "/servicios/villa-de-leyva" },
       { label: "Jaime Duque", href: "/tours/parque-jaime-duque" },
       { label: "Blog", href: "/blog" },
     ],
@@ -71,7 +74,7 @@ export function ToursNav({
           />
         </Link>
 
-        <nav aria-label="Principal" className="hidden lg:flex items-center gap-6 text-sm font-medium whitespace-nowrap">
+        <nav aria-label="Principal" className="hidden xl:flex items-center gap-5 text-sm font-medium whitespace-nowrap">
           {t.links.map((link) => (
             <Link key={link.href} href={link.href} className="text-white/75 hover:text-white transition-colors">
               {link.label}
@@ -95,7 +98,7 @@ export function ToursNav({
 
       <nav
         aria-label="Tours"
-        className="lg:hidden border-t border-white/10 overflow-x-auto [scrollbar-width:none]"
+        className="xl:hidden border-t border-white/10 overflow-x-auto [scrollbar-width:none]"
       >
         <ul className="flex items-center gap-2 px-4 py-2 w-max">
           {t.links.map((link) => (
