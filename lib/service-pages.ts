@@ -58,6 +58,7 @@ const priceSubjects: Record<string, string> = {
   "monserrate-y-la-candelaria": "el tour a Monserrate y La Candelaria",
   "villa-de-leyva": "el tour a Villa de Leyva desde Bogotá",
   "aeropuerto-y-eventos": "el transporte para eventos y grupos en Bogotá",
+  "layover-tour-bogota": "el Layover Tour Bogotá Express",
 }
 
 function withPriceFaq(page: ServicePage): ServicePage {
@@ -258,6 +259,86 @@ const servicePageData: ServicePage[] = [
       "transporte para grupos bogotá",
       "transporte para bodas bogotá",
       "van con conductor bogotá",
+    ],
+  },
+  {
+    slug: "layover-tour-bogota",
+    eyebrow: "Servicio · Escala en El Dorado",
+    title: "Layover Tour Bogotá Express",
+    tagline: "Convierte tu escala de 6 a 12 horas en El Dorado en un recorrido por Bogotá",
+    heroImage: "/images/layover-tour-bogota.png",
+    intro: [
+      "¿Tienes una escala larga en el Aeropuerto El Dorado? En lugar de esperar horas en la sala, sal a conocer Bogotá. Te recogemos en la puerta de llegadas, te llevamos a los lugares más emblemáticos de la ciudad y te dejamos de vuelta en el aeropuerto con tiempo de sobra para tu siguiente vuelo.",
+      "Armamos el recorrido según las horas que tengas libres. Con 6 horas alcanzas a subir a Monserrate y caminar por La Candelaria. Con 10 a 12 horas puedes sumar un almuerzo típico o una visita a la Catedral de Sal de Zipaquirá.",
+      "Monitoreamos tu vuelo de llegada y tu vuelo de salida, y planeamos el regreso con un margen de seguridad: llegas al aeropuerto al menos 3 horas antes de un vuelo internacional y 2 horas antes de uno nacional. Si tienes equipaje facturado en conexión, no necesitas cargarlo.",
+    ],
+    facts: [
+      { label: "Escala ideal", value: "6 a 12 horas" },
+      { label: "Recogida", value: "Puerta de llegadas" },
+      { label: "Retorno", value: "Garantizado a tiempo" },
+    ],
+    offerings: [
+      {
+        name: "Layover Express (6-8 h de escala)",
+        description:
+          "Recorrido de unas 4 horas por lo esencial de Bogotá: Cerro de Monserrate y el centro histórico de La Candelaria, con regreso directo a El Dorado.",
+        image: "/images/img-0705.jpeg",
+        duration: "Aprox. 4 h fuera del aeropuerto",
+        features: ["Monserrate en teleférico o funicular", "Caminata por La Candelaria", "Plaza de Bolívar", "Regreso directo a El Dorado"],
+        href: "/servicios/monserrate-y-la-candelaria",
+      },
+      {
+        name: "Layover Plus (10-12 h de escala)",
+        description:
+          "Más tiempo para Bogotá: Monserrate, La Candelaria y un almuerzo típico, o el cambio por una visita a la Catedral de Sal de Zipaquirá.",
+        image: "/images/catedral-sal-cruz-dorada.jpg",
+        duration: "Aprox. 6-8 h fuera del aeropuerto",
+        features: ["Ruta a tu medida", "Almuerzo típico colombiano (opcional)", "Catedral de Sal como alternativa", "Guía bilingüe opcional"],
+        href: "/servicios/catedral-de-sal",
+      },
+    ],
+    includes: [
+      "Recogida y retorno al Aeropuerto El Dorado",
+      "Monitoreo de tus vuelos de llegada y salida",
+      "Conductor privado durante todo el recorrido",
+      "Vehículo privado para guardar tu equipaje de mano",
+      "Botella de agua",
+    ],
+    gallery: [
+      { src: "/images/aeropuerto-nuevo.avif", alt: "Terminal del Aeropuerto El Dorado de Bogotá" },
+      { src: "/images/monserrate-iglesia-dia.jpg", alt: "Santuario de Monserrate en un día despejado" },
+      { src: "/images/candelaria-calle-colonial.jpg", alt: "Calle colonial de La Candelaria" },
+      { src: "/images/calle-embudo-sombrillas.jpg", alt: "Calle del Embudo con sombrillas de colores" },
+    ],
+    faq: [
+      {
+        q: "¿Cuántas horas de escala necesito para el Layover Tour en Bogotá?",
+        a: "Recomendamos un mínimo de 6 horas entre la llegada y la salida de tus vuelos. Así queda tiempo para migración, el recorrido y el regreso con margen. Con 10 a 12 horas puedes hacer un plan más completo.",
+      },
+      {
+        q: "¿Puedo salir del aeropuerto durante una escala internacional en Bogotá?",
+        a: "Sí, siempre que pases por migración de Colombia. Muchas nacionalidades no necesitan visa para estancias cortas, pero revisa los requisitos de tu país antes de viajar. Si tienes dudas, escríbenos y te orientamos.",
+      },
+      {
+        q: "¿Qué pasa si mi vuelo de llegada se retrasa?",
+        a: "Monitoreamos tu vuelo en tiempo real. Si llega tarde, el conductor te espera y ajustamos el recorrido a las horas reales disponibles. Nunca recortamos el margen de regreso al aeropuerto.",
+      },
+      {
+        q: "¿Qué hago con mi equipaje durante el tour?",
+        a: "El equipaje facturado en conexión sigue directo a tu destino. El equipaje de mano puede quedarse en el vehículo privado durante el recorrido.",
+      },
+    ],
+    bookingName: "Layover Tour Bogotá Express",
+    enHref: "/en",
+    metaTitle: "Layover Tour Bogotá Express | Tour en tu escala en El Dorado",
+    metaDescription:
+      "¿Escala de 6 a 12 horas en el Aeropuerto El Dorado? Tour privado por Bogotá con recogida y retorno garantizado al aeropuerto. Monserrate, La Candelaria y más. Reserva por WhatsApp.",
+    keywords: [
+      "layover tour bogotá",
+      "tour escala aeropuerto el dorado",
+      "qué hacer en una escala en bogotá",
+      "bogota layover tour",
+      "tour desde el aeropuerto el dorado",
     ],
   },
 ]

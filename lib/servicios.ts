@@ -80,6 +80,65 @@ export const transportServices: TransportService[] = [
     },
   },
   {
+    id: "layover-tour",
+    image: "/images/layover-tour-bogota.png",
+    detailHref: "/servicios/layover-tour-bogota",
+    i18n: {
+      es: {
+        name: "Layover Tour Bogotá Express",
+        tagline: "Conoce Bogotá durante tu escala",
+        category: "Escala",
+        description:
+          "¿Escala de 6 a 12 horas en El Dorado? Te recogemos en llegadas, recorres Monserrate y La Candelaria, y volvemos al aeropuerto con tiempo de sobra para tu vuelo.",
+        features: [
+          "Recogida y retorno al aeropuerto",
+          "Monitoreo de tus dos vuelos",
+          "Ruta según tus horas libres",
+          "Equipaje de mano seguro en el vehículo",
+        ],
+      },
+      en: {
+        name: "Bogotá Express Layover Tour",
+        tagline: "See Bogotá during your layover",
+        category: "Layover",
+        description:
+          "Got a 6 to 12-hour layover at El Dorado? We pick you up at arrivals, take you to Monserrate and La Candelaria, and get you back to the airport with plenty of time for your flight.",
+        features: [
+          "Airport pickup and return",
+          "Both flights monitored",
+          "Route based on your free hours",
+          "Carry-on kept safe in the vehicle",
+        ],
+      },
+      fr: {
+        name: "Layover Tour Bogotá Express",
+        tagline: "Découvrez Bogotá pendant votre escale",
+        category: "Escale",
+        description:
+          "Une escale de 6 à 12 heures à El Dorado ? Nous vous accueillons aux arrivées, vous visitez Monserrate et La Candelaria, et nous vous ramenons à l'aéroport bien à l'heure pour votre vol.",
+        features: [
+          "Prise en charge et retour à l'aéroport",
+          "Suivi de vos deux vols",
+          "Itinéraire selon vos heures libres",
+          "Bagage cabine en sécurité dans le véhicule",
+        ],
+      },
+      pt: {
+        name: "Layover Tour Bogotá Express",
+        tagline: "Conheça Bogotá durante a sua escala",
+        category: "Escala",
+        description:
+          "Escala de 6 a 12 horas no El Dorado? Buscamos você no desembarque, você conhece Monserrate e La Candelaria, e voltamos ao aeroporto com tempo de sobra para o seu voo.",
+        features: [
+          "Busca e retorno ao aeroporto",
+          "Monitoramento dos seus dois voos",
+          "Roteiro de acordo com as suas horas livres",
+          "Bagagem de mão segura no veículo",
+        ],
+      },
+    },
+  },
+  {
     id: "transporte-ejecutivo",
     image: "/images/transporte-ejecutivo.jpg",
     i18n: {
