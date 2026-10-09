@@ -166,6 +166,35 @@ const tourContentEn: Record<string, TourContentEn> = {
       },
     ],
   },
+  "parque-jaime-duque": {
+    metaTitle: "Parque Jaime Duque Tour from Bogotá | Round-Trip Transport",
+    metaDescription:
+      "Trip to Parque Jaime Duque from Bogotá with private round-trip transport and driver waiting time included. Hotel pickup. Get a quote on WhatsApp.",
+    keywords: ["parque jaime duque tour", "parque jaime duque transport", "jaime duque park from bogota", "family day trips from bogota"],
+    longDescription: [
+      "Parque Jaime Duque, in Tocancipá, is one of the favorite family outings near Bogotá: rides, a biopark with animals, the Taj Mahal replica and the giant relief map of Colombia.",
+      "We pick you up at your hotel or home in Bogotá and drive you in a private vehicle to the park entrance. Waiting time is included: the driver stays while you explore the park, with no rush and no hourly charges, and when you're done brings you back to your door.",
+      "No need to find a ride back at the end of the day or drive with tired kids. It's the most comfortable and safe way to visit the park, ideal for families, groups and travelers who don't know the route.",
+    ],
+    faq: [
+      {
+        q: "Does the tour include round-trip transport to Parque Jaime Duque?",
+        a: "Yes. We pick you up at your hotel or home in Bogotá, take you to the park entrance and, when you're done, bring you back to the same place in the same private vehicle.",
+      },
+      {
+        q: "Is there an extra charge for the driver's waiting time?",
+        a: "No. Waiting time is included: the driver stays while you enjoy the park, so you can explore at your own pace without hourly charges or looking for a ride back.",
+      },
+      {
+        q: "How long does it take to get to Parque Jaime Duque from Bogotá?",
+        a: "The park is in Tocancipá, about 45 km north of Bogotá. The drive takes around 1 hour, depending on traffic and pickup point.",
+      },
+      {
+        q: "Are park tickets included?",
+        a: "The service includes private transport and waiting time. Park tickets are purchased separately; we can help you quote them together with the transport on WhatsApp.",
+      },
+    ],
+  },
   "traslado-aeropuerto": {
     metaTitle: "El Dorado Airport Transfer Bogotá | Private Transport",
     metaDescription:

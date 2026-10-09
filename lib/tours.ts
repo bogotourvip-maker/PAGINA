@@ -159,7 +159,7 @@ export const tours: Tour[] = [
       "Entre callejones, cafés bohemios y talleres de artesanos, entenderás por qué La Candelaria es Patrimonio y el punto de partida perfecto para enamorarse de la capital colombiana.",
     ],
     highlights: ["Chorro de Quevedo", "Arte callejero", "Plaza del Chorro", "Cafés históricos"],
-    includes: ["Guía experto en arte urbano", "Recorrido a pie", "Degustaci��n de café", "Fotografías"],
+    includes: ["Guía experto en arte urbano", "Recorrido a pie", "Degustaci����n de café", "Fotografías"],
     duration: "3 horas",
     distance: "Centro de Bogotá",
     priceFrom: "Consultar",
@@ -452,6 +452,65 @@ export const tours: Tour[] = [
       {
         q: "¿Conviene hacer Villa de Leyva en un día o quedarse a dormir?",
         a: "Se puede disfrutar en un día completo, pero por la distancia y la cantidad de atractivos muchos viajeros prefieren quedarse una noche. Te asesoramos según tu tiempo disponible.",
+      },
+    ],
+  },
+  {
+    slug: "parque-jaime-duque",
+    name: "Tour Parque Jaime Duque",
+    tagline: "Un día en familia con transporte de ida y regreso",
+    category: "Parque Temático",
+    heroImage: "/images/jaime-duque-taj-mahal.jpg",
+    gallery: [
+      "/images/jaime-duque-selfie-familia.jpg",
+      "/images/jaime-duque-taj-mahal.jpg",
+      "/images/flota-mercedes-vans.jpg",
+    ],
+    shortDescription:
+      "Transporte privado de ida y regreso al Parque Jaime Duque, con el conductor esperándote todo el tiempo que estés en el parque.",
+    longDescription: [
+      "El Parque Jaime Duque, en Tocancipá, es uno de los planes favoritos para disfrutar en familia cerca de Bogotá: atracciones mecánicas, el bioparque con animales, la réplica del Taj Mahal y el gran mapa de Colombia en relieve.",
+      "Te recogemos en tu hotel o casa en Bogotá y te llevamos en un vehículo privado hasta la entrada del parque. El tiempo de espera está incluido: el conductor se queda mientras recorres el parque, sin afanes ni cobros por hora, y cuando termines te trae de regreso a la puerta de tu hotel.",
+      "Olvídate de buscar transporte de vuelta al final del día o de manejar con los niños cansados. Es la forma más cómoda y segura de visitar el parque, ideal para familias, grupos y viajeros que no conocen la ruta.",
+    ],
+    highlights: ["Réplica del Taj Mahal", "Bioparque con animales", "Atracciones mecánicas", "Mapa de Colombia en relieve"],
+    includes: [
+      "Transporte privado de ida y regreso",
+      "Recogida y regreso a tu hotel o casa",
+      "Tiempo de espera del conductor incluido",
+      "Conductor profesional",
+    ],
+    duration: "Día completo",
+    distance: "45 km de Bogotá",
+    priceFrom: "Consultar",
+    rating: 4.9,
+    reviews: 74,
+    metaTitle: "Tour Parque Jaime Duque desde Bogotá | Transporte ida y regreso",
+    metaDescription:
+      "Tour al Parque Jaime Duque desde Bogotá con transporte privado de ida y regreso y tiempo de espera del conductor incluido. Recogida en tu hotel. Cotiza por WhatsApp.",
+    keywords: [
+      "tour parque jaime duque",
+      "transporte parque jaime duque",
+      "parque jaime duque desde bogotá",
+      "como llegar al parque jaime duque",
+      "planes en familia cerca de bogotá",
+    ],
+    faq: [
+      {
+        q: "¿El tour incluye el transporte de ida y regreso al Parque Jaime Duque?",
+        a: "Sí. Te recogemos en tu hotel o casa en Bogotá, te llevamos hasta la entrada del parque y, cuando termines, te traemos de regreso al mismo lugar en el mismo vehículo privado.",
+      },
+      {
+        q: "¿El tiempo de espera del conductor tiene costo adicional?",
+        a: "No. El tiempo de espera está incluido: el conductor se queda mientras disfrutas el parque, para que lo recorras a tu ritmo sin preocuparte por cobros por hora ni por conseguir transporte de vuelta.",
+      },
+      {
+        q: "¿Cuánto se demora llegar al Parque Jaime Duque desde Bogotá?",
+        a: "El parque está en Tocancipá, a unos 45 km del norte de Bogotá. El trayecto toma alrededor de 1 hora, según el tráfico y el punto de recogida.",
+      },
+      {
+        q: "¿La entrada al parque está incluida?",
+        a: "El servicio incluye el transporte privado y el tiempo de espera. Las entradas al parque se compran aparte; si quieres, te ayudamos a cotizarlas junto con el transporte por WhatsApp.",
       },
     ],
   },

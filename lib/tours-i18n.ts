@@ -229,6 +229,41 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       distance: "160 km de Bogotá",
     },
   },
+  "parque-jaime-duque": {
+    en: {
+      name: "Parque Jaime Duque Tour",
+      tagline: "A family day out with round-trip transport",
+      category: "Theme Park",
+      shortDescription:
+        "Private round-trip transport to Parque Jaime Duque, with your driver waiting the whole time you're at the park.",
+      highlights: ["Taj Mahal replica", "Biopark with animals", "Rides", "Relief map of Colombia"],
+      includes: ["Private round-trip transport", "Hotel or home pickup and drop-off", "Driver waiting time included", "Professional driver"],
+      duration: "Full day",
+      distance: "45 km from Bogotá",
+    },
+    fr: {
+      name: "Tour du Parc Jaime Duque",
+      tagline: "Une journée en famille avec transport aller-retour",
+      category: "Parc à thème",
+      shortDescription:
+        "Transport privé aller-retour vers le Parc Jaime Duque, avec le chauffeur qui vous attend pendant toute votre visite.",
+      highlights: ["Réplique du Taj Mahal", "Biopark avec animaux", "Attractions", "Carte de la Colombie en relief"],
+      includes: ["Transport privé aller-retour", "Prise en charge à votre hôtel", "Temps d'attente du chauffeur inclus", "Chauffeur professionnel"],
+      duration: "Journée complète",
+      distance: "à 45 km de Bogotá",
+    },
+    pt: {
+      name: "Tour Parque Jaime Duque",
+      tagline: "Um dia em família com transporte de ida e volta",
+      category: "Parque Temático",
+      shortDescription:
+        "Transporte privado de ida e volta ao Parque Jaime Duque, com o motorista esperando todo o tempo em que você estiver no parque.",
+      highlights: ["Réplica do Taj Mahal", "Bioparque com animais", "Atrações mecânicas", "Mapa da Colômbia em relevo"],
+      includes: ["Transporte privado de ida e volta", "Busca e retorno ao seu hotel", "Tempo de espera do motorista incluído", "Motorista profissional"],
+      duration: "Dia inteiro",
+      distance: "45 km de Bogotá",
+    },
+  },
   "traslado-aeropuerto": {
     en: {
       name: "El Dorado Airport Transfer",

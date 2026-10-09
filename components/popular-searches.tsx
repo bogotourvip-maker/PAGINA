@@ -57,6 +57,7 @@ const searches: { label: string; href: string; hot?: boolean }[] = [
   { label: "Laguna de Guatavita", href: "/tours/laguna-de-guatavita" },
   { label: "Catedral de Sal de Zipaquirá", href: "/tours/catedral-de-sal-zipaquira", hot: true },
   { label: "Tour Villa de Leyva", href: "/tours/villa-de-leyva" },
+  { label: "Transporte Parque Jaime Duque", href: "/tours/parque-jaime-duque" },
   { label: "Traslado Aeropuerto El Dorado", href: "/servicios/traslado-aeropuerto-el-dorado", hot: true },
   { label: "Transporte ejecutivo en Bogotá", href: "/servicios" },
   { label: "Transporte para eventos y grupos", href: "/servicios" },
