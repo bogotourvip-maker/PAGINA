@@ -332,10 +332,13 @@ export const tours: Tour[] = [
     name: "Tour Catedral de Sal de Zipaquirá",
     tagline: "Una maravilla construida bajo tierra",
     category: "Cultura",
-    heroImage: "/images/sitio-catedral-sal.png",
+    heroImage: "/images/catedral-sal-nave-lampara.jpg",
     gallery: [
-      "/images/catedral-sal-cruz-iluminada.png",
-      "/images/catedral-sal-tunel.png",
+      "/images/catedral-sal-cruz-dorada.jpg",
+      "/images/catedral-sal-angel.jpg",
+      "/images/catedral-sal-cruz-azul.jpg",
+      "/images/catedral-sal-cruz-morada.jpg",
+      "/images/catedral-sal-pareja-cruz.jpg",
       "/images/sitio-zipaquira-centro.png",
     ],
     shortDescription:
@@ -367,7 +370,7 @@ export const tours: Tour[] = [
         rating: 4.6,
         reviews: 92480,
         description: "Primera maravilla de Colombia: una catedral tallada a 180 m bajo tierra en una mina de sal.",
-        image: "/images/sitio-catedral-sal.png",
+        image: "/images/catedral-sal-cruz-dorada.jpg",
       },
       {
         name: "Centro histórico de Zipaquirá",

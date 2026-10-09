@@ -64,7 +64,12 @@ const destinations = [
     id: 4,
     name: "Catedral de Sal",
     category: "Cultura",
-    photos: ["/images/sitio-catedral-sal.png", "/images/sitio-zipaquira-centro.png"],
+    photos: [
+      "/images/catedral-sal-nave-lampara.jpg",
+      "/images/catedral-sal-cruz-dorada.jpg",
+      "/images/catedral-sal-angel.jpg",
+      "/images/sitio-zipaquira-centro.png",
+    ],
     review:
       "Una catedral tallada dentro de una mina de sal, a 180 metros bajo tierra en Zipaquirá. Las naves, el Vía Crucis y las cúpulas iluminadas son impresionantes. Al terminar recorremos el centro colonial de Zipaquirá, con su plaza y su catedral.",
     highlights: ["Catedral subterránea", "Vía Crucis en sal", "Minería histórica", "Pueblo de Zipaquirá"],
