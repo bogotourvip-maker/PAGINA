@@ -57,7 +57,7 @@ const priceSubjects: Record<string, string> = {
   guatavita: "el tour a la Laguna de Guatavita desde Bogotá",
   "monserrate-y-la-candelaria": "el tour a Monserrate y La Candelaria",
   "villa-de-leyva": "el tour a Villa de Leyva desde Bogotá",
-  "aeropuerto-y-eventos": "el transporte para eventos y grupos en Bogotá",
+  "traslado-aeropuerto-el-dorado": "el traslado privado desde o hacia el Aeropuerto El Dorado",
   "layover-tour-bogota": "el Layover Tour Bogotá Express",
 }
 
@@ -202,10 +202,10 @@ const servicePageData: ServicePage[] = [
     keywords: ["tour villa de leyva precio", "tour villa de leyva", "villa de leyva desde bogotá", "casa terracota tour", "pozos azules villa de leyva"],
   },
   {
-    slug: "aeropuerto-y-eventos",
-    eyebrow: "Servicio · Transporte",
-    title: "Traslados Aeropuerto y Eventos",
-    tagline: "Transporte privado puerta a puerta, para una persona o para todo tu grupo",
+    slug: "traslado-aeropuerto-el-dorado",
+    eyebrow: "Servicio · Aeropuerto El Dorado",
+    title: "Traslado Aeropuerto El Dorado Bogotá",
+    tagline: "Recogida privada en llegadas de El Dorado y traslado directo a tu hotel, 24/7",
     heroImage: "/images/servicio-aeropuerto.jpg",
     intro: [
       ...tourIntro("traslado-aeropuerto").slice(0, 1),
@@ -249,16 +249,17 @@ const servicePageData: ServicePage[] = [
         a: "Recomendamos reservar con al menos una semana de anticipación para bodas, congresos y grupos grandes. Para traslados al aeropuerto basta con unas horas.",
       },
     ],
-    bookingName: "Traslado Aeropuerto y Eventos",
+    bookingName: "Traslado Aeropuerto El Dorado",
     enHref: "/en/tours/traslado-aeropuerto",
-    metaTitle: "Transporte para Eventos, Bodas y Grupos en Bogotá | BogotourVip",
+    metaTitle: "Traslado Aeropuerto El Dorado Bogotá | Transfer Privado 24/7 | BogotourVip",
     metaDescription:
-      "Transporte privado para bodas, congresos y grupos en Bogotá con sedanes, SUVs y vans con conductor. También traslados al Aeropuerto El Dorado. Consulta el precio por WhatsApp.",
+      "Transfer privado Aeropuerto El Dorado - hotel en Bogotá con recepción con tu nombre, monitoreo de vuelo y tarifa fija. Sedán, SUV o van, 24/7. También grupos y eventos. Precio por WhatsApp.",
     keywords: [
+      "traslado aeropuerto el dorado",
+      "transfer aeropuerto el dorado bogotá",
+      "traslado aeropuerto bogotá precio",
+      "transporte aeropuerto bogotá hotel",
       "transporte para eventos bogotá",
-      "transporte para grupos bogotá",
-      "transporte para bodas bogotá",
-      "van con conductor bogotá",
     ],
   },
   {
@@ -294,7 +295,7 @@ const servicePageData: ServicePage[] = [
         image: "/images/catedral-sal-cruz-dorada.jpg",
         duration: "Aprox. 6-8 h fuera del aeropuerto",
         features: ["Ruta a tu medida", "Almuerzo típico colombiano (opcional)", "Catedral de Sal como alternativa", "Guía bilingüe opcional"],
-        href: "/servicios/catedral-de-sal",
+        href: "/tours/catedral-de-sal-zipaquira",
       },
     ],
     includes: [

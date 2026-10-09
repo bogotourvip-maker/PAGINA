@@ -26,10 +26,10 @@ const languages = [
 const otherLanguages = languages.filter((l) => l.code !== "es" && l.code !== "en")
 
 const tourPages = [
-  { href: "/servicios/catedral-de-sal", label: "Catedral de Sal de Zipaquirá", short: "Zipaquirá" },
+  { href: "/tours/catedral-de-sal-zipaquira", label: "Catedral de Sal de Zipaquirá", short: "Zipaquirá" },
   { href: "/servicios/monserrate-y-la-candelaria", label: "Monserrate y La Candelaria", short: "Monserrate" },
-  { href: "/servicios/guatavita", label: "Laguna de Guatavita", short: "Guatavita" },
-  { href: "/servicios/villa-de-leyva", label: "Villa de Leyva", short: "Villa de Leyva" },
+  { href: "/tours/laguna-de-guatavita", label: "Laguna de Guatavita", short: "Guatavita" },
+  { href: "/tours/villa-de-leyva", label: "Villa de Leyva", short: "Villa de Leyva" },
 ]
 
 export function Header({ translations: t, language, setLanguage, scrollToCotizacion }: HeaderProps) {

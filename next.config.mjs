@@ -26,8 +26,12 @@ const nextConfig = {
     { source: "/la-candelaria", destination: "/tours/la-candelaria", permanent: true },
     { source: "/guatavita", destination: "/tours/laguna-de-guatavita", permanent: true },
     { source: "/villa-de-leyva", destination: "/tours/villa-de-leyva", permanent: true },
-    { source: "/traslados-aeropuerto", destination: "/tours/traslado-aeropuerto", permanent: true },
-    { source: "/aeropuerto", destination: "/tours/traslado-aeropuerto", permanent: true },
+    { source: "/tour-villa-de-leiva", destination: "/tours/villa-de-leyva", permanent: true },
+    { source: "/tour-villa-de-leyva", destination: "/tours/villa-de-leyva", permanent: true },
+    { source: "/tours/villa-de-leiva", destination: "/tours/villa-de-leyva", permanent: true },
+    { source: "/servicios/aeropuerto-y-eventos", destination: "/servicios/traslado-aeropuerto-el-dorado", permanent: true },
+    { source: "/traslados-aeropuerto", destination: "/servicios/traslado-aeropuerto-el-dorado", permanent: true },
+    { source: "/aeropuerto", destination: "/servicios/traslado-aeropuerto-el-dorado", permanent: true },
   ],
   headers: async () => [
     {
