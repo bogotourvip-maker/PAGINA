@@ -29,7 +29,7 @@ const tourContentEn: Record<string, TourContentEn> = {
       },
       {
         q: "What does the Bogotá City Tour include?",
-        a: "It includes private air-conditioned transport, a bilingual guide, entrance tickets to the museums on the route and a bottle of water. Pickup can be at your hotel in Bogotá.",
+        a: "It includes private air-conditioned transport and a bottle of water. Museum tickets are not included, and a bilingual guide can be added as an extra service. Pickup can be at your hotel in Bogotá.",
       },
       {
         q: "Is the City Tour suitable for the whole family?",
@@ -74,7 +74,7 @@ const tourContentEn: Record<string, TourContentEn> = {
     longDescription: [
       "Monserrate is the landmark that crowns Bogotá. At 3,152 meters above sea level, this hill offers the most impressive view of the city and is, at the same time, one of the most visited religious sanctuaries in Colombia.",
       "You can go up by cable car, by funicular or, if you're looking for a more active experience, along the pedestrian trail that pilgrims have walked for centuries. Once at the top, besides the views, you'll find the Señor Caído sanctuary, gardens, craft markets and restaurants serving typical Bogotá cuisine.",
-      "It's a perfect plan for sunset, when the city begins to light up and the horizon of the Bogotá savanna turns golden. Our service includes transport from your hotel and coordination of the tickets, so all you have to worry about is enjoying it.",
+      "It's a perfect plan for sunset, when the city begins to light up and the horizon of the Bogotá savanna turns golden. Our service includes transport from your hotel, and we help you arrange the tickets (not included), so all you have to worry about is enjoying it.",
     ],
     faq: [
       {
@@ -129,7 +129,7 @@ const tourContentEn: Record<string, TourContentEn> = {
     faq: [
       {
         q: "How much does the Salt Cathedral of Zipaquirá tour cost?",
-        a: "The price depends on the number of people and the pickup point. Message us on WhatsApp with your dates and we'll send you a personalized quote. The trip includes transport, guide and entrance.",
+        a: "The price depends on the number of people and the pickup point. Message us on WhatsApp with your dates and we'll send you a personalized quote. The trip includes transport; the entrance fee is not included and a guide is an optional add-on.",
       },
       {
         q: "How far is Zipaquirá from Bogotá?",

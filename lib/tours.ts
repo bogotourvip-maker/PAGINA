@@ -81,7 +81,7 @@ export const tours: Tour[] = [
       "Todo el recorrido se hace a tu ritmo, con transporte privado con aire acondicionado entre cada punto y paradas para probar la gastronomía local. Es el tour ideal para quienes llegan por primera vez a la ciudad y quieren llevarse una visión completa en pocas horas.",
     ],
     highlights: ["Plaza de Bolívar", "Museo del Oro", "La Candelaria", "Cerro de Monserrate"],
-    includes: ["Transporte privado", "Guía bilingüe", "Entradas a museos", "Botella de agua"],
+    includes: ["Transporte privado", "Recogida en tu hotel", "Botella de agua"],
     duration: "4-5 horas",
     distance: "Centro de Bogotá",
     priceFrom: "Consultar",
@@ -128,7 +128,7 @@ export const tours: Tour[] = [
       },
       {
         q: "¿Qué incluye el City Tour de Bogotá?",
-        a: "Incluye transporte privado con aire acondicionado, guía bilingüe, entradas a los museos del recorrido y botella de agua. El punto de recogida puede ser tu hotel en Bogotá.",
+        a: "Incluye transporte privado con aire acondicionado y botella de agua. Las entradas a los museos no están incluidas y el guía bilingüe se puede agregar como servicio adicional. El punto de recogida puede ser tu hotel en Bogotá.",
       },
       {
         q: "¿El City Tour es apto para toda la familia?",
@@ -223,10 +223,10 @@ export const tours: Tour[] = [
     longDescription: [
       "Monserrate es el símbolo que corona Bogotá. A 3.152 metros sobre el nivel del mar, este cerro ofrece la vista más impresionante de la ciudad y es, al mismo tiempo, uno de los santuarios religiosos más visitados de Colombia.",
       "Puedes subir en teleférico, en funicular o, si buscas una experiencia más activa, por el sendero peatonal que durante siglos han recorrido los peregrinos. Una vez arriba, además de las vistas, encontrarás el santuario del Señor Caído, jardines, mercados de artesanías y restaurantes con cocina típica santafereña.",
-      "Es un plan perfecto para el atardecer, cuando la ciudad comienza a encender sus luces y el horizonte de la sabana de Bogotá se tiñe de dorado. Nuestro servicio incluye el transporte desde tu hotel y la coordinación de los tiquetes para que solo te preocupes por disfrutar.",
+      "Es un plan perfecto para el atardecer, cuando la ciudad comienza a encender sus luces y el horizonte de la sabana de Bogotá se tiñe de dorado. Nuestro servicio incluye el transporte desde tu hotel, y te ayudamos a coordinar los tiquetes (no incluidos) para que solo te preocupes por disfrutar.",
     ],
     highlights: ["Teleférico o funicular", "Santuario Señor Caído", "Vista panorámica", "Restaurantes típicos"],
-    includes: ["Transporte ida y vuelta", "Guía acompañante", "Tiquete de ascenso", "Recomendaciones gastronómicas"],
+    includes: ["Transporte ida y vuelta", "Recogida en tu hotel", "Recomendaciones gastronómicas"],
     duration: "2-3 horas",
     distance: "5 km del centro",
     priceFrom: "Consultar",
@@ -234,7 +234,7 @@ export const tours: Tour[] = [
     reviews: 192,
     metaTitle: "Tour Monserrate Bogotá | Teleférico y vista panorámica",
     metaDescription:
-      "Sube al Cerro de Monserrate y disfruta la mejor vista de Bogotá. Transporte, teleférico y guía incluidos. Reserva tu tour a Monserrate por WhatsApp.",
+      "Sube al Cerro de Monserrate y disfruta la mejor vista de Bogotá. Transporte incluido y guía opcional. Reserva tu tour a Monserrate por WhatsApp.",
     keywords: ["tour monserrate", "monserrate tour", "cerro monserrate", "vista panoramica bogotá"],
     googlePlaces: [
       {
@@ -255,7 +255,7 @@ export const tours: Tour[] = [
     faq: [
       {
         q: "¿Cómo se sube a Monserrate?",
-        a: "Puedes subir en teleférico, en funicular o por el sendero peatonal. Nuestro servicio coordina el transporte desde tu hotel y los tiquetes de ascenso para que solo disfrutes de la experiencia.",
+        a: "Puedes subir en teleférico, en funicular o por el sendero peatonal. Nuestro servicio incluye el transporte desde tu hotel; los tiquetes de ascenso no están incluidos, pero te ayudamos a coordinarlos.",
       },
       {
         q: "¿Cuál es la mejor hora para visitar Monserrate?",
@@ -286,7 +286,7 @@ export const tours: Tour[] = [
       "Es una escapada ideal para conectar con la naturaleza y la espiritualidad ancestral de los Andes, con transporte cómodo desde Bogotá y tiempo para disfrutar del pueblo colonial de Guatavita a la orilla del embalse.",
     ],
     highlights: ["Laguna sagrada Muisca", "Sendero ecológico", "Leyenda de El Dorado", "Pueblo de Guatavita"],
-    includes: ["Transporte desde Bogotá", "Guía especializado", "Entrada al parque", "Parada en el pueblo"],
+    includes: ["Transporte desde Bogotá", "Recogida en tu hotel", "Parada en el pueblo"],
     duration: "Día completo (6-7 horas)",
     distance: "60 km de Bogotá",
     priceFrom: "Consultar",
@@ -349,7 +349,7 @@ export const tours: Tour[] = [
       "Combinamos la visita con un paseo por el encantador pueblo de Zipaquirá, de arquitectura colonial y ambiente tranquilo. Salimos desde Bogotá con transporte privado, por lo que es una excursión de medio día perfecta para toda la familia.",
     ],
     highlights: ["Catedral subterránea", "Vía Crucis en sal", "Minería histórica", "Pueblo de Zipaquirá"],
-    includes: ["Transporte desde Bogotá", "Guía bilingüe", "Entrada a la catedral", "Tiempo libre en el pueblo"],
+    includes: ["Transporte desde Bogotá", "Recogida en tu hotel", "Tiempo libre en el pueblo"],
     duration: "Medio día (5-6 horas)",
     distance: "49 km de Bogotá",
     priceFrom: "Consultar",
@@ -357,7 +357,7 @@ export const tours: Tour[] = [
     reviews: 176,
     metaTitle: "Tour Catedral de Sal de Zipaquirá desde Bogotá",
     metaDescription:
-      "Visita la Catedral de Sal de Zipaquirá, primera maravilla de Colombia, en una excursión desde Bogotá con transporte y guía. Reserva por WhatsApp.",
+      "Visita la Catedral de Sal de Zipaquirá, primera maravilla de Colombia, en una excursión desde Bogotá con transporte privado y guía opcional. Reserva por WhatsApp.",
     keywords: [
       "tour catedral de sal zipaquirá",
       "salt cathedral zipaquira tour",
@@ -383,7 +383,7 @@ export const tours: Tour[] = [
     faq: [
       {
         q: "¿Cuánto cuesta el tour a la Catedral de Sal de Zipaquirá?",
-        a: "El precio depende del número de personas y del punto de recogida. Escríbenos por WhatsApp con tus fechas y te enviamos una cotización personalizada. La excursión incluye transporte, guía y entrada.",
+        a: "El precio depende del número de personas y del punto de recogida. Escríbenos por WhatsApp con tus fechas y te enviamos una cotización personalizada. La excursión incluye transporte; la entrada no está incluida y el guía es un servicio adicional opcional.",
       },
       {
         q: "¿A qué distancia está Zipaquirá de Bogotá?",
@@ -414,7 +414,7 @@ export const tours: Tour[] = [
       "Por su distancia, lo ofrecemos como una excursión de día completo o con opción de alojamiento, siempre con transporte privado y cómodo desde Bogotá y un guía que te ayudará a aprovechar cada rincón de este tesoro boyacense.",
     ],
     highlights: ["Plaza Mayor colonial", "Viñedos de altura", "Museos paleontológicos", "Gastronomía boyacense"],
-    includes: ["Transporte privado", "Guía acompañante", "Itinerario personalizado", "Recomendaciones locales"],
+    includes: ["Transporte privado", "Itinerario personalizado", "Recomendaciones locales"],
     duration: "Día completo",
     distance: "160 km de Bogotá",
     priceFrom: "Consultar",
@@ -422,7 +422,7 @@ export const tours: Tour[] = [
     reviews: 121,
     metaTitle: "Tour Villa de Leyva | Excursión colonial desde Bogotá",
     metaDescription:
-      "Descubre Villa de Leyva, uno de los pueblos más bonitos de Colombia, en una excursión desde Bogotá con transporte privado y guía. Plaza colonial y viñedos.",
+      "Descubre Villa de Leyva, uno de los pueblos más bonitos de Colombia, en una excursión desde Bogotá con transporte privado y guía opcional. Plaza colonial y viñedos.",
     keywords: ["tour villa de leyva", "villa de leyva desde bogotá", "pueblos patrimonio colombia", "excursiones desde bogotá"],
     googlePlaces: [
       {

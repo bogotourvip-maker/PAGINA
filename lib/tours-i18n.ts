@@ -27,7 +27,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "A complete tour of Bogotá's must-see sights: the historic center, Plaza de Bolívar, the Gold Museum and the best views of the city.",
       highlights: ["Plaza de Bolívar", "Gold Museum", "La Candelaria", "Monserrate Hill"],
-      includes: ["Private transport", "Bilingual guide", "Museum tickets", "Bottle of water"],
+      includes: ["Private transport", "Hotel pickup", "Bottle of water"],
       duration: "4-5 hours",
       distance: "Downtown Bogotá",
     },
@@ -38,7 +38,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Une visite complète des lieux incontournables de Bogotá : le centre historique, la Plaza de Bolívar, le Musée de l'Or et les plus belles vues de la ville.",
       highlights: ["Plaza de Bolívar", "Musée de l'Or", "La Candelaria", "Colline de Monserrate"],
-      includes: ["Transport privé", "Guide bilingue", "Entrées aux musées", "Bouteille d'eau"],
+      includes: ["Transport privé", "Prise en charge à l'hôtel", "Bouteille d'eau"],
       duration: "4-5 heures",
       distance: "Centre de Bogotá",
     },
@@ -49,7 +49,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Um passeio completo pelos lugares imperdíveis de Bogotá: o centro histórico, a Plaza de Bolívar, o Museu do Ouro e as melhores vistas da cidade.",
       highlights: ["Plaza de Bolívar", "Museu do Ouro", "La Candelaria", "Morro de Monserrate"],
-      includes: ["Transporte privado", "Guia bilíngue", "Entradas aos museus", "Garrafa de água"],
+      includes: ["Transporte privado", "Busca no hotel", "Garrafa de água"],
       duration: "4-5 horas",
       distance: "Centro de Bogotá",
     },
@@ -97,7 +97,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Climb to 3,152 meters up to the Monserrate sanctuary and take in all of Bogotá stretched out at your feet.",
       highlights: ["Cable car or funicular", "Señor Caído sanctuary", "Panoramic view", "Typical restaurants"],
-      includes: ["Round-trip transport", "Accompanying guide", "Ascent ticket", "Dining recommendations"],
+      includes: ["Round-trip transport", "Hotel pickup", "Dining recommendations"],
       duration: "2-3 hours",
       distance: "5 km from downtown",
     },
@@ -108,7 +108,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Montez à 3 152 mètres d'altitude jusqu'au sanctuaire de Monserrate et contemplez tout Bogotá à vos pieds.",
       highlights: ["Téléphérique ou funiculaire", "Sanctuaire Señor Caído", "Vue panoramique", "Restaurants typiques"],
-      includes: ["Transport aller-retour", "Guide accompagnateur", "Billet de montée", "Recommandations gastronomiques"],
+      includes: ["Transport aller-retour", "Prise en charge à l'hôtel", "Recommandations gastronomiques"],
       duration: "2-3 heures",
       distance: "à 5 km du centre",
     },
@@ -119,7 +119,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Suba a 3.152 metros de altura até o santuário de Monserrate e contemple toda a Bogotá aos seus pés.",
       highlights: ["Teleférico ou funicular", "Santuário Señor Caído", "Vista panorâmica", "Restaurantes típicos"],
-      includes: ["Transporte de ida e volta", "Guia acompanhante", "Ticket de subida", "Recomendações gastronômicas"],
+      includes: ["Transporte de ida e volta", "Busca no hotel", "Recomendações gastronômicas"],
       duration: "2-3 horas",
       distance: "5 km do centro",
     },
@@ -132,7 +132,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Visit the sacred Muisca lake, birthplace of the El Dorado myth, surrounded by otherworldly Andean landscapes.",
       highlights: ["Sacred Muisca lake", "Eco-trail", "El Dorado legend", "Guatavita town"],
-      includes: ["Transport from Bogotá", "Specialized guide", "Park entrance", "Stop in the town"],
+      includes: ["Transport from Bogotá", "Hotel pickup", "Stop in the town"],
       duration: "Full day (6-7 hours)",
       distance: "60 km from Bogotá",
     },
@@ -143,7 +143,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Visitez le lac sacré des Muiscas, berceau du mythe de l'Eldorado, entouré de paysages andins hors du commun.",
       highlights: ["Lac sacré Muisca", "Sentier écologique", "Légende de l'Eldorado", "Village de Guatavita"],
-      includes: ["Transport depuis Bogotá", "Guide spécialisé", "Entrée du parc", "Arrêt au village"],
+      includes: ["Transport depuis Bogotá", "Prise en charge à l'hôtel", "Arrêt au village"],
       duration: "Journée complète (6-7 heures)",
       distance: "à 60 km de Bogotá",
     },
@@ -154,7 +154,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Visite a lagoa sagrada dos Muíscas, berço do mito de El Dorado, rodeada de paisagens andinas de outro mundo.",
       highlights: ["Lagoa sagrada Muísca", "Trilha ecológica", "Lenda de El Dorado", "Vila de Guatavita"],
-      includes: ["Transporte desde Bogotá", "Guia especializado", "Entrada ao parque", "Parada na vila"],
+      includes: ["Transporte desde Bogotá", "Busca no hotel", "Parada na vila"],
       duration: "Dia inteiro (6-7 horas)",
       distance: "60 km de Bogotá",
     },
@@ -167,7 +167,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Descend into a stunning cathedral carved inside a salt mine 180 meters underground, one of Colombia's foremost wonders.",
       highlights: ["Underground cathedral", "Salt-carved Stations of the Cross", "Historic mining", "Zipaquirá town"],
-      includes: ["Transport from Bogotá", "Bilingual guide", "Cathedral entrance", "Free time in the town"],
+      includes: ["Transport from Bogotá", "Hotel pickup", "Free time in the town"],
       duration: "Half day (5-6 hours)",
       distance: "49 km from Bogotá",
     },
@@ -178,7 +178,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Descendez dans une cathédrale impressionnante taillée dans une mine de sel à 180 mètres de profondeur, l'une des premières merveilles de Colombie.",
       highlights: ["Cathédrale souterraine", "Chemin de croix en sel", "Mine historique", "Village de Zipaquirá"],
-      includes: ["Transport depuis Bogotá", "Guide bilingue", "Entrée de la cathédrale", "Temps libre dans le village"],
+      includes: ["Transport depuis Bogotá", "Prise en charge à l'hôtel", "Temps libre dans le village"],
       duration: "Demi-journée (5-6 heures)",
       distance: "à 49 km de Bogotá",
     },
@@ -189,7 +189,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Desça a uma impressionante catedral esculpida dentro de uma mina de sal a 180 metros de profundidade, uma das primeiras maravilhas da Colômbia.",
       highlights: ["Catedral subterrânea", "Via Crúcis em sal", "Mineração histórica", "Vila de Zipaquirá"],
-      includes: ["Transporte desde Bogotá", "Guia bilíngue", "Entrada à catedral", "Tempo livre na vila"],
+      includes: ["Transporte desde Bogotá", "Busca no hotel", "Tempo livre na vila"],
       duration: "Meio dia (5-6 horas)",
       distance: "49 km de Bogotá",
     },
@@ -202,7 +202,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Explore one of Colombia's most beautiful towns, with its huge cobblestone square and intact white colonial houses.",
       highlights: ["Colonial Plaza Mayor", "High-altitude vineyards", "Paleontology museums", "Boyacá cuisine"],
-      includes: ["Private transport", "Accompanying guide", "Custom itinerary", "Local recommendations"],
+      includes: ["Private transport", "Custom itinerary", "Local recommendations"],
       duration: "Full day",
       distance: "160 km from Bogotá",
     },
@@ -213,7 +213,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Parcourez l'un des plus beaux villages de Colombie, avec son immense place pavée et ses maisons coloniales blanches intactes.",
       highlights: ["Plaza Mayor coloniale", "Vignobles d'altitude", "Musées paléontologiques", "Gastronomie de Boyacá"],
-      includes: ["Transport privé", "Guide accompagnateur", "Itinéraire personnalisé", "Recommandations locales"],
+      includes: ["Transport privé", "Itinéraire personnalisé", "Recommandations locales"],
       duration: "Journée complète",
       distance: "à 160 km de Bogotá",
     },
@@ -224,7 +224,7 @@ const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTour
       shortDescription:
         "Percorra uma das vilas mais belas da Colômbia, com sua enorme praça de pedra e casas brancas coloniais intactas.",
       highlights: ["Plaza Mayor colonial", "Vinhedos de altitude", "Museus paleontológicos", "Gastronomia boyacense"],
-      includes: ["Transporte privado", "Guia acompanhante", "Itinerário personalizado", "Recomendações locais"],
+      includes: ["Transporte privado", "Itinerário personalizado", "Recomendações locais"],
       duration: "Dia inteiro",
       distance: "160 km de Bogotá",
     },

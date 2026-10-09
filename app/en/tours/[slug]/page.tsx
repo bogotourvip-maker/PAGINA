@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight } from "lucide-react"
+import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight, Plus } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
 import { HeroMedia } from "@/components/hero-media"
 import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
@@ -241,6 +241,16 @@ export default async function TourPageEn({ params }: TourPageProps) {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-5 pt-4 border-t border-white/10 flex flex-col gap-2">
+                    <p className="text-xs uppercase tracking-wider text-white/50">Add-on service</p>
+                    <p className="flex items-start gap-2.5 text-sm text-white/80">
+                      <Plus className="w-4 h-4 text-[#d4af37] flex-shrink-0 mt-0.5" aria-hidden="true" />
+                      Bilingual accompanying guide, as you need it
+                    </p>
+                    <p className="text-xs leading-relaxed text-white/50">
+                      Entrance fees and tickets are not included. We can help you arrange them.
+                    </p>
+                  </div>
                 </div>
 
                 <a

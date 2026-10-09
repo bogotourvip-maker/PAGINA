@@ -39,7 +39,7 @@ const copy: Record<Lang, FaqCopy> = {
       },
       {
         q: "¿Cuánto dura el tour a la Catedral de Sal de Zipaquirá?",
-        a: "El tour a la Catedral de Sal de Zipaquirá dura aproximadamente 8 horas ida y vuelta desde Bogotá, incluyendo el transporte, la entrada a la catedral y tiempo libre en el centro histórico de Zipaquirá.",
+        a: "El tour a la Catedral de Sal de Zipaquirá dura aproximadamente 8 horas ida y vuelta desde Bogotá, incluyendo el transporte y tiempo libre en el centro histórico de Zipaquirá.",
       },
       {
         q: "¿Los tours están disponibles en inglés y otros idiomas?",
@@ -70,7 +70,7 @@ const copy: Record<Lang, FaqCopy> = {
       },
       {
         q: "How long is the Salt Cathedral of Zipaquirá tour?",
-        a: "The Salt Cathedral of Zipaquirá tour lasts around 8 hours round trip from Bogotá, including transport, entrance to the cathedral and free time in Zipaquirá's historic center.",
+        a: "The Salt Cathedral of Zipaquirá tour lasts around 8 hours round trip from Bogotá, including transport and free time in Zipaquirá's historic center.",
       },
       {
         q: "Are tours available in English and other languages?",

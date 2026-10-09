@@ -80,7 +80,7 @@ export const servicePages: ServicePage[] = [
     enHref: "/en/tours/catedral-de-sal-zipaquira",
     metaTitle: "Tour Catedral de Sal de Zipaquirá desde Bogotá | Servicio privado",
     metaDescription:
-      "Servicio privado a la Catedral de Sal de Zipaquirá desde Bogotá: recogida en hotel, guía bilingüe, entradas y transporte. Reserva por WhatsApp.",
+      "Servicio privado a la Catedral de Sal de Zipaquirá desde Bogotá: recogida en hotel y transporte privado. Guía bilingüe opcional. Reserva por WhatsApp.",
     keywords: ["tour catedral de sal", "catedral de sal zipaquirá desde bogotá", "zipaquirá tour privado"],
   },
   {
@@ -107,7 +107,7 @@ export const servicePages: ServicePage[] = [
     enHref: "/en/tours/laguna-de-guatavita",
     metaTitle: "Tour Laguna de Guatavita desde Bogotá | Servicio privado",
     metaDescription:
-      "Visita la Laguna de Guatavita y el pueblo de Guatavita con transporte privado y guía bilingüe desde Bogotá. Reserva por WhatsApp.",
+      "Visita la Laguna de Guatavita y el pueblo de Guatavita con transporte privado desde Bogotá. Guía bilingüe opcional. Reserva por WhatsApp.",
     keywords: ["tour laguna de guatavita", "guatavita desde bogotá", "leyenda de el dorado tour"],
   },
   {
@@ -119,7 +119,7 @@ export const servicePages: ServicePage[] = [
     intro: [
       "Este servicio une las dos experiencias más pedidas de Bogotá. Subes al Cerro de Monserrate, a 3.152 metros, para ver la ciudad completa desde lo alto, y luego bajas a recorrer las calles empedradas de La Candelaria, el barrio colonial donde nació la capital.",
       ...tourIntro("la-candelaria").slice(0, 1),
-      "Puedes reservar las dos experiencias juntas o cada una por separado. Nosotros coordinamos el transporte privado entre los dos puntos, los tiquetes del teleférico o funicular y el guía bilingüe.",
+      "Puedes reservar las dos experiencias juntas o cada una por separado. Nosotros coordinamos el transporte privado entre los dos puntos y, si lo necesitas, un guía bilingüe como servicio adicional.",
     ],
     facts: [
       { label: "Duración", value: "5-6 h (ambos)" },
@@ -130,7 +130,7 @@ export const servicePages: ServicePage[] = [
       offeringFromTour("monserrate", "/images/monserrate-iglesia-dia.jpg"),
       offeringFromTour("la-candelaria", "/images/la-candelaria-grafitis.jpg"),
     ],
-    includes: ["Transporte privado", "Guía bilingüe", "Tiquetes de teleférico o funicular", "Botella de agua"],
+    includes: ["Transporte privado", "Traslado entre Monserrate y La Candelaria", "Botella de agua"],
     gallery: [
       { src: "/images/monserrate-jardines.jpg", alt: "Jardines del Santuario de Monserrate" },
       { src: "/images/calle-embudo-sombrillas.jpg", alt: "Calle del Embudo con sombrillas de colores" },
@@ -141,7 +141,7 @@ export const servicePages: ServicePage[] = [
     enHref: "/en/tours/monserrate",
     metaTitle: "Tour Monserrate y La Candelaria en Bogotá | Servicio privado",
     metaDescription:
-      "Sube a Monserrate y recorre La Candelaria con transporte privado y guía bilingüe. Reserva las dos experiencias juntas o por separado por WhatsApp.",
+      "Sube a Monserrate y recorre La Candelaria con transporte privado y guía bilingüe opcional. Reserva las dos experiencias juntas o por separado por WhatsApp.",
     keywords: ["tour monserrate", "tour la candelaria", "monserrate y la candelaria", "graffiti tour bogotá"],
   },
   {
@@ -168,7 +168,7 @@ export const servicePages: ServicePage[] = [
     enHref: "/en/tours/villa-de-leyva",
     metaTitle: "Tour Villa de Leyva desde Bogotá | Servicio privado",
     metaDescription:
-      "Tour privado a Villa de Leyva desde Bogotá: Plaza Mayor, Casa Terracota y Pozos Azules con transporte privado y guía bilingüe. Reserva por WhatsApp.",
+      "Tour privado a Villa de Leyva desde Bogotá: Plaza Mayor, Casa Terracota y Pozos Azules con transporte privado y guía bilingüe opcional. Reserva por WhatsApp.",
     keywords: ["tour villa de leyva", "villa de leyva desde bogotá", "casa terracota tour", "pozos azules villa de leyva"],
   },
   {

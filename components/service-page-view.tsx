@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Check, Clock } from "lucide-react"
+import { ArrowRight, Check, Clock, Plus } from "lucide-react"
 import type { ServicePage } from "@/lib/service-pages"
 import { ToursNav } from "@/components/tours-nav"
 import { HeroMedia } from "@/components/hero-media"
@@ -70,6 +70,16 @@ function ServiceIntro({ page }: { page: ServicePage }) {
               </li>
             ))}
           </ul>
+          <div className="flex flex-col gap-2 border-t border-white/10 pt-4">
+            <h3 className="text-sm font-semibold text-white">Servicio adicional</h3>
+            <p className="flex items-start gap-2 text-sm text-white/75">
+              <Plus className="mt-0.5 h-4 w-4 shrink-0 text-[#d4af37]" aria-hidden="true" />
+              Guía bilingüe acompañante, según tu necesidad
+            </p>
+            <p className="text-xs leading-relaxed text-white/50">
+              Las entradas y tiquetes de los sitios no están incluidos. Te ayudamos a coordinarlos.
+            </p>
+          </div>
         </aside>
       </div>
     </section>
