@@ -3,14 +3,14 @@ import Link from "next/link"
 import { ArrowRight, Check, Clock } from "lucide-react"
 import type { ServicePage } from "@/lib/service-pages"
 import { ToursNav } from "@/components/tours-nav"
+import { HeroMedia } from "@/components/hero-media"
 import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
 
 function ServiceHero({ page, whatsappLink }: { page: ServicePage; whatsappLink: string }) {
   return (
-    <section className="relative flex min-h-[70vh] items-end overflow-hidden">
-      <Image src={page.heroImage} alt={page.title} fill priority sizes="100vw" className="object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
-      <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-32 sm:px-6 sm:pb-16">
+    <section className="bg-black">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:gap-14 lg:py-16">
+      <div className="order-2 lg:order-1">
         <nav aria-label="Ruta de navegación" className="mb-5 flex items-center gap-2 text-sm text-white/60">
           <Link href="/" className="hover:text-white">Inicio</Link>
           <span aria-hidden="true">/</span>
@@ -24,6 +24,10 @@ function ServiceHero({ page, whatsappLink }: { page: ServicePage; whatsappLink: 
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/75 text-pretty">{page.tagline}</p>
         <TourHeroCta whatsappLink={whatsappLink} />
+      </div>
+      <div className="order-1 lg:order-2">
+        <HeroMedia src={page.heroImage} alt={page.title} />
+      </div>
       </div>
     </section>
   )

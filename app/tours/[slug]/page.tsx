@@ -4,6 +4,7 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
+import { HeroMedia } from "@/components/hero-media"
 import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
 import { tours, getTourBySlug, whatsappLinkFor } from "@/lib/tours"
 
@@ -109,20 +110,12 @@ export default async function TourPage({ params }: TourPageProps) {
       )}
 
       {/* Hero */}
-      <section className="relative h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
-        <Image
-          src={tour.heroImage || "/placeholder.svg"}
-          alt={tour.name}
-          fill
-          priority
-          quality={72}
-          className="object-cover"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/20" />
-
-        <div className="absolute inset-0 flex items-end">
-          <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 pb-8 sm:pb-12">
+      <section className="bg-black">
+        <div className="max-w-7xl mx-auto grid items-center gap-8 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-2 lg:gap-14 lg:py-16">
+          <div className="order-1 lg:order-2">
+            <HeroMedia src={tour.heroImage || "/placeholder.svg"} alt={tour.name} />
+          </div>
+          <div className="order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 mb-4">
               <span className="px-3 py-1 bg-[#d4af37] text-black text-xs font-semibold rounded-full">
                 {tour.category}
