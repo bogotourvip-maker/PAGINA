@@ -25,10 +25,18 @@ const languages = [
 
 const otherLanguages = languages.filter((l) => l.code !== "es" && l.code !== "en")
 
+const tourPages = [
+  { href: "/servicios/catedral-de-sal", label: "Catedral de Sal de Zipaquirá" },
+  { href: "/servicios/monserrate-y-la-candelaria", label: "Monserrate y La Candelaria" },
+  { href: "/servicios/guatavita", label: "Laguna de Guatavita" },
+  { href: "/servicios/villa-de-leyva", label: "Villa de Leyva" },
+]
+
 export function Header({ translations: t, language, setLanguage, scrollToCotizacion }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [toursOpen, setToursOpen] = useState(false)
   const langMenuRef = useRef<HTMLDivElement>(null)
   const otherLanguageActive = language !== "es" && language !== "en"
 
@@ -79,9 +87,69 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
           </a>
 
           <div className="hidden lg:flex items-center gap-8 xl:gap-10">
+            <a
+              href="/servicios"
+              className={`text-sm font-medium transition-colors duration-300 ${
+                isScrolled ? "text-white/70 hover:text-white" : "text-white/80 hover:text-white"
+              }`}
+            >
+              {t.services}
+            </a>
+            <div
+              className="relative"
+              onMouseEnter={() => setToursOpen(true)}
+              onMouseLeave={() => setToursOpen(false)}
+              onFocus={() => setToursOpen(true)}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node)) setToursOpen(false)
+              }}
+            >
+              <a
+                href="/tours"
+                aria-haspopup="true"
+                aria-expanded={toursOpen}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors duration-300 ${
+                  isScrolled ? "text-white/70 hover:text-white" : "text-white/80 hover:text-white"
+                }`}
+              >
+                Tours
+                <ChevronDown
+                  className="w-3.5 h-3.5 opacity-70 transition-transform duration-300"
+                  style={{ transform: toursOpen ? "rotate(180deg)" : undefined }}
+                />
+              </a>
+              <div
+                className="absolute top-full z-50"
+                style={{
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  paddingTop: "0.75rem",
+                  display: toursOpen ? "block" : "none",
+                }}
+              >
+                <ul className="w-64 bg-black/95 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden py-2">
+                  {tourPages.map((tour) => (
+                    <li key={tour.href}>
+                      <a
+                        href={tour.href}
+                        className="block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                      >
+                        {tour.label}
+                      </a>
+                    </li>
+                  ))}
+                  <li className="border-t border-white/10 mt-1 pt-1">
+                    <a
+                      href="/tours"
+                      className="block px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10 transition-colors"
+                    >
+                      Ver todos los tours
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
             {[
-              { href: "/servicios", label: t.services },
-              { href: "/tours", label: "Tours" },
               { href: "/blog", label: "Blog" },
               { href: "#galeria", label: t.gallery },
               { href: "#cotizacion", label: t.quote },
@@ -159,6 +227,7 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
             {[
               { href: "/servicios", label: t.services },
               { href: "/tours", label: "Tours" },
+              ...tourPages.map((tour) => ({ href: tour.href, label: `— ${tour.label}` })),
               { href: "/blog", label: "Blog" },
               { href: "#experiencia", label: t.experience },
               { href: "#galeria", label: t.gallery },
