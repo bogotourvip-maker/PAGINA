@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...bilingual("", "/en", "weekly", 1),
+    ...bilingual("/tours", "/en/tours", "weekly", 0.9),
     {
       url: `${BASE_URL}/servicios`,
       lastModified: new Date(),

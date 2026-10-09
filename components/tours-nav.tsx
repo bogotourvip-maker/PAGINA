@@ -18,6 +18,7 @@ const NAV_COPY: Record<
     homeHref: "/",
     links: [
       { label: "Servicios", href: "/servicios" },
+      { label: "Tours", href: "/tours" },
       { label: "Zipaquirá", href: "/servicios/catedral-de-sal" },
       { label: "Monserrate", href: "/servicios/monserrate-y-la-candelaria" },
       { label: "Guatavita", href: "/servicios/guatavita" },
@@ -29,6 +30,7 @@ const NAV_COPY: Record<
   en: {
     homeHref: "/en",
     links: [
+      { label: "Tours", href: "/en/tours" },
       { label: "Salt Cathedral", href: "/en/tours/catedral-de-sal-zipaquira" },
       { label: "Monserrate", href: "/en/tours/monserrate" },
       { label: "Guatavita", href: "/en/tours/laguna-de-guatavita" },
