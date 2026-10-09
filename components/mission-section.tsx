@@ -79,8 +79,8 @@ export function MissionSection({ translations: t, scrollToCotizacion }: MissionS
             {/* Main image */}
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
               <Image
-                src="/images/img-0705.jpeg"
-                alt="Turistas felices en Monserrate con letrero BOGOTA"
+                src="/images/guatavita-casa-al-reves-guia.jpg"
+                alt="Guía de BogotourVIP frente a la Casa al Revés en Guatavita"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -42,7 +42,7 @@ export function FleetSection({ translations: t }: FleetSectionProps) {
         >
           <div className="relative aspect-[16/9] sm:aspect-[21/9]">
             <Image
-              src="/images/img-3038.jpeg"
+              src="/images/flota-mercedes-vans.jpg"
               alt="Flota completa de vehiculos BogotourVIP con conductores profesionales"
               fill
               className="object-cover"

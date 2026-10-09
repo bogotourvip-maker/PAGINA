@@ -149,7 +149,7 @@ export const tours: Tour[] = [
     gallery: [
       "/images/calle-embudo-sombrillas.jpg",
       "/images/candelaria-calle-colonial.jpg",
-      "/images/img-0743.jpeg",
+      "/images/bogota-casa-azul-ecomoda.jpg",
     ],
     shortDescription:
       "Camina por el barrio más antiguo de Bogotá, descubre su arte urbano de fama mundial y conoce las leyendas del Chorro de Quevedo.",
@@ -274,6 +274,7 @@ export const tours: Tour[] = [
     category: "Naturaleza",
     heroImage: "/images/guatavita.jpg",
     gallery: [
+      "/images/guatavita-casa-al-reves-guia.jpg",
       "/images/img-1156.jpeg",
       "/images/img-4349.jpeg",
       "/images/img-3590.jpeg",
@@ -302,7 +303,7 @@ export const tours: Tour[] = [
         rating: 4.6,
         reviews: 16040,
         description: "El lago sagrado de los Muiscas, cuna de la leyenda de El Dorado, rodeado de bosque de niebla.",
-        image: "/images/guatavita.jpg",
+        image: "/images/guatavita-amigos-laguna.jpg",
       },
       {
         name: "Pueblo de Guatavita",
@@ -334,7 +335,6 @@ export const tours: Tour[] = [
     category: "Cultura",
     heroImage: "/images/catedral-sal-nave-lampara.jpg",
     gallery: [
-      "/images/catedral-sal-cruz-dorada.jpg",
       "/images/catedral-sal-angel.jpg",
       "/images/catedral-sal-cruz-azul.jpg",
       "/images/catedral-sal-cruz-morada.jpg",
@@ -404,7 +404,7 @@ export const tours: Tour[] = [
     gallery: [
       "/images/casa-terracota-villa-leyva.jpg",
       "/images/pozos-azules-villa-leyva.jpg",
-      "/images/villa-leyva-plaza-mayor.jpg",
+      "/images/jaime-duque-taj-mahal.jpg",
     ],
     shortDescription:
       "Recorre uno de los pueblos más bellos de Colombia, con su enorme plaza empedrada y casas blancas coloniales intactas.",
@@ -464,7 +464,7 @@ export const tours: Tour[] = [
     gallery: [
       "/images/suv-hotel-w.jpg",
       "/images/transporte-ejecutivo.jpg",
-      "/images/img-3038.jpeg",
+      "/images/flota-mercedes-vans.jpg",
     ],
     shortDescription:
       "Servicio de transporte privado puerta a puerta entre el Aeropuerto El Dorado y tu hotel, con conductores profesionales y monitoreo de vuelos.",

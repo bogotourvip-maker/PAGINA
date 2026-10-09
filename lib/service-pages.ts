@@ -68,7 +68,6 @@ export const servicePages: ServicePage[] = [
     offerings: [offeringFromTour("catedral-de-sal-zipaquira", "/images/catedral-sal-cruz-dorada.jpg")],
     includes: getTourBySlug("catedral-de-sal-zipaquira")?.includes ?? [],
     gallery: [
-      { src: "/images/catedral-sal-cruz-dorada.jpg", alt: "Cruz tallada en sal iluminada en tono dorado" },
       { src: "/images/catedral-sal-angel.jpg", alt: "Escultura de ángel con trompeta en el túnel azul de la Catedral de Sal" },
       { src: "/images/catedral-sal-cruz-azul.jpg", alt: "Cruz de sal iluminada en azul con dos bloques de sal" },
       { src: "/images/catedral-sal-cruz-morada.jpg", alt: "Cruz de sal con luz morada y túnel naranja al fondo" },
@@ -95,10 +94,10 @@ export const servicePages: ServicePage[] = [
       { label: "Distancia", value: "60 km de Bogotá" },
       { label: "Recogida", value: "En tu hotel" },
     ],
-    offerings: [offeringFromTour("laguna-de-guatavita")],
+    offerings: [offeringFromTour("laguna-de-guatavita", "/images/guatavita-casa-al-reves-guia.jpg")],
     includes: getTourBySlug("laguna-de-guatavita")?.includes ?? [],
     gallery: [
-      { src: "/images/guatavita.jpg", alt: "Laguna de Guatavita vista desde el sendero" },
+      { src: "/images/guatavita-amigos-laguna.jpg", alt: "Grupo de amigos sonriendo frente al embalse de Guatavita" },
       { src: "/images/sitio-pueblo-guatavita.png", alt: "Pueblo de Guatavita y su arquitectura blanca" },
       { src: "/images/img-4349.jpeg", alt: "Paisaje andino en el camino a Guatavita" },
     ],
@@ -135,6 +134,8 @@ export const servicePages: ServicePage[] = [
       { src: "/images/monserrate-jardines.jpg", alt: "Jardines del Santuario de Monserrate" },
       { src: "/images/calle-embudo-sombrillas.jpg", alt: "Calle del Embudo con sombrillas de colores" },
       { src: "/images/candelaria-calle-colonial.jpg", alt: "Calle colonial de La Candelaria" },
+      { src: "/images/img-0705.jpeg", alt: "Viajeros junto al letrero BOGOTA en la cima de Monserrate" },
+      { src: "/images/bogota-casa-azul-ecomoda.jpg", alt: "Viajeras felices frente a una casa azul tradicional de Bogotá" },
     ],
     faq: [...tourFaq("monserrate", 2), ...tourFaq("la-candelaria", 2)],
     bookingName: "Monserrate y La Candelaria",
@@ -161,7 +162,7 @@ export const servicePages: ServicePage[] = [
     gallery: [
       { src: "/images/casa-terracota-villa-leyva.jpg", alt: "Casa Terracota en Villa de Leyva" },
       { src: "/images/pozos-azules-villa-leyva.jpg", alt: "Pozos Azules en Villa de Leyva" },
-      { src: "/images/villa-leyva-plaza-mayor.jpg", alt: "Plaza Mayor empedrada de Villa de Leyva" },
+      { src: "/images/jaime-duque-taj-mahal.jpg", alt: "Viajera frente a la réplica del Taj Mahal en el Parque Jaime Duque, parada en la ruta" },
     ],
     faq: tourFaq("villa-de-leyva"),
     bookingName: "Tour Villa de Leyva",
@@ -205,7 +206,7 @@ export const servicePages: ServicePage[] = [
     ],
     gallery: [
       { src: "/images/suv-hotel-w.jpg", alt: "SUV privada frente al hotel" },
-      { src: "/images/equipo-vans.jpg", alt: "Equipo de conductores con las vans" },
+      { src: "/images/flota-mercedes-vans.jpg", alt: "Flota de vans Mercedes-Benz de BogotourVIP" },
       { src: "/images/servicio-eventos.jpg", alt: "Transporte para eventos y grupos" },
     ],
     faq: [

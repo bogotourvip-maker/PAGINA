@@ -21,8 +21,8 @@ const galleryImages = [
     label: "Clientes VIP",
   },
   {
-    src: "/images/guatavita.jpg",
-    alt: "Laguna de Guatavita",
+    src: "/images/guatavita-amigos-laguna.jpg",
+    alt: "Amigos frente al embalse de Guatavita",
     span: "col-span-1 row-span-1",
     label: "Guatavita",
   },
@@ -45,10 +45,10 @@ const galleryImages = [
     label: "Miradores",
   },
   {
-    src: "/images/img-3038.jpeg",
-    alt: "Flota de vehiculos BogotourVIP",
+    src: "/images/jaime-duque-selfie-familia.jpg",
+    alt: "Madre e hijo sonriendo en el Parque Jaime Duque con el Taj Mahal al fondo",
     span: "col-span-2 row-span-1",
-    label: "Nuestra Flota",
+    label: "Experiencias en familia",
   },
   {
     src: "/images/plaza-bolivar-tours-family.jpg",
