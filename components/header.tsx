@@ -87,6 +87,13 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
 
           <div className="hidden lg:flex items-center gap-4 xl:gap-6 whitespace-nowrap">
             <a
+              href="#inicio"
+              aria-current="page"
+              className="text-sm font-semibold text-white transition-colors duration-300"
+            >
+              {language === "es" ? "Inicio" : "Home"}
+            </a>
+            <a
               href="/servicios"
               className={`text-sm font-medium transition-colors duration-300 ${
                 isScrolled ? "text-white/70 hover:text-white" : "text-white/80 hover:text-white"
@@ -185,6 +192,7 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-accent/20 px-6 sm:px-8 py-6 sm:py-8 flex flex-col gap-5 sm:gap-6 animate-slide-in-up max-h-[calc(100vh-100px)] overflow-y-auto">
             {[
+              { href: "#inicio", label: language === "es" ? "Inicio" : "Home" },
               { href: "/servicios", label: t.services },
               { href: "/tours", label: "Tours" },
               ...tourPages.map((tour) => ({ href: tour.href, label: tour.label })),

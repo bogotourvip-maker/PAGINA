@@ -17,6 +17,7 @@ const NAV_COPY: Record<
   es: {
     homeHref: "/",
     links: [
+      { label: "Inicio", href: "/" },
       { label: "Servicios", href: "/servicios" },
       { label: "Tours", href: "/tours" },
       { label: "Zipaquirá", href: "/servicios/catedral-de-sal" },
@@ -30,6 +31,7 @@ const NAV_COPY: Record<
   en: {
     homeHref: "/en",
     links: [
+      { label: "Home", href: "/en" },
       { label: "Tours", href: "/en/tours" },
       { label: "Salt Cathedral", href: "/en/tours/catedral-de-sal-zipaquira" },
       { label: "Monserrate", href: "/en/tours/monserrate" },
