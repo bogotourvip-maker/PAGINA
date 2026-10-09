@@ -20,7 +20,7 @@ export function Footer() {
 
   const quickLinks = [
     { label: "Inicio", href: "/" },
-    { label: "Tours", href: "/tours" },
+    { label: "Tours", href: "/servicios" },
     { label: "Blog", href: "/blog" },
     { label: "Galeria", href: "/#galeria" },
     { label: "Cotizacion", href: "/#cotizacion" },

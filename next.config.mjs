@@ -20,6 +20,8 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
   redirects: async () => [
+    { source: "/tours", destination: "/servicios", permanent: true },
+    { source: "/en/tours", destination: "/en", permanent: true },
     { source: "/zipaquira", destination: "/tours/catedral-de-sal-zipaquira", permanent: true },
     { source: "/monserrate", destination: "/tours/monserrate", permanent: true },
     { source: "/candelaria", destination: "/tours/la-candelaria", permanent: true },

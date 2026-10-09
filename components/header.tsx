@@ -95,7 +95,6 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
               {t.services}
             </a>
             {[
-              { href: "/tours", label: "Tours" },
               ...tourPages.map((tour) => ({ href: tour.href, label: tour.short })),
               { href: "/blog", label: "Blog" },
               { href: "#contacto", label: t.contact },
@@ -152,7 +151,7 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
             </div>
 
             <a href="#cotizacion" onClick={scrollToCotizacion} className="hidden sm:block">
-              <Button className="bg-white text-black hover:bg-white/90 px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 h-auto">
+              <Button className="bg-[#d4af37] text-black hover:bg-[#c9a430] px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 h-auto">
                 {t.reserve}
               </Button>
             </a>
@@ -167,12 +166,26 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
           </div>
         </nav>
 
+        <nav aria-label="Tours" className="lg:hidden overflow-x-auto [scrollbar-width:none]">
+          <ul className="flex items-center gap-2 px-3 sm:px-4 pb-2.5 w-max">
+            {tourPages.map((tour) => (
+              <li key={tour.href}>
+                <a
+                  href={tour.href}
+                  className="block text-xs font-medium text-white/85 hover:text-white bg-black/30 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5 whitespace-nowrap"
+                >
+                  {tour.short}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-accent/20 px-6 sm:px-8 py-6 sm:py-8 flex flex-col gap-5 sm:gap-6 animate-slide-in-up max-h-[calc(100vh-100px)] overflow-y-auto">
             {[
               { href: "/servicios", label: t.services },
-              { href: "/tours", label: "Tours" },
-              ...tourPages.map((tour) => ({ href: tour.href, label: `— ${tour.label}` })),
+              ...tourPages.map((tour) => ({ href: tour.href, label: tour.label })),
               { href: "/blog", label: "Blog" },
               { href: "#experiencia", label: t.experience },
               { href: "#galeria", label: t.gallery },

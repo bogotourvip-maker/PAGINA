@@ -306,7 +306,7 @@ export function InteractiveDestinations({ translations: t }: InteractiveDestinat
             variant="outline"
             className="border-[#d4af37]/40 text-[#d4af37] hover:bg-[#d4af37]/10 font-semibold px-8 py-3 h-auto bg-transparent"
           >
-            <Link href="/tours">
+            <Link href="/servicios">
               Ver todos los tours
               <ChevronRight className="w-4 h-4 ml-1" />
             </Link>

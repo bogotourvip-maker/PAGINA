@@ -60,8 +60,8 @@ const searches: { label: string; href: string; hot?: boolean }[] = [
   { label: "Traslado Aeropuerto El Dorado", href: "/servicios", hot: true },
   { label: "Transporte ejecutivo en Bogotá", href: "/servicios" },
   { label: "Transporte para eventos y grupos", href: "/servicios" },
-  { label: "Tours privados en Bogotá", href: "/tours" },
-  { label: "Excursiones desde Bogotá", href: "/tours" },
+  { label: "Tours privados en Bogotá", href: "/servicios" },
+  { label: "Excursiones desde Bogotá", href: "/servicios" },
   { label: "Qué hacer en Bogotá", href: "/blog" },
 ]
 

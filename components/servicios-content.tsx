@@ -154,7 +154,7 @@ export function ServiciosContent({ children }: { children?: React.ReactNode }) {
               <Link href="/servicios" className="text-white transition-colors">
                 {ui.navServices}
               </Link>
-              <Link href="/tours" className="text-white/80 hover:text-white transition-colors">
+              <Link href="/servicios" className="text-white/80 hover:text-white transition-colors">
                 {ui.navTours}
               </Link>
               <Link href="/blog" className="text-white/80 hover:text-white transition-colors">

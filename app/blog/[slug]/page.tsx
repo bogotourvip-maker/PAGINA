@@ -169,7 +169,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 Reservar por WhatsApp
               </a>
               <Link
-                href="/tours"
+                href="/servicios"
                 className="flex items-center justify-center gap-2 border border-white/20 text-white hover:bg-white/10 transition-colors font-medium px-6 py-3.5 rounded-xl"
               >
                 Ver todos los tours

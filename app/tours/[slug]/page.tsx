@@ -279,7 +279,7 @@ export default async function TourPage({ params }: TourPageProps) {
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Otros tours</h2>
             <Link
-              href="/tours"
+              href="/servicios"
               className="flex items-center gap-1 text-[#d4af37] text-sm font-semibold hover:gap-2 transition-all"
             >
               Ver todos

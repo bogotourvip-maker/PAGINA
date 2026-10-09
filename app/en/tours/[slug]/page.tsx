@@ -260,7 +260,7 @@ export default async function TourPageEn({ params }: TourPageProps) {
                   Book on WhatsApp
                 </a>
                 <Link
-                  href="/en/tours"
+                  href="/en"
                   className="flex items-center justify-center gap-2 w-full border border-white/20 text-white hover:bg-white/10 transition-colors font-medium py-3.5 rounded-xl"
                 >
                   See all tours
@@ -279,7 +279,7 @@ export default async function TourPageEn({ params }: TourPageProps) {
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Other tours</h2>
             <Link
-              href="/en/tours"
+              href="/en"
               className="flex items-center gap-1 text-[#d4af37] text-sm font-semibold hover:gap-2 transition-all"
             >
               View all

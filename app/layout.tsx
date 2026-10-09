@@ -124,13 +124,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://wa.me" />
         <link rel="dns-prefetch" href="https://maps.app.goo.gl" />
         <script src="https://analytics.ahrefs.com/analytics.js" data-key="8UM4HZNjjBdtQRWYrVUabA" async></script>
-        <link
-          rel="preload"
-          as="image"
-          href="/images/bogota-skyline-panorama.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
         <meta name="google-site-verification" content="Iqtjf6WKXA1AJqpEtoJt00N4a3EtIIfUEjqTQkoYuWQ" />
 
         <Script
