@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next"
 import { tours } from "@/lib/tours"
 import { blogPosts } from "@/lib/blog"
 import { servicePages } from "@/lib/service-pages"
+import { tourHref, tourToServicio } from "@/lib/tour-routes"
 
 const BASE_URL = "https://bogotourvip.com"
 
@@ -20,8 +21,11 @@ function bilingual(
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const tourUrls = tours.flatMap((tour) =>
-    bilingual(`/tours/${tour.slug}`, `/en/tours/${tour.slug}`, "monthly", 0.8),
+    tourToServicio[tour.slug]
+      ? bilingual(tourHref(tour.slug), `/en/tours/${tour.slug}`, "monthly", 0.85)
+      : bilingual(`/tours/${tour.slug}`, `/en/tours/${tour.slug}`, "monthly", 0.8),
   )
+  const pairedServicios = new Set(Object.values(tourToServicio))
 
   const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
@@ -39,7 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...servicePages.map((page) => ({
+    ...servicePages.filter((page) => !pairedServicios.has(page.slug)).map((page) => ({
       url: `${BASE_URL}/servicios/${page.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,

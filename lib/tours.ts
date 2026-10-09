@@ -159,7 +159,7 @@ export const tours: Tour[] = [
       "Entre callejones, cafés bohemios y talleres de artesanos, entenderás por qué La Candelaria es Patrimonio y el punto de partida perfecto para enamorarse de la capital colombiana.",
     ],
     highlights: ["Chorro de Quevedo", "Arte callejero", "Plaza del Chorro", "Cafés históricos"],
-    includes: ["Guía experto en arte urbano", "Recorrido a pie", "Degustación de café", "Fotografías"],
+    includes: ["Guía experto en arte urbano", "Recorrido a pie", "Degustaci��n de café", "Fotografías"],
     duration: "3 horas",
     distance: "Centro de Bogotá",
     priceFrom: "Consultar",
@@ -480,10 +480,16 @@ export const tours: Tour[] = [
     priceFrom: "Consultar",
     rating: 4.9,
     reviews: 238,
-    metaTitle: "Traslado Aeropuerto El Dorado Bogotá | Transporte privado",
+    metaTitle: "Transfer Aeropuerto El Dorado Bogotá | Traslado privado 24/7",
     metaDescription:
-      "Traslado privado desde y hacia el Aeropuerto El Dorado de Bogotá. Conductores profesionales, monitoreo de vuelos y tarifa fija. Reserva por WhatsApp.",
-    keywords: ["traslado aeropuerto bogotá", "bogota airport transfer", "transporte aeropuerto el dorado", "transporte privado bogotá"],
+      "Transfer privado desde y hacia el Aeropuerto El Dorado de Bogotá, 24/7. Recepción con tu nombre, monitoreo de vuelos y tarifa fija. Consulta el precio por WhatsApp.",
+    keywords: [
+      "transfer aeropuerto el dorado",
+      "traslado aeropuerto bogotá",
+      "transporte aeropuerto el dorado precio",
+      "bogota airport transfer",
+      "transporte privado bogotá",
+    ],
     faq: [
       {
         q: "¿Qué pasa si mi vuelo se retrasa?",

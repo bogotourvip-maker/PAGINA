@@ -52,7 +52,30 @@ function tourIntro(slug: string): string[] {
 
 const eventos = transportServices.find((s) => s.id === "eventos-grupos")!.i18n.es
 
-export const servicePages: ServicePage[] = [
+const priceSubjects: Record<string, string> = {
+  "catedral-de-sal": "el tour a la Catedral de Sal de Zipaquirá desde Bogotá",
+  guatavita: "el tour a la Laguna de Guatavita desde Bogotá",
+  "monserrate-y-la-candelaria": "el tour a Monserrate y La Candelaria",
+  "villa-de-leyva": "el tour a Villa de Leyva desde Bogotá",
+  "aeropuerto-y-eventos": "el transporte para eventos y grupos en Bogotá",
+}
+
+function withPriceFaq(page: ServicePage): ServicePage {
+  const subject = priceSubjects[page.slug]
+  if (!subject || page.faq.some((f) => /precio|cuánto cuesta/i.test(f.q))) return page
+  return {
+    ...page,
+    faq: [
+      ...page.faq,
+      {
+        q: `¿Cuál es el precio de ${subject}?`,
+        a: "El precio depende del número de personas, el tipo de vehículo y el punto de recogida. Escríbenos por WhatsApp con tu fecha y el número de viajeros y te enviamos una cotización con tarifa fija, sin sorpresas. El valor incluye el transporte privado; si tu plan lo requiere, las entradas y el guía bilingüe se cotizan aparte.",
+      },
+    ],
+  }
+}
+
+const servicePageData: ServicePage[] = [
   {
     slug: "catedral-de-sal",
     eyebrow: "Servicio · Zipaquirá",
@@ -77,10 +100,15 @@ export const servicePages: ServicePage[] = [
     faq: tourFaq("catedral-de-sal-zipaquira"),
     bookingName: "Tour Catedral de Sal de Zipaquirá",
     enHref: "/en/tours/catedral-de-sal-zipaquira",
-    metaTitle: "Tour Catedral de Sal de Zipaquirá desde Bogotá | Servicio privado",
+    metaTitle: "Tour Catedral de Sal de Zipaquirá desde Bogotá | Precio y reserva",
     metaDescription:
-      "Servicio privado a la Catedral de Sal de Zipaquirá desde Bogotá: recogida en hotel y transporte privado. Guía bilingüe opcional. Reserva por WhatsApp.",
-    keywords: ["tour catedral de sal", "catedral de sal zipaquirá desde bogotá", "zipaquirá tour privado"],
+      "Tour privado a la Catedral de Sal de Zipaquirá desde Bogotá: recogida en hotel, transporte privado y guía bilingüe opcional. Consulta el precio por WhatsApp.",
+    keywords: [
+      "tour catedral de sal zipaquirá precio",
+      "tour catedral de sal",
+      "catedral de sal zipaquirá desde bogotá",
+      "zipaquirá tour privado",
+    ],
   },
   {
     slug: "guatavita",
@@ -104,10 +132,10 @@ export const servicePages: ServicePage[] = [
     faq: tourFaq("laguna-de-guatavita"),
     bookingName: "Tour Laguna de Guatavita",
     enHref: "/en/tours/laguna-de-guatavita",
-    metaTitle: "Tour Laguna de Guatavita desde Bogotá | Servicio privado",
+    metaTitle: "Tour Laguna de Guatavita desde Bogotá | Precio y reserva",
     metaDescription:
-      "Visita la Laguna de Guatavita y el pueblo de Guatavita con transporte privado desde Bogotá. Guía bilingüe opcional. Reserva por WhatsApp.",
-    keywords: ["tour laguna de guatavita", "guatavita desde bogotá", "leyenda de el dorado tour"],
+      "Visita la Laguna de Guatavita y el pueblo de Guatavita con transporte privado desde Bogotá. Guía bilingüe opcional. Consulta el precio por WhatsApp.",
+    keywords: ["tour laguna de guatavita precio", "tour laguna de guatavita", "guatavita desde bogotá", "leyenda de el dorado tour"],
   },
   {
     slug: "monserrate-y-la-candelaria",
@@ -167,10 +195,10 @@ export const servicePages: ServicePage[] = [
     faq: tourFaq("villa-de-leyva"),
     bookingName: "Tour Villa de Leyva",
     enHref: "/en/tours/villa-de-leyva",
-    metaTitle: "Tour Villa de Leyva desde Bogotá | Servicio privado",
+    metaTitle: "Tour Villa de Leyva desde Bogotá | Precio y reserva",
     metaDescription:
-      "Tour privado a Villa de Leyva desde Bogotá: Plaza Mayor, Casa Terracota y Pozos Azules con transporte privado y guía bilingüe opcional. Reserva por WhatsApp.",
-    keywords: ["tour villa de leyva", "villa de leyva desde bogotá", "casa terracota tour", "pozos azules villa de leyva"],
+      "Tour privado a Villa de Leyva desde Bogotá: Plaza Mayor, Casa Terracota y Pozos Azules con transporte privado y guía bilingüe opcional. Consulta el precio por WhatsApp.",
+    keywords: ["tour villa de leyva precio", "tour villa de leyva", "villa de leyva desde bogotá", "casa terracota tour", "pozos azules villa de leyva"],
   },
   {
     slug: "aeropuerto-y-eventos",
@@ -222,17 +250,19 @@ export const servicePages: ServicePage[] = [
     ],
     bookingName: "Traslado Aeropuerto y Eventos",
     enHref: "/en/tours/traslado-aeropuerto",
-    metaTitle: "Traslado Aeropuerto El Dorado y Transporte para Eventos | BogotourVip",
+    metaTitle: "Transporte para Eventos, Bodas y Grupos en Bogotá | BogotourVip",
     metaDescription:
-      "Traslados privados al Aeropuerto El Dorado 24/7 y transporte para bodas, congresos y grupos en Bogotá. Conductores profesionales y tarifa fija.",
+      "Transporte privado para bodas, congresos y grupos en Bogotá con sedanes, SUVs y vans con conductor. También traslados al Aeropuerto El Dorado. Consulta el precio por WhatsApp.",
     keywords: [
-      "traslado aeropuerto el dorado",
       "transporte para eventos bogotá",
+      "transporte para grupos bogotá",
       "transporte para bodas bogotá",
       "van con conductor bogotá",
     ],
   },
 ]
+
+export const servicePages: ServicePage[] = servicePageData.map(withPriceFaq)
 
 export function getServicePage(slug: string): ServicePage | undefined {
   return servicePages.find((p) => p.slug === slug)

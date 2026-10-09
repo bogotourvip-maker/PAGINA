@@ -4,6 +4,7 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight, Plus } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
+import { tourHref } from "@/lib/tour-routes"
 import { HeroMedia } from "@/components/hero-media"
 import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
 import { tours, getTourBySlug } from "@/lib/tours"
@@ -37,9 +38,9 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     alternates: {
       canonical: url,
       languages: {
-        es: `https://bogotourvip.com/tours/${tour.slug}`,
+        es: `https://bogotourvip.com${tourHref(tour.slug)}`,
         en: url,
-        "x-default": `https://bogotourvip.com/tours/${tour.slug}`,
+        "x-default": `https://bogotourvip.com${tourHref(tour.slug)}`,
       },
     },
     openGraph: {
