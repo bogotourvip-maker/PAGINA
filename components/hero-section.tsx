@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { MessageCircle, ArrowUpRight, ArrowRight } from "lucide-react"
+import { FullImage } from "@/components/full-image"
 import { FEATURED_TOURS, toSiteLang, tourLink, type FeaturedTour } from "@/lib/featured-tours"
 
 interface HeroSectionProps {
@@ -76,15 +77,13 @@ export function HeroSection({ translations, scrollToCotizacion, WHATSAPP_LINK, l
               }`}
             >
               {shouldRender && (
-                <Image
+                <FullImage
                   src={item.image}
                   alt={item.name[lang]}
-                  fill
                   priority={index === 0}
-                  loading={index === 0 ? "eager" : "lazy"}
                   quality={72}
                   sizes="100vw"
-                  className="object-cover object-center"
+                  className="object-cover md:object-contain"
                 />
               )}
             </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
+import { FullImage } from "@/components/full-image"
 import { MapPin, Briefcase, Plane, Calendar, ArrowUpRight } from "lucide-react"
 
 interface ServicesSectionProps {
@@ -48,16 +48,16 @@ export function ServicesSection({ translations }: ServicesSectionProps) {
   ]
 
   return (
-    <section id="servicios" className="overflow-hidden bg-ink py-16 sm:py-20 lg:py-28">
+    <section id="servicios" className="overflow-hidden bg-background py-16 sm:py-20 lg:py-28">
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 sm:px-8 lg:gap-14">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div className="flex flex-col gap-4">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Servicios</p>
-            <h2 className="font-playfair text-4xl font-bold leading-[1.05] text-balance text-ink-foreground sm:text-5xl lg:text-6xl">
-              Todo lo que necesitas <span className="italic text-ink-foreground/50">para explorar Colombia.</span>
+            <h2 className="font-playfair text-4xl font-bold leading-[1.05] text-balance text-foreground sm:text-5xl lg:text-6xl">
+              Todo lo que necesitas <span className="italic text-muted-foreground">para explorar Colombia.</span>
             </h2>
           </div>
-          <p className="max-w-sm text-base leading-relaxed text-ink-foreground/60">
+          <p className="max-w-sm text-base leading-relaxed text-muted-foreground">
             {"Pasa el cursor o toca cada servicio para conocerlo y cotízalo directo por WhatsApp."}
           </p>
         </div>
@@ -76,17 +76,15 @@ export function ServicesSection({ translations }: ServicesSectionProps) {
                   isActive ? "lg:flex-[3]" : "lg:flex-1"
                 }`}
               >
-                <Image
+                <FullImage
                   src={service.image}
                   alt={`BogotourVIP - ${service.title}`}
-                  fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   quality={80}
-                  className={`object-cover transition-transform duration-1000 ${isActive ? "scale-105" : "scale-100"}`}
                 />
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10 transition-opacity duration-500 ${
-                    isActive ? "opacity-90" : "opacity-100 lg:bg-ink/60"
+                  className={`absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-transparent transition-colors duration-500 ${
+                    isActive ? "" : "lg:bg-ink/40"
                   }`}
                 />
 
