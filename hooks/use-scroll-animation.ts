@@ -17,11 +17,31 @@ export function useScrollAnimation(options: ScrollAnimationOptions = {}) {
     const element = ref.current
     if (!element) return
 
+    if (typeof IntersectionObserver === "undefined") {
+      setIsVisible(true)
+      return
+    }
+
+    // IntersectionObserver can miss elements after instant jumps (anchor links,
+    // restored scroll), leaving content hidden. Fall back to a rect check.
+    const isInViewport = () => {
+      const rect = element.getBoundingClientRect()
+      return rect.top < window.innerHeight && rect.bottom > 0
+    }
+
+    const reveal = () => {
+      setIsVisible(true)
+      if (triggerOnce) cleanup()
+    }
+
+    const onScroll = () => {
+      if (isInViewport()) reveal()
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          if (triggerOnce) observer.unobserve(element)
+          reveal()
         } else if (!triggerOnce) {
           setIsVisible(false)
         }
@@ -29,8 +49,17 @@ export function useScrollAnimation(options: ScrollAnimationOptions = {}) {
       { threshold, rootMargin }
     )
 
+    function cleanup() {
+      observer.disconnect()
+      window.removeEventListener("scroll", onScroll)
+    }
+
     observer.observe(element)
-    return () => observer.disconnect()
+    if (triggerOnce) {
+      window.addEventListener("scroll", onScroll, { passive: true })
+      if (isInViewport()) reveal()
+    }
+    return cleanup
   }, [threshold, rootMargin, triggerOnce])
 
   return { ref, isVisible }

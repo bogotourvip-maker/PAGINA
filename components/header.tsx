@@ -1,10 +1,17 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Menu, X, ChevronDown, Globe } from "lucide-react"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { Menu, X, ChevronDown, Globe, MessageCircle, ArrowUpRight } from "lucide-react"
 import { LangToggle, rememberLanguage } from "@/components/lang-toggle"
+import {
+  EXTRA_SERVICES,
+  FEATURED_TOURS,
+  SITE_WHATSAPP_LINK,
+  toSiteLang,
+  tourLink,
+} from "@/lib/featured-tours"
 
 interface HeaderProps {
   translations: any
@@ -13,218 +20,387 @@ interface HeaderProps {
   scrollToCotizacion: () => void
 }
 
-const languages = [
-  { code: "es", flag: "🇨🇴", name: "Español" },
-  { code: "en", flag: "🇺🇸", name: "English" },
-  { code: "fr", flag: "🇫🇷", name: "Français" },
-  { code: "de", flag: "🇩🇪", name: "Deutsch" },
-  { code: "pt", flag: "🇧🇷", name: "Português" },
-  { code: "it", flag: "🇮🇹", name: "Italiano" },
-  { code: "zh", flag: "🇨🇳", name: "中文" },
+const otherLanguages = [
+  { code: "fr", name: "Français" },
+  { code: "de", name: "Deutsch" },
+  { code: "pt", name: "Português" },
+  { code: "it", name: "Italiano" },
+  { code: "zh", name: "中文" },
 ]
 
-const otherLanguages = languages.filter((l) => l.code !== "es" && l.code !== "en")
-
-const tourPages = [
-  { href: "/tours/catedral-de-sal-zipaquira", label: "Catedral de Sal de Zipaquirá", short: "Zipaquirá" },
-  { href: "/servicios/monserrate-y-la-candelaria", label: "Monserrate y La Candelaria", short: "Monserrate" },
-  { href: "/tours/laguna-de-guatavita", label: "Laguna de Guatavita", short: "Guatavita" },
-  { href: "/tours/villa-de-leyva", label: "Villa de Leyva", short: "Villa de Leyva" },
-]
+const COPY = {
+  es: { home: "Inicio", tours: "Tours", allTours: "Ver todos los tours", more: "Más servicios", menu: "Menú", talk: "Escríbenos" },
+  en: { home: "Home", tours: "Tours", allTours: "See all tours", more: "More services", menu: "Menu", talk: "Message us" },
+}
 
 export function Header({ translations: t, language, setLanguage, scrollToCotizacion }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [toursOpen, setToursOpen] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const langMenuRef = useRef<HTMLDivElement>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const lang = toSiteLang(language)
+  const copy = COPY[lang]
   const otherLanguageActive = language !== "es" && language !== "en"
+  const toursIndexHref = language === "en" ? "/en/tours" : "/tours"
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 20)
+    handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return
+      setToursOpen(false)
+      setShowLanguageMenu(false)
+      setMobileMenuOpen(false)
+    }
+    document.addEventListener("keydown", handleKey)
+    return () => document.removeEventListener("keydown", handleKey)
+  }, [])
+
+  useEffect(() => {
+    if (!showLanguageMenu) return
     const handleClickOutside = (e: MouseEvent) => {
-      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
-        setShowLanguageMenu(false)
-      }
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) setShowLanguageMenu(false)
     }
-    if (showLanguageMenu) {
-      document.addEventListener("mousedown", handleClickOutside)
-    }
+    document.addEventListener("mousedown", handleClickOutside)
     return () => document.removeEventListener("mousedown", handleClickOutside)
   }, [showLanguageMenu])
 
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [mobileMenuOpen])
+
+  const openTours = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setToursOpen(true)
+  }
+  const scheduleCloseTours = () => {
+    closeTimer.current = setTimeout(() => setToursOpen(false), 150)
+  }
+
+  const handleQuote = () => {
+    setMobileMenuOpen(false)
+    scrollToCotizacion()
+  }
+
+  const linkClass =
+    "relative rounded-full px-4 py-2 text-[15px] font-medium text-ink-foreground/85 transition-colors hover:bg-ink-foreground/10 hover:text-ink-foreground"
+
   return (
-    <>
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-black/90 backdrop-blur-xl"
-            : "bg-gradient-to-b from-black/70 via-black/30 to-transparent"
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4" onMouseLeave={scheduleCloseTours}>
+      <nav
+        aria-label={copy.menu}
+        className={`mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full border py-1.5 pl-2 pr-2 transition-all duration-500 sm:pl-3 ${
+          isScrolled || toursOpen
+            ? "border-ink-foreground/10 bg-ink/90 shadow-2xl backdrop-blur-xl"
+            : "border-ink-foreground/15 bg-ink/35 backdrop-blur-md"
         }`}
       >
-        <nav className="max-w-[1400px] mx-auto px-3 sm:px-4 md:px-6 lg:px-12 py-2.5 sm:py-3 md:py-4 lg:py-5 flex items-center justify-between">
-          <a
-            href="#inicio"
-            className="flex items-center gap-2 sm:gap-3 transform hover:scale-105 sm:hover:scale-110 transition-transform duration-300"
-          >
-            <Image
-              src="/logo-bogotourvip.jpg"
-              alt="BogotourVip"
-              width={300}
-              height={100}
-              className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto object-contain"
-              priority
-              quality={90}
-              sizes="(max-width: 640px) 200px, 300px"
-            />
-          </a>
+        <a href="#inicio" className="flex shrink-0 items-center rounded-full" aria-label="BogotourVip - Inicio">
+          <Image
+            src="/logo-bogotourvip.jpg"
+            alt="BogotourVip"
+            width={300}
+            height={100}
+            className="h-11 w-auto rounded-full object-contain sm:h-12"
+            priority
+            quality={90}
+            sizes="160px"
+          />
+        </a>
 
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6 whitespace-nowrap">
-            <a
-              href="#inicio"
-              aria-current="page"
-              className="text-sm font-semibold text-white transition-colors duration-300"
-            >
-              {language === "es" ? "Inicio" : "Home"}
+        <ul className="hidden items-center gap-1 lg:flex">
+          <li>
+            <a href="#inicio" aria-current="page" className={`${linkClass} text-ink-foreground`}>
+              {copy.home}
             </a>
-            <a
-              href="/servicios"
-              className={`text-sm font-medium transition-colors duration-300 ${
-                isScrolled ? "text-white/70 hover:text-white" : "text-white/80 hover:text-white"
-              }`}
+          </li>
+          <li onMouseEnter={openTours}>
+            <button
+              type="button"
+              className={`${linkClass} flex items-center gap-1.5 ${toursOpen ? "bg-ink-foreground/10 text-ink-foreground" : ""}`}
+              aria-expanded={toursOpen}
+              aria-controls="tours-mega-menu"
+              onClick={() => setToursOpen((open) => !open)}
             >
+              {copy.tours}
+              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${toursOpen ? "rotate-180" : ""}`} />
+            </button>
+          </li>
+          <li onMouseEnter={scheduleCloseTours}>
+            <a href="/servicios" className={linkClass}>
               {t.services}
             </a>
-            {[
-              { href: "/tours", label: "Tours" },
-              ...tourPages.map((tour) => ({ href: tour.href, label: tour.short })),
-              { href: "/blog", label: "Blog" },
-              { href: "#contacto", label: t.contact },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-medium transition-colors duration-300 ${
-                  isScrolled ? "text-white/70 hover:text-white" : "text-white/80 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-            <LangToggle current={language} onSelect={setLanguage} />
-
-            <div className="relative" ref={langMenuRef}>
-              <button
-                onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                className={`flex items-center gap-1 px-2.5 py-2 rounded-full border transition-all duration-300 ${
-                  otherLanguageActive ? "bg-white text-black border-white" : "bg-white/10 hover:bg-white/20 border-white/20 text-white/90"
-                }`}
-                aria-label="Más idiomas / More languages"
-                aria-expanded={showLanguageMenu}
-              >
-                <Globe className="w-4 h-4" />
-                {otherLanguageActive && <span className="text-xs font-semibold uppercase">{language}</span>}
-                <ChevronDown className="w-3 h-3 opacity-70" />
-              </button>
-
-              {showLanguageMenu && (
-                <div className="absolute right-0 mt-2 w-44 bg-black/95 backdrop-blur-xl rounded-xl border border-white/10 overflow-hidden animate-fade-in z-50">
-                  {otherLanguages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        rememberLanguage(lang.code)
-                        setLanguage(lang.code)
-                        setShowLanguageMenu(false)
-                      }}
-                      className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 transition-all duration-300 ${
-                        language === lang.code ? "bg-white/15" : ""
-                      }`}
-                    >
-                      <span className="text-xl">{lang.flag}</span>
-                      <span className="text-sm text-white/90">{lang.name}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <a href="#cotizacion" onClick={scrollToCotizacion} className="hidden sm:block">
-              <Button className="bg-[#d4af37] text-black hover:bg-[#c9a430] px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 h-auto">
-                {t.reserve}
-              </Button>
+          </li>
+          <li onMouseEnter={scheduleCloseTours}>
+            <a href="/blog" className={linkClass}>
+              Blog
             </a>
+          </li>
+          <li onMouseEnter={scheduleCloseTours}>
+            <a href="#contacto" className={linkClass}>
+              {t.contact}
+            </a>
+          </li>
+        </ul>
 
-            <button
-              className="lg:hidden text-foreground hover:text-accent transition-all duration-300 transform hover:scale-110 p-1 sm:p-1.5"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6 sm:w-7 sm:h-7" /> : <Menu className="w-6 h-6 sm:w-7 sm:h-7" />}
-            </button>
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="hidden sm:block">
+            <LangToggle current={language} onSelect={setLanguage} />
           </div>
-        </nav>
 
-        <nav aria-label="Tours" className="lg:hidden overflow-x-auto [scrollbar-width:none]">
-          <ul className="flex items-center gap-2 px-3 sm:px-4 pb-2.5 w-max">
-            {tourPages.map((tour) => (
-              <li key={tour.href}>
-                <a
-                  href={tour.href}
-                  className="block text-xs font-medium text-white/85 hover:text-white bg-black/30 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1.5 whitespace-nowrap"
+          <div className="relative hidden sm:block" ref={langMenuRef}>
+            <button
+              type="button"
+              onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+              className={`flex h-9 items-center gap-1 rounded-full border px-2.5 transition-colors ${
+                otherLanguageActive
+                  ? "border-ink-foreground bg-ink-foreground text-ink"
+                  : "border-ink-foreground/20 bg-ink-foreground/10 text-ink-foreground/90 hover:bg-ink-foreground/20"
+              }`}
+              aria-label="Más idiomas / More languages"
+              aria-expanded={showLanguageMenu}
+            >
+              <Globe className="h-4 w-4" />
+              {otherLanguageActive && <span className="text-xs font-semibold uppercase">{language}</span>}
+            </button>
+            {showLanguageMenu && (
+              <div className="animate-fade-in absolute right-0 mt-3 w-44 overflow-hidden rounded-2xl border border-ink-foreground/10 bg-ink/95 p-1 backdrop-blur-xl">
+                {otherLanguages.map((option) => (
+                  <button
+                    key={option.code}
+                    type="button"
+                    onClick={() => {
+                      rememberLanguage(option.code)
+                      setLanguage(option.code)
+                      setShowLanguageMenu(false)
+                    }}
+                    className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm text-ink-foreground/90 transition-colors hover:bg-ink-foreground/10 ${
+                      language === option.code ? "bg-ink-foreground/15" : ""
+                    }`}
+                  >
+                    {option.name}
+                    <span className="text-xs font-semibold uppercase text-ink-foreground/50">{option.code}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <a
+            href={SITE_WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden h-10 w-10 items-center justify-center rounded-full bg-emerald text-emerald-foreground transition-transform hover:scale-105 md:flex"
+            aria-label="WhatsApp"
+          >
+            <MessageCircle className="h-5 w-5" />
+          </a>
+
+          <a
+            href="#cotizacion"
+            onClick={(e) => {
+              e.preventDefault()
+              handleQuote()
+            }}
+            className="group hidden h-10 items-center gap-1.5 rounded-full bg-accent pl-5 pr-4 text-sm font-semibold text-accent-foreground transition-all hover:gap-2.5 sm:flex"
+          >
+            {t.reserve}
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+          </a>
+
+          <button
+            type="button"
+            className="flex h-10 items-center gap-2 rounded-full bg-ink-foreground px-4 text-sm font-semibold text-ink lg:hidden"
+            onClick={() => setMobileMenuOpen(true)}
+            aria-label={copy.menu}
+            aria-expanded={mobileMenuOpen}
+          >
+            <Menu className="h-5 w-5" />
+            <span>{copy.menu}</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Always in the DOM so crawlers find the tour links; only its visibility toggles. */}
+      <div
+        id="tours-mega-menu"
+        onMouseEnter={openTours}
+        className={`mx-auto mt-3 hidden max-w-7xl transition-all duration-300 lg:block ${
+          toursOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
+        }`}
+      >
+        <div className="flex gap-4 rounded-[2rem] border border-ink-foreground/10 bg-ink/95 p-4 shadow-2xl backdrop-blur-xl">
+          <ul className="grid flex-1 grid-cols-5 gap-3">
+            {FEATURED_TOURS.map((tour, index) => (
+              <li key={tour.id}>
+                <Link
+                  href={tourLink(tour, language)}
+                  onClick={() => setToursOpen(false)}
+                  className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-3xl p-4"
+                  style={{ transitionDelay: toursOpen ? `${index * 40}ms` : "0ms" }}
                 >
-                  {tour.short}
-                </a>
+                  <Image
+                    src={tour.image}
+                    alt=""
+                    fill
+                    sizes="220px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+                  <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-ink-foreground/90 text-ink opacity-0 transition-all duration-300 group-hover:opacity-100">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                  <span className="relative font-playfair text-lg font-semibold leading-tight text-ink-foreground">
+                    {tour.name[lang]}
+                  </span>
+                  <span className="relative mt-1 text-sm leading-snug text-ink-foreground/70">{tour.tagline[lang]}</span>
+                </Link>
               </li>
             ))}
           </ul>
-        </nav>
-
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white/95 backdrop-blur-md border-t border-accent/20 px-6 sm:px-8 py-6 sm:py-8 flex flex-col gap-5 sm:gap-6 animate-slide-in-up max-h-[calc(100vh-100px)] overflow-y-auto">
-            {[
-              { href: "#inicio", label: language === "es" ? "Inicio" : "Home" },
-              { href: "/servicios", label: t.services },
-              { href: "/tours", label: "Tours" },
-              ...tourPages.map((tour) => ({ href: tour.href, label: tour.label })),
-              { href: "/blog", label: "Blog" },
-              { href: "#experiencia", label: t.experience },
-              { href: "#galeria", label: t.gallery },
-              { href: "#cotizacion", label: t.quote },
-              { href: "#contacto", label: t.contact },
-            ].map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-base sm:text-[16px] text-foreground hover:text-accent transition-all duration-300 hover:translate-x-2 py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
-            <a
-              href="#cotizacion"
-              onClick={(e) => {
-                setMobileMenuOpen(false)
-                scrollToCotizacion()
-              }}
+          <div className="flex w-64 flex-col justify-between gap-4 rounded-3xl bg-ink-foreground/5 p-5">
+            <div className="flex flex-col gap-1">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">{copy.more}</p>
+              {EXTRA_SERVICES.map((service) => (
+                <Link
+                  key={service.href}
+                  href={service.href}
+                  className="group flex items-center justify-between rounded-xl py-2 text-[15px] text-ink-foreground/85 transition-colors hover:text-ink-foreground"
+                >
+                  {service.name[lang]}
+                  <ArrowUpRight className="h-4 w-4 opacity-40 transition-all group-hover:opacity-100" />
+                </Link>
+              ))}
+            </div>
+            <Link
+              href={toursIndexHref}
+              className="flex h-12 items-center justify-center gap-2 rounded-full bg-accent text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.02]"
             >
-              <Button className="bg-primary hover:bg-accent text-white px-6 py-3 sm:py-3.5 rounded-full text-sm sm:text-[14px] font-medium w-full">
-                {t.reserve}
-              </Button>
-            </a>
+              {copy.allTours}
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
-        )}
-      </header>
-    </>
+        </div>
+      </div>
+
+      {mobileMenuOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={copy.menu}
+          className="animate-fade-in fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink text-ink-foreground lg:hidden"
+        >
+          <div className="flex items-center justify-between px-5 py-4">
+            <Image src="/logo-bogotourvip.jpg" alt="BogotourVip" width={300} height={100} className="h-11 w-auto rounded-full" />
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-ink-foreground/10"
+              aria-label="Cerrar menú / Close menu"
+            >
+              <X className="h-6 w-6" />
+            </button>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-8 px-5 pb-8 pt-2">
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{copy.tours}</p>
+                <Link href={toursIndexHref} className="text-sm text-ink-foreground/70 underline underline-offset-4">
+                  {copy.allTours}
+                </Link>
+              </div>
+              <ul className="-mx-5 flex snap-x gap-3 overflow-x-auto px-5 pb-1 [scrollbar-width:none]">
+                {FEATURED_TOURS.map((tour, index) => (
+                  <li key={tour.id} className="animate-slide-in-up snap-start opacity-0" style={{ animationDelay: `${index * 60}ms` }}>
+                    <Link
+                      href={tourLink(tour, language)}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="relative flex h-48 w-40 flex-col justify-end overflow-hidden rounded-3xl p-3"
+                    >
+                      <Image src={tour.image} alt="" fill sizes="160px" className="object-cover" />
+                      <span className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
+                      <span className="relative font-playfair text-base font-semibold leading-tight">{tour.name[lang]}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <ul className="flex flex-col">
+              {[
+                { href: "#inicio", label: copy.home },
+                { href: "/servicios", label: t.services },
+                ...EXTRA_SERVICES.slice(0, 2).map((s) => ({ href: s.href, label: s.name[lang] })),
+                { href: "/blog", label: "Blog" },
+                { href: "#contacto", label: t.contact },
+              ].map((item) => (
+                <li key={item.href} className="border-b border-ink-foreground/10">
+                  <a
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between py-4 font-playfair text-2xl font-semibold"
+                  >
+                    {item.label}
+                    <ArrowUpRight className="h-5 w-5 text-ink-foreground/40" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <LangToggle current={language} onSelect={setLanguage} />
+              {otherLanguages.map((option) => (
+                <button
+                  key={option.code}
+                  type="button"
+                  onClick={() => {
+                    rememberLanguage(option.code)
+                    setLanguage(option.code)
+                  }}
+                  className={`h-8 rounded-full border px-3 text-xs font-semibold uppercase ${
+                    language === option.code
+                      ? "border-ink-foreground bg-ink-foreground text-ink"
+                      : "border-ink-foreground/20 text-ink-foreground/80"
+                  }`}
+                  aria-label={option.name}
+                >
+                  {option.code}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-auto grid grid-cols-2 gap-3">
+              <a
+                href={SITE_WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-14 items-center justify-center gap-2 rounded-full bg-emerald text-base font-semibold text-emerald-foreground"
+              >
+                <MessageCircle className="h-5 w-5" />
+                {copy.talk}
+              </a>
+              <button
+                type="button"
+                onClick={handleQuote}
+                className="flex h-14 items-center justify-center rounded-full bg-accent text-base font-semibold text-accent-foreground"
+              >
+                {t.reserve}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
   )
 }

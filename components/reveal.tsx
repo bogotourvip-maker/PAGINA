@@ -35,7 +35,6 @@ export function Reveal({
 
   return (
     <Tag
-      // @ts-expect-error - ref typing differs between div/section but both are HTMLElement
       ref={ref}
       id={id}
       className={className}

@@ -123,7 +123,7 @@ export function HomePage({ initialLanguage = "es" }: { initialLanguage?: HomeLan
       />
 
       {/* Use HeroSection component */}
-      <HeroSection translations={t} scrollToCotizacion={scrollToCotizacion} WHATSAPP_LINK={WHATSAPP_LINK} />
+      <HeroSection translations={t} scrollToCotizacion={scrollToCotizacion} WHATSAPP_LINK={WHATSAPP_LINK} language={language} />
 
       {/* Prueba social justo despues del hero: foto con Falcao, testimonios clave y widgets oficiales */}
       <SocialProofSection translations={t} language={language} />

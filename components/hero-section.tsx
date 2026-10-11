@@ -1,234 +1,233 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { MessageCircle, ChevronLeft, ChevronRight, Star, ShieldCheck, ChevronDown } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
+import { MessageCircle, ArrowUpRight, ArrowRight } from "lucide-react"
+import { FEATURED_TOURS, toSiteLang, tourLink, type FeaturedTour } from "@/lib/featured-tours"
 
 interface HeroSectionProps {
   translations: any
   scrollToCotizacion: () => void
   WHATSAPP_LINK: string
+  language?: string
 }
 
-const heroImages = [
+const SLIDES: FeaturedTour[] = [
   {
-    src: "/images/bogota-skyline-panorama.webp",
-    alt: "Vista panoramica del skyline de Bogota",
+    id: "bogota",
+    href: "/tours",
+    enHref: "/en/tours",
+    image: "/images/bogota-skyline-panorama.webp",
+    name: { es: "City Tour Bogotá", en: "Bogotá City Tour" },
+    tagline: { es: "La Candelaria, grafitis y el centro histórico", en: "La Candelaria, street art and the historic center" },
   },
-  {
-    src: "/images/plaza-bolivar-catedral.jpg",
-    alt: "Plaza Bolivar con la Catedral Primada de Bogota",
-  },
-  {
-    src: "/images/img-0705.jpeg",
-    alt: "Turistas en el mirador de Bogota con letrero",
-  },
-  {
-    src: "/images/villa-de-leyva.png",
-    alt: "Villa de Leyva - Pueblo patrimonio",
-  },
+  ...FEATURED_TOURS,
 ]
 
-export function HeroSection({ translations, scrollToCotizacion, WHATSAPP_LINK }: HeroSectionProps) {
-  const [currentImage, setCurrentImage] = useState(0)
-  const [isLoaded, setIsLoaded] = useState(false)
-  // El carrusel arranca despues de que carga la imagen principal (LCP),
-  // asi las demas imagenes no compiten por ancho de banda al inicio.
-  const [carouselStarted, setCarouselStarted] = useState(false)
+const SLIDE_MS = 6000
+
+const COPY = {
+  es: { eyebrow: "Tours privados · Guías bilingües", next: "Destino", view: "Ver tour", pick: "Elige tu destino" },
+  en: { eyebrow: "Private tours · Bilingual guides", next: "Destination", view: "View tour", pick: "Pick your destination" },
+}
+
+export function HeroSection({ translations, scrollToCotizacion, WHATSAPP_LINK, language = "es" }: HeroSectionProps) {
+  const [active, setActive] = useState(0)
+  const [started, setStarted] = useState(false)
+  const [paused, setPaused] = useState(false)
   const touchStartX = useRef(0)
+  const lang = toSiteLang(language)
+  const copy = COPY[lang]
+  const slide = SLIDES[active]
 
-  const nextImage = useCallback(() => {
-    setCarouselStarted(true)
-    setCurrentImage((prev) => (prev + 1) % heroImages.length)
+  const goTo = useCallback((index: number) => {
+    setStarted(true)
+    setActive((index + SLIDES.length) % SLIDES.length)
   }, [])
 
-  const prevImage = useCallback(() => {
-    setCarouselStarted(true)
-    setCurrentImage((prev) => (prev - 1 + heroImages.length) % heroImages.length)
-  }, [])
-
-  // Difiere el inicio del autoplay ~2.5s para priorizar el render inicial y el LCP.
+  // Delay autoplay so the first image (LCP) loads without competing for bandwidth.
   useEffect(() => {
-    const startDelay = setTimeout(() => setCarouselStarted(true), 2500)
-    return () => clearTimeout(startDelay)
+    const timer = setTimeout(() => setStarted(true), 2500)
+    return () => clearTimeout(timer)
   }, [])
 
-  // Autoplay solo tras el arranque diferido, y pausado cuando la pestana no esta visible
-  // (ahorra CPU, bateria y datos).
-  useEffect(() => {
-    if (!carouselStarted) return
-    let timer: ReturnType<typeof setInterval>
-    const start = () => {
-      timer = setInterval(nextImage, 6000)
-    }
-    const handleVisibility = () => {
-      clearInterval(timer)
-      if (!document.hidden) start()
-    }
-    start()
-    document.addEventListener("visibilitychange", handleVisibility)
-    return () => {
-      clearInterval(timer)
-      document.removeEventListener("visibilitychange", handleVisibility)
-    }
-  }, [carouselStarted, nextImage])
-
-  useEffect(() => {
-    setIsLoaded(true)
-  }, [])
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX
-  }
   const handleTouchEnd = (e: React.TouchEvent) => {
     const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(diff) > 50) diff > 0 ? nextImage() : prevImage()
+    if (Math.abs(diff) > 50) goTo(active + (diff > 0 ? 1 : -1))
   }
 
   return (
     <section
       id="inicio"
-      className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[95vh] lg:min-h-[100vh] flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-0"
-      onTouchStart={handleTouchStart}
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink pb-6 pt-28 sm:pb-8"
+      onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Background images with Ken Burns zoom effect */}
       <div className="absolute inset-0">
-        {heroImages.map((image, index) => {
-          // Al inicio solo la imagen 0 (LCP). Las adyacentes se cargan recien cuando arranca
-          // el carrusel, evitando que compitan por ancho de banda con el render inicial.
+        {SLIDES.map((item, index) => {
           const shouldRender =
-            index === 0 ||
-            (carouselStarted &&
-              (index === currentImage || index === (currentImage + 1) % heroImages.length))
+            index === 0 || (started && (index === active || index === (active + 1) % SLIDES.length))
           return (
             <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-700 ease-out ${
-                index === currentImage ? "opacity-100" : "opacity-0"
+              key={item.id}
+              className={`absolute inset-0 transition-all duration-1000 ease-out ${
+                index === active ? "scale-100 opacity-100" : "scale-105 opacity-0"
               }`}
             >
               {shouldRender && (
                 <Image
-                  src={image.src || "/placeholder.svg"}
-                  alt={image.alt}
+                  src={item.image}
+                  alt={item.name[lang]}
                   fill
                   priority={index === 0}
                   loading={index === 0 ? "eager" : "lazy"}
-                  quality={index === 0 ? 72 : 70}
+                  quality={72}
                   sizes="100vw"
-                  className="object-cover object-center brightness-[0.65] saturate-[1.15]"
+                  className="object-cover object-center"
                 />
               )}
             </div>
           )
         })}
-
-        {/* Multi-layer gradient for depth - stronger on mobile for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30 sm:from-black/70 sm:via-transparent sm:to-black/20 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 z-[1]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(212,175,55,0.18),transparent_55%)] z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
       </div>
 
-      {/* Navigation arrows - hidden on small mobile, swipe is primary */}
-      <button
-        onClick={prevImage}
-        className="hidden sm:block absolute left-3 sm:left-5 md:left-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 md:p-3.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-all duration-300 backdrop-blur-lg border border-white/20 hover:border-white/40 hover:scale-110 active:scale-95"
-        aria-label="Previous image"
-      >
-        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
-      </button>
-      <button
-        onClick={nextImage}
-        className="hidden sm:block absolute right-3 sm:right-5 md:right-8 top-1/2 -translate-y-1/2 z-20 p-2.5 sm:p-3 md:p-3.5 rounded-full bg-white/10 hover:bg-white/25 text-white transition-all duration-300 backdrop-blur-lg border border-white/20 hover:border-white/40 hover:scale-110 active:scale-95"
-        aria-label="Next image"
-      >
-        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
-      </button>
-
-      {/* Progress bar indicators */}
-      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2 sm:gap-2.5">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImage(index)}
-            className="relative h-1.5 sm:h-2 rounded-full overflow-hidden transition-all duration-500"
-            style={{ width: index === currentImage ? "2rem" : "0.625rem" }}
-            aria-label={`Go to image ${index + 1}`}
-          >
-            <div className="absolute inset-0 bg-white/30" />
-            {index === currentImage && (
-              <div
-                className="absolute inset-0 bg-[#d4af37] rounded-full"
-                style={{ animation: "progressFill 6s linear" }}
-              />
-            )}
-            {index !== currentImage && <div className="absolute inset-0 bg-white/50 hover:bg-white/70 rounded-full" />}
-          </button>
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10 text-center px-5 sm:px-8 lg:px-10 max-w-5xl mx-auto py-8 sm:py-12">
-        {/* SEO: terminos mas buscados por turistas, accesible para buscadores y lectores de pantalla */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col gap-10 px-5 sm:px-8">
         <p className="sr-only">
           Tours en Bogotá y transporte turístico privado: City Tour, Monserrate, La Candelaria, Laguna de Guatavita,
           Catedral de Sal de Zipaquirá, tour de café, tour Villa de Leyva y traslado al aeropuerto El Dorado. Guías que
           hablan español e inglés. Bogota private tours, city tour and airport transfer with English speaking guides.
         </p>
-        {/* Stats row */}
-        <div
-          className={`flex justify-center gap-8 sm:gap-12 md:gap-16 mb-8 sm:mb-10 ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-          style={{ transitionProperty: "opacity, transform", transitionDuration: "0.6s", transitionTimingFunction: "ease-out" }}
-        >
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">500+</div>
-            <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">{translations.statTours}</div>
+
+        <div className="flex max-w-3xl flex-col items-start gap-6">
+          <span className="animate-slide-in-up flex items-center gap-2 rounded-full border border-ink-foreground/20 bg-ink-foreground/10 px-4 py-2 text-sm font-medium text-ink-foreground opacity-0 backdrop-blur-md">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald" />
+            </span>
+            {copy.eyebrow}
+          </span>
+
+          <h1
+            className="animate-slide-in-up font-playfair text-5xl font-bold leading-[1.02] text-balance text-ink-foreground opacity-0 sm:text-6xl md:text-7xl lg:text-8xl"
+            style={{ animationDelay: "80ms" }}
+          >
+            {translations.heroTitlePre} <span className="italic text-accent">Colombia</span> {translations.heroTitlePost}
+          </h1>
+
+          <p
+            className="animate-slide-in-up max-w-xl text-lg leading-relaxed text-pretty text-ink-foreground/80 opacity-0 sm:text-xl"
+            style={{ animationDelay: "160ms" }}
+          >
+            {translations.heroSubtitle}
+          </p>
+
+          <div
+            className="animate-slide-in-up flex flex-wrap items-center gap-3 opacity-0"
+            style={{ animationDelay: "240ms" }}
+          >
+            <button
+              type="button"
+              onClick={scrollToCotizacion}
+              className="group flex h-14 items-center gap-2 rounded-full bg-accent pl-7 pr-6 text-base font-semibold text-accent-foreground shadow-2xl transition-all hover:gap-3"
+            >
+              {translations.reserveNow}
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+            </button>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-14 items-center gap-2 rounded-full border border-ink-foreground/30 bg-ink-foreground/10 px-6 text-base font-semibold text-ink-foreground backdrop-blur-md transition-colors hover:bg-ink-foreground/20"
+            >
+              <MessageCircle className="h-5 w-5 text-emerald" />
+              WhatsApp
+            </a>
           </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">98%</div>
-            <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">{translations.statSatisfaction}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">7</div>
-            <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">{translations.statLanguages}</div>
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-ink-foreground/70">
+            <span>
+              <strong className="text-base font-bold text-ink-foreground">500+</strong> {translations.statTours}
+            </span>
+            <span>
+              <strong className="text-base font-bold text-ink-foreground">98%</strong> {translations.statSatisfaction}
+            </span>
+            <span>
+              <strong className="text-base font-bold text-ink-foreground">7</strong> {translations.statLanguages}
+            </span>
           </div>
         </div>
 
-        <h1
-          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 sm:mb-8 text-balance leading-[1.1] text-white ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-          style={{ transitionProperty: "opacity, transform", transitionDuration: "0.6s", transitionDelay: "100ms", transitionTimingFunction: "ease-out" }}
-        >
-          {translations.heroTitlePre}<br />
-          <span className="text-[#d4af37]">Colombia</span><br />
-          {translations.heroTitlePost}
-        </h1>
-        <p
-          className={`text-base sm:text-lg md:text-xl text-white/80 mb-10 sm:mb-12 max-w-2xl mx-auto leading-relaxed ${
-            isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-          style={{ transitionProperty: "opacity, transform", transitionDuration: "0.6s", transitionDelay: "150ms", transitionTimingFunction: "ease-out" }}
-        >
-          {translations.heroSubtitle}
-        </p>
-
-        {/* Single CTA Button */}
         <div
-          className={`${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-          style={{ transitionProperty: "opacity, transform", transitionDuration: "0.6s", transitionDelay: "200ms", transitionTimingFunction: "ease-out" }}
+          className="flex flex-col gap-3"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
         >
-          <Button
-            size="lg"
-            onClick={scrollToCotizacion}
-            className="bg-white text-black hover:bg-white/90 text-sm sm:text-base font-medium px-8 sm:px-10 py-4 sm:py-5 h-auto rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
-          >
-            {translations.reserveNow}
-          </Button>
+          <div className="flex items-end justify-between gap-4">
+            <div key={slide.id} className="animate-word-in flex flex-col">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{copy.next}</span>
+              <Link
+                href={tourLink(slide, language)}
+                className="group flex items-center gap-2 font-playfair text-2xl font-semibold text-ink-foreground sm:text-3xl"
+              >
+                {slide.name[lang]}
+                <ArrowUpRight className="h-6 w-6 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+              <span className="text-sm text-ink-foreground/70 sm:text-base">{slide.tagline[lang]}</span>
+            </div>
+            <span className="hidden text-sm text-ink-foreground/60 sm:block">{copy.pick}</span>
+          </div>
+
+          <ul className="-mx-5 flex snap-x gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-3 sm:px-0 lg:grid-cols-6">
+            {SLIDES.map((item, index) => {
+              const isActive = index === active
+              return (
+                <li key={item.id} className="shrink-0 snap-start">
+                  <button
+                    type="button"
+                    onClick={() => goTo(index)}
+                    aria-pressed={isActive}
+                    aria-label={item.name[lang]}
+                    className={`group relative flex w-44 items-center gap-3 overflow-hidden rounded-2xl border p-2 pr-3 text-left backdrop-blur-md transition-all duration-300 sm:w-full ${
+                      isActive
+                        ? "border-accent bg-ink-foreground/15"
+                        : "border-ink-foreground/15 bg-ink/40 hover:border-ink-foreground/40 hover:bg-ink-foreground/10"
+                    }`}
+                  >
+                    <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl">
+                      <Image
+                        src={item.image}
+                        alt=""
+                        fill
+                        sizes="48px"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </span>
+                    <span className="truncate text-sm font-semibold leading-tight text-ink-foreground">
+                      {item.name[lang]}
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 h-0.5 bg-ink-foreground/10">
+                      {isActive && started && (
+                        <span
+                          key={`${item.id}-progress`}
+                          className="block h-full bg-accent"
+                          style={{
+                            animation: `progressFill ${SLIDE_MS}ms linear forwards`,
+                            animationPlayState: paused ? "paused" : "running",
+                          }}
+                          onAnimationEnd={() => goTo(index + 1)}
+                        />
+                      )}
+                    </span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
         </div>
       </div>
     </section>
