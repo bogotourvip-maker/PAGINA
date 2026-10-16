@@ -14,7 +14,6 @@ import { ServicesSection } from "@/components/services-section"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { TrustBar } from "@/components/trust-bar"
 import { SocialProofSection } from "@/components/social-proof-section"
-import { PopularSearches } from "@/components/popular-searches"
 import { FaqSection } from "@/components/faq-section"
 import { Reveal } from "@/components/reveal"
 
@@ -172,11 +171,6 @@ export function HomePage({ initialLanguage = "es" }: { initialLanguage?: HomeLan
       {/* Recommendations Section */}
       <Reveal>
         <RecommendationsSection translations={t} />
-      </Reveal>
-
-      {/* SEO: busquedas populares con enlaces internos y texto ancla optimizado */}
-      <Reveal>
-        <PopularSearches language={language} />
       </Reveal>
 
       <Reveal
