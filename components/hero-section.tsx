@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useCallback, useRef } from "react"
 import Image from "next/image"
-import Link from "next/link"
-import { MessageCircle, ArrowUpRight, ArrowRight } from "lucide-react"
+import { MessageCircle, ArrowRight } from "lucide-react"
 import { FullImage } from "@/components/full-image"
-import { FEATURED_TOURS, toSiteLang, tourLink, type FeaturedTour } from "@/lib/featured-tours"
+import { FEATURED_TOURS, toSiteLang, type FeaturedTour } from "@/lib/featured-tours"
 
 interface HeroSectionProps {
   translations: any
@@ -169,13 +168,9 @@ export function HeroSection({ translations, scrollToCotizacion, WHATSAPP_LINK, l
           <div className="flex items-end justify-between gap-4">
             <div key={slide.id} className="animate-word-in flex flex-col">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{copy.next}</span>
-              <Link
-                href={tourLink(slide, language)}
-                className="group flex items-center gap-2 font-playfair text-2xl font-semibold text-ink-foreground sm:text-3xl"
-              >
+              <p className="font-playfair text-2xl font-semibold text-ink-foreground sm:text-3xl">
                 {slide.name[lang]}
-                <ArrowUpRight className="h-6 w-6 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </Link>
+              </p>
               <span className="text-sm text-ink-foreground/70 sm:text-base">{slide.tagline[lang]}</span>
             </div>
             <span className="hidden text-sm text-ink-foreground/60 sm:block">{copy.pick}</span>

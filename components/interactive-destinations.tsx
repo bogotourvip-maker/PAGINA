@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { MapPin, Clock, Star, ChevronRight, Camera, Mountain, Landmark, Palette, Languages } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { tourHref } from "@/lib/tour-routes"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
 const destinations = [
@@ -286,12 +285,6 @@ export function InteractiveDestinations({ translations: t }: InteractiveDestinat
 
               <div className="mt-auto flex flex-col sm:flex-row gap-3">
                 <Button asChild className="flex-1 bg-[#d4af37] text-black hover:bg-[#c9a430] font-semibold">
-                  <Link href={tourHref(selected.slug)}>
-                    Ver Tour Completo
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="flex-1 border-white/20 text-white hover:bg-white/10 bg-transparent">
                   <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                     Reservar
                   </a>
