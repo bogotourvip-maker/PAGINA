@@ -92,16 +92,21 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
     scrollToCotizacion()
   }
 
-  const linkClass =
-    "relative rounded-full px-4 py-2 text-[15px] font-medium text-ink-foreground/85 transition-colors hover:bg-ink-foreground/10 hover:text-ink-foreground"
+  const solid = isScrolled || toursOpen
+  const linkClass = `relative rounded-full px-4 py-2 text-[15px] font-medium transition-colors ${
+    solid
+      ? "text-foreground/80 hover:bg-foreground/5 hover:text-foreground"
+      : "text-ink-foreground/85 hover:bg-ink-foreground/10 hover:text-ink-foreground"
+  }`
+  const strongText = solid ? "text-foreground" : "text-ink-foreground"
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4" onMouseLeave={scheduleCloseTours}>
       <nav
         aria-label={copy.menu}
         className={`mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full border py-1.5 pl-2 pr-2 transition-all duration-500 sm:pl-3 ${
-          isScrolled || toursOpen
-            ? "border-ink-foreground/10 bg-ink/90 shadow-2xl backdrop-blur-xl"
+          solid
+            ? "border-border bg-background/95 shadow-xl backdrop-blur-xl"
             : "border-ink-foreground/15 bg-ink/35 backdrop-blur-md"
         }`}
       >
@@ -120,14 +125,14 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
 
         <ul className="hidden items-center gap-1 lg:flex">
           <li>
-            <a href="#inicio" aria-current="page" className={`${linkClass} text-ink-foreground`}>
+            <a href="#inicio" aria-current="page" className={`${linkClass} ${strongText}`}>
               {copy.home}
             </a>
           </li>
           <li onMouseEnter={openTours}>
             <button
               type="button"
-              className={`${linkClass} flex items-center gap-1.5 ${toursOpen ? "bg-ink-foreground/10 text-ink-foreground" : ""}`}
+              className={`${linkClass} flex items-center gap-1.5 ${toursOpen ? "bg-foreground/5 text-foreground" : ""}`}
               aria-expanded={toursOpen}
               aria-controls="tours-mega-menu"
               onClick={() => setToursOpen((open) => !open)}
@@ -154,7 +159,7 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
         </ul>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <div className="hidden sm:block">
+          <div className={`hidden rounded-full transition-colors sm:block ${solid ? "bg-ink" : ""}`}>
             <LangToggle current={language} onSelect={setLanguage} />
           </div>
 
@@ -164,8 +169,12 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
               onClick={() => setShowLanguageMenu(!showLanguageMenu)}
               className={`flex h-9 items-center gap-1 rounded-full border px-2.5 transition-colors ${
                 otherLanguageActive
-                  ? "border-ink-foreground bg-ink-foreground text-ink"
-                  : "border-ink-foreground/20 bg-ink-foreground/10 text-ink-foreground/90 hover:bg-ink-foreground/20"
+                  ? solid
+                    ? "border-ink bg-ink text-ink-foreground"
+                    : "border-ink-foreground bg-ink-foreground text-ink"
+                  : solid
+                    ? "border-border bg-foreground/5 text-foreground hover:bg-foreground/10"
+                    : "border-ink-foreground/20 bg-ink-foreground/10 text-ink-foreground/90 hover:bg-ink-foreground/20"
               }`}
               aria-label="Más idiomas / More languages"
               aria-expanded={showLanguageMenu}
@@ -220,7 +229,9 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
 
           <button
             type="button"
-            className="flex h-10 items-center gap-2 rounded-full bg-ink-foreground px-4 text-sm font-semibold text-ink lg:hidden"
+            className={`flex h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold lg:hidden ${
+              solid ? "bg-ink text-ink-foreground" : "bg-ink-foreground text-ink"
+            }`}
             onClick={() => setMobileMenuOpen(true)}
             aria-label={copy.menu}
             aria-expanded={mobileMenuOpen}
