@@ -4,7 +4,7 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight, Plus } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
-import { tourHref } from "@/lib/tour-routes"
+import { enTourHref, tourHref, tourSlugFromEn } from "@/lib/tour-routes"
 import { HeroMedia } from "@/components/hero-media"
 import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
 import { tours, getTourBySlug } from "@/lib/tours"
@@ -16,11 +16,11 @@ interface TourPageProps {
 }
 
 export function generateStaticParams() {
-  return tours.map((tour) => ({ slug: tour.slug }))
+  return tours.map((tour) => ({ slug: enTourHref(tour.slug).replace("/en/tours/", "") }))
 }
 
 export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {
-  const { slug } = await params
+  const slug = tourSlugFromEn((await params).slug)
   const tour = getTourBySlug(slug)
   const content = getTourContentEn(slug)
 
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
     return { title: "Tour not found" }
   }
 
-  const url = `https://bogotourvip.com/en/tours/${tour.slug}`
+  const url = `https://bogotourvip.com${enTourHref(tour.slug)}`
   const t = getLocalizedTour(tour, "en")
 
   return {
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
 }
 
 export default async function TourPageEn({ params }: TourPageProps) {
-  const { slug } = await params
+  const slug = tourSlugFromEn((await params).slug)
   const tour = getTourBySlug(slug)
   const content = getTourContentEn(slug)
 
@@ -109,7 +109,7 @@ export default async function TourPageEn({ params }: TourPageProps) {
 
   return (
     <main className="min-h-screen bg-black pb-20 lg:pb-0">
-      <ToursNav lang="en" esHref={`/tours/${tour.slug}`} enHref={`/en/tours/${tour.slug}`} />
+      <ToursNav lang="en" esHref={`/tours/${tour.slug}`} enHref={enTourHref(tour.slug)} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {faqJsonLd && (
@@ -133,7 +133,7 @@ export default async function TourPageEn({ params }: TourPageProps) {
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-3 text-balance">
-              {t.name}
+              {content.h1 ?? t.name}
             </h1>
             <p className="text-lg sm:text-xl text-[#d4af37] font-medium">{t.tagline}</p>
             <TourHeroCta whatsappLink={whatsappLink} lang="en" />
@@ -297,7 +297,7 @@ export default async function TourPageEn({ params }: TourPageProps) {
               return (
                 <Link
                   key={related.slug}
-                  href={`/en/tours/${related.slug}`}
+                  href={enTourHref(related.slug)}
                   className="group flex flex-col bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-[#d4af37]/40 transition-all duration-300"
                 >
                   <div className="relative h-44 overflow-hidden">

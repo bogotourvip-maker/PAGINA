@@ -4,6 +4,7 @@ import type { TourFaq } from "./tours"
 // Traducidos fielmente desde la base en espanol de lib/tours.ts.
 // Se usa en las rutas /en/tours y /en/tours/[slug] para captar turistas extranjeros.
 export interface TourContentEn {
+  h1?: string
   metaTitle: string
   metaDescription: string
   keywords: string[]
@@ -12,8 +13,9 @@ export interface TourContentEn {
 }
 
 const tourContentEn: Record<string, TourContentEn> = {
-  "city-tour-bogota": {
-    metaTitle: "Bogotá City Tour | Private Tour of the Historic Center",
+  "bogota-city-tour-vip": {
+    h1: "Bogotá Private City Tour: Monserrate, La Candelaria & Museums",
+    metaTitle: "Bogotá Private City Tour | Monserrate, La Candelaria & Museums",
     metaDescription:
       "Discover the best of Bogotá on a private City Tour: Plaza de Bolívar, Gold Museum, La Candelaria and Monserrate with a bilingual guide. Book on WhatsApp.",
     keywords: ["bogota city tour", "private tour bogota", "things to do in bogota", "bogota tours"],
@@ -92,7 +94,8 @@ const tourContentEn: Record<string, TourContentEn> = {
     ],
   },
   "laguna-de-guatavita": {
-    metaTitle: "Guatavita Lake Tour | Day Trip from Bogotá",
+    h1: "El Dorado Legend & Guatavita Lake Tour",
+    metaTitle: "Guatavita Lake & El Dorado Legend Tour | From Bogotá",
     metaDescription:
       "Day trip to Guatavita Lake from Bogotá, birthplace of the El Dorado legend. Eco-trail, Muisca history and transport included.",
     keywords: ["guatavita lake tour", "laguna de guatavita", "el dorado colombia", "day trips from bogota"],
@@ -117,7 +120,8 @@ const tourContentEn: Record<string, TourContentEn> = {
     ],
   },
   "catedral-de-sal-zipaquira": {
-    metaTitle: "Zipaquirá Salt Cathedral Tour from Bogotá",
+    h1: "Private Zipaquirá Salt Cathedral Tour",
+    metaTitle: "Private Zipaquirá Salt Cathedral Tour from Bogotá",
     metaDescription:
       "Visit the Salt Cathedral of Zipaquirá, Colombia's first wonder, on a day trip from Bogotá with transport and guide. Book on WhatsApp.",
     keywords: ["salt cathedral zipaquira tour", "zipaquira from bogota", "catedral de sal", "day trips from bogota"],

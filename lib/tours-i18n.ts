@@ -19,7 +19,7 @@ export interface LocalizedTourFields {
 // Traducciones del CONTENIDO de cada tour (es es la base en lib/tours.ts).
 // Solo definimos en / fr / pt; para de / it / zh se usa el espanol como respaldo.
 const tourTranslations: Record<string, Partial<Record<ServiceLang, LocalizedTourFields>>> = {
-  "city-tour-bogota": {
+  "bogota-city-tour-vip": {
     en: {
       name: "Bogotá City Tour",
       tagline: "The best of the capital in a single day",

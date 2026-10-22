@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getServicePage, servicePages } from "@/lib/service-pages"
 import { whatsappLinkFor } from "@/lib/tours"
-import { enTourForServicio, servicioCanonicalPath } from "@/lib/tour-routes"
+import { enTourForServicio, enTourHref, servicioCanonicalPath } from "@/lib/tour-routes"
 import { ServicePageView } from "@/components/service-page-view"
 
 const SITE = "https://bogotourvip.com"
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: {
       canonical,
       ...(enTour && canonical === url && {
-        languages: { es: url, en: `${SITE}/en/tours/${enTour}`, "x-default": url },
+        languages: { es: url, en: `${SITE}${enTourHref(enTour)}`, "x-default": url },
       }),
     },
     openGraph: {

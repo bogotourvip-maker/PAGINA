@@ -4,7 +4,7 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { Clock, MapPin, Star, Check, MessageCircle, ArrowRight, Plus } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
-import { tourHref } from "@/lib/tour-routes"
+import { enTourHref, tourHref } from "@/lib/tour-routes"
 import { HeroMedia } from "@/components/hero-media"
 import { TourHeroCta, TourFinalCta, TourMobileBookingBar } from "@/components/tour-booking"
 import { tours, getTourBySlug, whatsappLinkFor } from "@/lib/tours"
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
       canonical,
       languages: {
         es: canonical,
-        en: `https://bogotourvip.com/en/tours/${tour.slug}`,
+        en: `https://bogotourvip.com${enTourHref(tour.slug)}`,
         "x-default": canonical,
       },
     },
@@ -103,7 +103,7 @@ export default async function TourPage({ params }: TourPageProps) {
 
   return (
     <main className="min-h-screen bg-black pb-20 lg:pb-0">
-      <ToursNav esHref={`/tours/${tour.slug}`} enHref={`/en/tours/${tour.slug}`} />
+      <ToursNav esHref={`/tours/${tour.slug}`} enHref={enTourHref(tour.slug)} />
 
       {/* JSON-LD structured data for this specific tour */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -130,7 +130,7 @@ export default async function TourPage({ params }: TourPageProps) {
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-3 text-balance">
-              {tour.name}
+              {tour.h1 ?? tour.name}
             </h1>
             <p className="text-lg sm:text-xl text-[#d4af37] font-medium">{tour.tagline}</p>
             <TourHeroCta whatsappLink={whatsappLink} />

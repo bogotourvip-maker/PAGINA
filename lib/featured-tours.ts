@@ -16,7 +16,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
   {
     id: "zipaquira",
     href: "/tours/catedral-de-sal-zipaquira",
-    enHref: "/en/tours/catedral-de-sal-zipaquira",
+    enHref: "/en/tours/zipaquira-salt-cathedral-tour",
     image: "/images/catedral-sal-cruz-iluminada.png",
     name: { es: "Tour Zipaquirá", en: "Salt Cathedral Tour" },
     tagline: { es: "Una catedral tallada a 180 m bajo tierra", en: "A cathedral carved 180 m underground" },
@@ -24,7 +24,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
   {
     id: "monserrate",
     href: "/tours/monserrate",
-    enHref: "/en/tours/monserrate",
+    enHref: "/en/tours/monserrate-tour",
     image: "/images/monserrate-luna-atardecer.jpg",
     name: { es: "Tour Monserrate", en: "Monserrate Tour" },
     tagline: { es: "Bogotá a tus pies desde 3.152 m", en: "Bogotá at your feet from 3,152 m" },
@@ -32,7 +32,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
   {
     id: "guatavita",
     href: "/tours/laguna-de-guatavita",
-    enHref: "/en/tours/laguna-de-guatavita",
+    enHref: "/en/tours/guatavita-lagoon-tour",
     image: "/images/guatavita-amigos-laguna.jpg",
     name: { es: "Tour Guatavita", en: "Guatavita Tour" },
     tagline: { es: "La laguna de la leyenda de El Dorado", en: "The lake behind the El Dorado legend" },
@@ -40,7 +40,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
   {
     id: "villa-de-leyva",
     href: "/tours/villa-de-leyva",
-    enHref: "/en/tours/villa-de-leyva",
+    enHref: "/en/tours/villa-de-leyva-tour",
     image: "/images/villa-de-leyva.png",
     name: { es: "Tour Villa de Leyva", en: "Villa de Leyva Tour" },
     tagline: { es: "Pueblo colonial y su gran plaza empedrada", en: "Colonial town with a huge cobbled square" },
@@ -48,7 +48,7 @@ export const FEATURED_TOURS: FeaturedTour[] = [
   {
     id: "jaime-duque",
     href: "/tours/parque-jaime-duque",
-    enHref: "/en/tours/parque-jaime-duque",
+    enHref: "/en/tours/jaime-duque-park-tour",
     image: "/images/jaime-duque-taj-mahal.jpg",
     name: { es: "Tour Jaime Duque", en: "Jaime Duque Tour" },
     tagline: { es: "Diversión en familia con transporte incluido", en: "Family fun with round-trip transport" },

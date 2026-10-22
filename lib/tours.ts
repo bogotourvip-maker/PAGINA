@@ -14,6 +14,7 @@ export interface Tour {
   priceFrom: string
   rating: number
   reviews: number
+  h1?: string
   metaTitle: string
   metaDescription: string
   keywords: string[]
@@ -63,7 +64,7 @@ export function whatsappLinkFor(tourName: string): string {
 
 export const tours: Tour[] = [
   {
-    slug: "city-tour-bogota",
+    slug: "bogota-city-tour-vip",
     name: "City Tour Bogotá",
     tagline: "Lo mejor de la capital en un solo día",
     category: "Ciudad",
@@ -87,7 +88,8 @@ export const tours: Tour[] = [
     priceFrom: "Consultar",
     rating: 4.9,
     reviews: 214,
-    metaTitle: "City Tour Bogotá | Tour privado por el centro histórico",
+    h1: "Bogotá City Tour Privado: Monserrate, Candelaria y Museos",
+    metaTitle: "Bogotá City Tour Privado | Monserrate, Candelaria y Museos",
     metaDescription:
       "Descubre lo mejor de Bogotá en un City Tour privado: Plaza de Bolívar, Museo del Oro, La Candelaria y Monserrate con guía bilingüe. Reserva por WhatsApp.",
     keywords: ["city tour bogotá", "tour privado bogotá", "qué hacer en bogotá", "bogota city tour"],
@@ -293,7 +295,8 @@ export const tours: Tour[] = [
     priceFrom: "Consultar",
     rating: 4.7,
     reviews: 143,
-    metaTitle: "Tour Laguna de Guatavita | Excursión desde Bogotá",
+    h1: "Tour Leyenda de El Dorado y Laguna de Guatavita",
+    metaTitle: "Tour Laguna de Guatavita y Leyenda de El Dorado | Desde Bogotá",
     metaDescription:
       "Excursión a la Laguna de Guatavita desde Bogotá, cuna de la leyenda de El Dorado. Sendero ecológico, historia Muisca y transporte incluido.",
     keywords: ["tour laguna de guatavita", "guatavita lake tour", "el dorado colombia", "excursiones desde bogotá"],
@@ -355,7 +358,8 @@ export const tours: Tour[] = [
     priceFrom: "Consultar",
     rating: 4.8,
     reviews: 176,
-    metaTitle: "Tour Catedral de Sal de Zipaquirá desde Bogotá",
+    h1: "Tour Privado a la Catedral de Sal de Zipaquirá",
+    metaTitle: "Tour Privado Catedral de Sal de Zipaquirá desde Bogotá",
     metaDescription:
       "Visita la Catedral de Sal de Zipaquirá, primera maravilla de Colombia, en una excursión desde Bogotá con transporte privado y guía opcional. Reserva por WhatsApp.",
     keywords: [

@@ -11,6 +11,26 @@ export const tourToServicio: Record<string, string> = {
   "traslado-aeropuerto": "traslado-aeropuerto-el-dorado",
 }
 
+// English keyword slugs for /en/tours/<slug>, keyed by the Spanish tour slug.
+export const enTourSlugs: Record<string, string> = {
+  "bogota-city-tour-vip": "bogota-private-city-tour",
+  "la-candelaria": "la-candelaria-walking-tour",
+  monserrate: "monserrate-tour",
+  "laguna-de-guatavita": "guatavita-lagoon-tour",
+  "catedral-de-sal-zipaquira": "zipaquira-salt-cathedral-tour",
+  "villa-de-leyva": "villa-de-leyva-tour",
+  "parque-jaime-duque": "jaime-duque-park-tour",
+  "traslado-aeropuerto": "el-dorado-airport-transfer",
+}
+
+export function enTourHref(slug: string): string {
+  return `/en/tours/${enTourSlugs[slug] ?? slug}`
+}
+
+export function tourSlugFromEn(enSlug: string): string {
+  return Object.keys(enTourSlugs).find((slug) => enTourSlugs[slug] === enSlug) ?? enSlug
+}
+
 export function tourHref(slug: string): string {
   const servicio = tourToServicio[slug]
   return servicio ? `/servicios/${servicio}` : `/tours/${slug}`

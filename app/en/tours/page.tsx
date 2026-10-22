@@ -4,6 +4,7 @@ import Image from "next/image"
 import { Clock, MapPin, ArrowRight, ArrowUpRight, Check } from "lucide-react"
 import { ToursNav } from "@/components/tours-nav"
 import { tours } from "@/lib/tours"
+import { enTourHref } from "@/lib/tour-routes"
 import { getLocalizedTour, localizedWhatsappLink } from "@/lib/tours-i18n"
 
 // The airport transfer is a transport service, not a sightseeing tour
@@ -141,7 +142,7 @@ export default function ToursPageEn() {
 
                   <div className="flex flex-wrap items-center gap-3">
                     <Link
-                      href={`/en/tours/${tour.slug}`}
+                      href={enTourHref(tour.slug)}
                       className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm font-semibold hover:bg-white/90 transition-colors"
                     >
                       View details

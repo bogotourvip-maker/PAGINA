@@ -100,7 +100,7 @@ const servicePageData: ServicePage[] = [
     ],
     faq: tourFaq("catedral-de-sal-zipaquira"),
     bookingName: "Tour Catedral de Sal de Zipaquirá",
-    enHref: "/en/tours/catedral-de-sal-zipaquira",
+    enHref: "/en/tours/zipaquira-salt-cathedral-tour",
     metaTitle: "Tour Catedral de Sal de Zipaquirá desde Bogotá | Precio y reserva",
     metaDescription:
       "Tour privado a la Catedral de Sal de Zipaquirá desde Bogotá: recogida en hotel, transporte privado y guía bilingüe opcional. Consulta el precio por WhatsApp.",
@@ -132,7 +132,7 @@ const servicePageData: ServicePage[] = [
     ],
     faq: tourFaq("laguna-de-guatavita"),
     bookingName: "Tour Laguna de Guatavita",
-    enHref: "/en/tours/laguna-de-guatavita",
+    enHref: "/en/tours/guatavita-lagoon-tour",
     metaTitle: "Tour Laguna de Guatavita desde Bogotá | Precio y reserva",
     metaDescription:
       "Visita la Laguna de Guatavita y el pueblo de Guatavita con transporte privado desde Bogotá. Guía bilingüe opcional. Consulta el precio por WhatsApp.",
@@ -168,7 +168,7 @@ const servicePageData: ServicePage[] = [
     ],
     faq: [...tourFaq("monserrate", 2), ...tourFaq("la-candelaria", 2)],
     bookingName: "Monserrate y La Candelaria",
-    enHref: "/en/tours/monserrate",
+    enHref: "/en/tours/monserrate-tour",
     metaTitle: "Tour Monserrate y La Candelaria en Bogotá | Servicio privado",
     metaDescription:
       "Sube a Monserrate y recorre La Candelaria con transporte privado y guía bilingüe opcional. Reserva las dos experiencias juntas o por separado por WhatsApp.",
@@ -195,7 +195,7 @@ const servicePageData: ServicePage[] = [
     ],
     faq: tourFaq("villa-de-leyva"),
     bookingName: "Tour Villa de Leyva",
-    enHref: "/en/tours/villa-de-leyva",
+    enHref: "/en/tours/villa-de-leyva-tour",
     metaTitle: "Tour Villa de Leyva desde Bogotá | Precio y reserva",
     metaDescription:
       "Tour privado a Villa de Leyva desde Bogotá: Plaza Mayor, Casa Terracota y Pozos Azules con transporte privado y guía bilingüe opcional. Consulta el precio por WhatsApp.",
@@ -204,7 +204,7 @@ const servicePageData: ServicePage[] = [
   {
     slug: "traslado-aeropuerto-el-dorado",
     eyebrow: "Servicio · Aeropuerto El Dorado",
-    title: "Traslado Aeropuerto El Dorado Bogotá",
+    title: "Traslados Privados Aeropuerto El Dorado Bogotá (24/7)",
     tagline: "Recogida privada en llegadas de El Dorado y traslado directo a tu hotel, 24/7",
     heroImage: "/images/servicio-aeropuerto.jpg",
     intro: [
@@ -250,10 +250,10 @@ const servicePageData: ServicePage[] = [
       },
     ],
     bookingName: "Traslado Aeropuerto El Dorado",
-    enHref: "/en/tours/traslado-aeropuerto",
-    metaTitle: "Traslado Aeropuerto El Dorado Bogotá | Transfer Privado 24/7 | BogotourVip",
+    enHref: "/en/tours/el-dorado-airport-transfer",
+    metaTitle: "Traslado Aeropuerto El Dorado Bogotá | Transportes VIP 24/7",
     metaDescription:
-      "Transfer privado Aeropuerto El Dorado - hotel en Bogotá con recepción con tu nombre, monitoreo de vuelo y tarifa fija. Sedán, SUV o van, 24/7. También grupos y eventos. Precio por WhatsApp.",
+      "Servicio de traslado privado desde y hacia el Aeropuerto El Dorado en Bogotá. Vehículos ejecutivos, conductores bilingües y puntualidad garantizada. ¡Cotiza por WhatsApp!",
     keywords: [
       "traslado aeropuerto el dorado",
       "transfer aeropuerto el dorado bogotá",

@@ -51,7 +51,7 @@ const copy: Record<Lang, { kicker: string; title: string; subtitle: string }> = 
 // Texto ancla optimizado para SEO: cada enlace apunta a una pagina real con
 // palabras clave de alta intencion de busqueda.
 const searches: { label: string; href: string; hot?: boolean }[] = [
-  { label: "City Tour Bogotá", href: "/tours/city-tour-bogota", hot: true },
+  { label: "City Tour Bogotá", href: "/tours/bogota-city-tour-vip", hot: true },
   { label: "Tour Monserrate", href: "/tours/monserrate" },
   { label: "Tour La Candelaria y Graffiti Tour", href: "/tours/la-candelaria" },
   { label: "Laguna de Guatavita", href: "/tours/laguna-de-guatavita" },
