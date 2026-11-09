@@ -42,6 +42,18 @@ const copy: Record<Lang, FaqCopy> = {
         a: "El tour a la Catedral de Sal de Zipaquirá dura aproximadamente 8 horas ida y vuelta desde Bogotá, incluyendo el transporte y tiempo libre en el centro histórico de Zipaquirá.",
       },
       {
+        q: "¿Qué hacer en Bogotá en un día?",
+        a: "Si tienes un solo día, lo ideal es subir a Monserrate en teleférico o funicular, caminar por La Candelaria, la Plaza de Bolívar y el Chorro de Quevedo, y visitar el Museo del Oro y el Museo Botero. Con un tour privado haces todo esto sin preocuparte por el transporte ni las filas.",
+      },
+      {
+        q: "¿Se puede visitar la Catedral de Sal de Zipaquirá y la Laguna de Guatavita el mismo día?",
+        a: "Sí. Es una de las excursiones desde Bogotá más buscadas. En un tour privado de día completo combinamos la Catedral de Sal de Zipaquirá y la Laguna de Guatavita con transporte privado, ajustando los horarios a tu ritmo.",
+      },
+      {
+        q: "Tengo una escala larga en el Aeropuerto El Dorado, ¿puedo conocer Bogotá?",
+        a: "Sí. Con nuestro Layover Tour Bogotá Express te recogemos en el aeropuerto, recorres lo más importante de la ciudad y te regresamos a tiempo para tu vuelo. Es ideal para escalas de 6 a 12 horas.",
+      },
+      {
         q: "¿Los tours están disponibles en inglés y otros idiomas?",
         a: "Sí. Contamos con guías que hablan español, inglés, francés y portugués. Al reservar por WhatsApp indícanos tu idioma preferido y asignaremos un guía acorde.",
       },
@@ -71,6 +83,18 @@ const copy: Record<Lang, FaqCopy> = {
       {
         q: "How long is the Salt Cathedral of Zipaquirá tour?",
         a: "The Salt Cathedral of Zipaquirá tour lasts around 8 hours round trip from Bogotá, including transport and free time in Zipaquirá's historic center.",
+      },
+      {
+        q: "What are the best things to do in Bogotá in one day?",
+        a: "With one day, ride the cable car or funicular up Monserrate, walk through La Candelaria, Plaza de Bolívar and Chorro de Quevedo, and visit the Gold Museum and the Botero Museum. A private tour covers all of it without worrying about transport or lines.",
+      },
+      {
+        q: "Can I visit the Zipaquirá Salt Cathedral and Guatavita Lake in the same day?",
+        a: "Yes. It's one of the most popular day trips from Bogotá. On a full-day private tour we combine the Salt Cathedral of Zipaquirá and Guatavita Lake with private transport, on a schedule that fits your pace.",
+      },
+      {
+        q: "I have a long layover at El Dorado Airport. Can I see Bogotá?",
+        a: "Yes. With our Bogotá Express Layover Tour we pick you up at the airport, show you the city's highlights and bring you back in time for your flight. It's ideal for layovers of 6 to 12 hours.",
       },
       {
         q: "Are tours available in English and other languages?",

@@ -92,7 +92,7 @@ export const tours: Tour[] = [
     metaTitle: "Bogotá City Tour Privado | Monserrate, Candelaria y Museos",
     metaDescription:
       "Descubre lo mejor de Bogotá en un City Tour privado: Plaza de Bolívar, Museo del Oro, La Candelaria y Monserrate con guía bilingüe. Reserva por WhatsApp.",
-    keywords: ["city tour bogotá", "tour privado bogotá", "qué hacer en bogotá", "bogota city tour"],
+    keywords: ["city tour bogotá", "tour privado bogotá", "qué hacer en bogotá", "qué hacer en bogotá en un día", "tour museo del oro", "bogota city tour"],
     googlePlaces: [
       {
         name: "Plaza de Bolívar",
@@ -170,7 +170,7 @@ export const tours: Tour[] = [
     metaTitle: "Tour La Candelaria y Graffiti Tour Bogotá",
     metaDescription:
       "Explora La Candelaria, el centro histórico de Bogotá, y su famoso arte callejero con un guía local. Graffiti tour, Chorro de Quevedo y cafés históricos.",
-    keywords: ["tour la candelaria", "graffiti tour bogota", "centro historico bogotá", "arte callejero bogotá"],
+    keywords: ["tour la candelaria", "graffiti tour bogota", "centro historico bogotá", "arte callejero bogotá", "chorro de quevedo", "plaza de bolívar bogotá"],
     googlePlaces: [
       {
         name: "Chorro de Quevedo",
@@ -299,7 +299,7 @@ export const tours: Tour[] = [
     metaTitle: "Tour Laguna de Guatavita y Leyenda de El Dorado | Desde Bogotá",
     metaDescription:
       "Excursión a la Laguna de Guatavita desde Bogotá, cuna de la leyenda de El Dorado. Sendero ecológico, historia Muisca y transporte incluido.",
-    keywords: ["tour laguna de guatavita", "guatavita lake tour", "el dorado colombia", "excursiones desde bogotá"],
+    keywords: ["tour laguna de guatavita", "tour laguna de guatavita precio", "tour zipaquirá y guatavita en un día", "guatavita lake tour", "el dorado colombia", "excursiones desde bogotá"],
     googlePlaces: [
       {
         name: "Laguna de Guatavita",

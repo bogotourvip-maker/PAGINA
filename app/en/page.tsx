@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     "bogota airport transfer",
     "things to do in bogota",
     "english speaking guide bogota",
+    "day trips from bogota",
+    "zipaquira and guatavita day trip",
+    "bogota layover tour",
+    "gold museum bogota",
+    "things to do in bogota in one day",
   ],
   alternates: {
     canonical: "https://bogotourvip.com/en",
