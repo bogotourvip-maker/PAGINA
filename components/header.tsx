@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Menu, X, ChevronDown, Globe, MessageCircle, ArrowUpRight } from "lucide-react"
+import { Menu, X, Globe, MessageCircle, ArrowUpRight } from "lucide-react"
 import { LangToggle, rememberLanguage } from "@/components/lang-toggle"
 import {
   EXTRA_SERVICES,
@@ -35,15 +35,12 @@ const COPY = {
 
 export function Header({ translations: t, language, setLanguage, scrollToCotizacion }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [toursOpen, setToursOpen] = useState(false)
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const langMenuRef = useRef<HTMLDivElement>(null)
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const lang = toSiteLang(language)
   const copy = COPY[lang]
   const otherLanguageActive = language !== "es" && language !== "en"
-  const toursIndexHref = language === "en" ? "/en/tours" : "/tours"
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
@@ -55,7 +52,6 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape") return
-      setToursOpen(false)
       setShowLanguageMenu(false)
       setMobileMenuOpen(false)
     }
@@ -79,20 +75,12 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
     }
   }, [mobileMenuOpen])
 
-  const openTours = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current)
-    setToursOpen(true)
-  }
-  const scheduleCloseTours = () => {
-    closeTimer.current = setTimeout(() => setToursOpen(false), 150)
-  }
-
   const handleQuote = () => {
     setMobileMenuOpen(false)
     scrollToCotizacion()
   }
 
-  const solid = isScrolled || toursOpen
+  const solid = isScrolled
   const linkClass = `relative rounded-full px-4 py-2 text-[15px] font-medium transition-colors ${
     solid
       ? "text-foreground/80 hover:bg-foreground/5 hover:text-foreground"
@@ -101,7 +89,7 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
   const strongText = solid ? "text-foreground" : "text-ink-foreground"
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4" onMouseLeave={scheduleCloseTours}>
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4">
       <nav
         aria-label={copy.menu}
         className={`mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full border py-1.5 pl-2 pr-2 transition-all duration-500 sm:pl-3 ${
@@ -129,29 +117,17 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
               {copy.home}
             </a>
           </li>
-          <li onMouseEnter={openTours}>
-            <button
-              type="button"
-              className={`${linkClass} flex items-center gap-1.5 ${toursOpen ? "bg-foreground/5 text-foreground" : ""}`}
-              aria-expanded={toursOpen}
-              aria-controls="tours-mega-menu"
-              onClick={() => setToursOpen((open) => !open)}
-            >
-              {copy.tours}
-              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${toursOpen ? "rotate-180" : ""}`} />
-            </button>
-          </li>
-          <li onMouseEnter={scheduleCloseTours}>
+          <li>
             <a href="/servicios" className={linkClass}>
               {t.services}
             </a>
           </li>
-          <li onMouseEnter={scheduleCloseTours}>
+          <li>
             <a href="/blog" className={linkClass}>
               Blog
             </a>
           </li>
-          <li onMouseEnter={scheduleCloseTours}>
+          <li>
             <a href="#contacto" className={linkClass}>
               {t.contact}
             </a>
@@ -242,67 +218,45 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
         </div>
       </nav>
 
-      {/* Always in the DOM so crawlers find the tour links; only its visibility toggles. */}
-      <div
-        id="tours-mega-menu"
-        onMouseEnter={openTours}
-        className={`mx-auto mt-3 hidden max-w-7xl transition-all duration-300 lg:block ${
-          toursOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"
-        }`}
-      >
-        <div className="flex gap-4 rounded-[2rem] border border-ink-foreground/10 bg-ink/95 p-4 shadow-2xl backdrop-blur-xl">
-          <ul className="grid flex-1 grid-cols-5 gap-3">
-            {FEATURED_TOURS.map((tour, index) => (
-              <li key={tour.id}>
-                <Link
-                  href={tourLink(tour, language)}
-                  onClick={() => setToursOpen(false)}
-                  className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-3xl p-4"
-                  style={{ transitionDelay: toursOpen ? `${index * 40}ms` : "0ms" }}
-                >
-                  <Image
-                    src={tour.image}
-                    alt=""
-                    fill
-                    sizes="220px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <span className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
-                  <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-ink-foreground/90 text-ink opacity-0 transition-all duration-300 group-hover:opacity-100">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
-                  <span className="relative font-playfair text-lg font-semibold leading-tight text-ink-foreground">
-                    {tour.name[lang]}
-                  </span>
-                  <span className="relative mt-1 text-sm leading-snug text-ink-foreground/70">{tour.tagline[lang]}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="flex w-64 flex-col justify-between gap-4 rounded-3xl bg-ink-foreground/5 p-5">
-            <div className="flex flex-col gap-1">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-accent">{copy.more}</p>
-              {EXTRA_SERVICES.map((service) => (
-                <Link
-                  key={service.href}
-                  href={service.href}
-                  className="group flex items-center justify-between rounded-xl py-2 text-[15px] text-ink-foreground/85 transition-colors hover:text-ink-foreground"
-                >
-                  {service.name[lang]}
-                  <ArrowUpRight className="h-4 w-4 opacity-40 transition-all group-hover:opacity-100" />
-                </Link>
-              ))}
-            </div>
-            <Link
-              href={toursIndexHref}
-              className="flex h-12 items-center justify-center gap-2 rounded-full bg-accent text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.02]"
-            >
-              {copy.allTours}
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
+      <nav aria-label={copy.tours} className="mx-auto mt-2 hidden max-w-7xl justify-center lg:flex">
+        <ul
+          className={`flex items-center gap-1 rounded-full border p-1 transition-all duration-500 ${
+            solid
+              ? "border-border bg-background/95 shadow-lg backdrop-blur-xl"
+              : "border-ink-foreground/15 bg-ink/35 backdrop-blur-md"
+          }`}
+        >
+          {FEATURED_TOURS.map((tour) => (
+            <li key={tour.id}>
+              <Link
+                href={tourLink(tour, language)}
+                className={`flex items-center gap-2 whitespace-nowrap rounded-full py-1.5 pl-1.5 pr-4 text-sm font-semibold transition-colors ${
+                  solid
+                    ? "text-foreground/85 hover:bg-ink hover:text-ink-foreground"
+                    : "text-ink-foreground/90 hover:bg-ink-foreground hover:text-ink"
+                }`}
+              >
+                <Image src={tour.image} alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover" />
+                {tour.name[lang]}
+              </Link>
+            </li>
+          ))}
+          {EXTRA_SERVICES.slice(0, 2).map((service) => (
+            <li key={service.href} className="hidden 2xl:block">
+              <Link
+                href={service.href}
+                className={`flex whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  solid
+                    ? "text-foreground/70 hover:bg-foreground/5 hover:text-foreground"
+                    : "text-ink-foreground/75 hover:bg-ink-foreground/10 hover:text-ink-foreground"
+                }`}
+              >
+                {service.name[lang]}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {mobileMenuOpen && (
         <div
@@ -324,29 +278,28 @@ export function Header({ translations: t, language, setLanguage, scrollToCotizac
           </div>
 
           <div className="flex flex-1 flex-col gap-8 px-5 pb-8 pt-2">
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-between">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">{copy.tours}</p>
-                <Link href={toursIndexHref} className="text-sm text-ink-foreground/70 underline underline-offset-4">
-                  {copy.allTours}
-                </Link>
-              </div>
-              <ul className="-mx-5 flex snap-x gap-3 overflow-x-auto px-5 pb-1 [scrollbar-width:none]">
-                {FEATURED_TOURS.map((tour, index) => (
-                  <li key={tour.id} className="animate-slide-in-up snap-start opacity-0" style={{ animationDelay: `${index * 60}ms` }}>
-                    <Link
-                      href={tourLink(tour, language)}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="relative flex h-48 w-40 flex-col justify-end overflow-hidden rounded-3xl p-3"
-                    >
-                      <Image src={tour.image} alt="" fill sizes="160px" className="object-cover" />
-                      <span className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
-                      <span className="relative font-playfair text-base font-semibold leading-tight">{tour.name[lang]}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="flex flex-col">
+              {FEATURED_TOURS.map((tour, index) => (
+                <li
+                  key={tour.id}
+                  className="animate-slide-in-up border-b border-ink-foreground/10 opacity-0"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <Link
+                    href={tourLink(tour, language)}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-4 py-3"
+                  >
+                    <Image src={tour.image} alt="" width={56} height={56} className="h-14 w-14 rounded-2xl object-cover" />
+                    <span className="flex flex-1 flex-col">
+                      <span className="font-playfair text-xl font-semibold">{tour.name[lang]}</span>
+                      <span className="text-sm text-ink-foreground/60">{tour.tagline[lang]}</span>
+                    </span>
+                    <ArrowUpRight className="h-5 w-5 text-ink-foreground/40" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
             <ul className="flex flex-col">
               {[

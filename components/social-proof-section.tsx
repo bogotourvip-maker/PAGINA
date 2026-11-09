@@ -1,35 +1,37 @@
 "use client"
 
 import Image from "next/image"
-import Script from "next/script"
 import { Star, ExternalLink } from "lucide-react"
 
-const TRIPADVISOR_LOCATION_ID = "25572583"
-const TRIPADVISOR_URL =
-  "https://www.tripadvisor.co/Attraction_Review-g294074-d25572583-Reviews-BogotourVIP-Bogota.html"
 const GOOGLE_PLACE_CID = "10206797686157246925"
 const GOOGLE_REVIEWS_URL = `https://www.google.com/maps?cid=${GOOGLE_PLACE_CID}`
 const GOOGLE_EMBED_URL = `https://maps.google.com/maps?cid=${GOOGLE_PLACE_CID}&output=embed`
-const TA_WIDGET_UNIQ = "bgtvip"
 
 const copy = {
   es: {
     eyebrow: "Confianza verificada",
     title: "Hasta las estrellas del fútbol viajan con nosotros.",
     falcaoCaption: "Radamel Falcao García con el equipo de BogotourVIP",
-    tripadvisorLabel: "Reseñas en Tripadvisor",
+    googleReviewsLabel: "Reseñas en Google",
+    googleReviewsText:
+      "Lee lo que dicen nuestros viajeros en Google y comparte tu experiencia con BogotourVIP.",
+    writeReview: "Escribir una reseña",
+    starsLabel: "5 de 5 estrellas",
+    badgeAlt: "Guía de BogotourVIP recibiendo viajeros en Bogotá",
     googleLabel: "Nuestra ficha en Google",
     seeAll: "Ver todas las reseñas",
-    taLang: "es_CO",
   },
   en: {
     eyebrow: "Verified trust",
     title: "Even football stars ride with us.",
     falcaoCaption: "Radamel Falcao García with the BogotourVIP team",
-    tripadvisorLabel: "Tripadvisor reviews",
+    googleReviewsLabel: "Google reviews",
+    googleReviewsText: "Read what our travelers say on Google and share your own BogotourVIP experience.",
+    writeReview: "Write a review",
+    starsLabel: "5 out of 5 stars",
+    badgeAlt: "BogotourVIP guide welcoming travelers in Bogotá",
     googleLabel: "Our Google listing",
     seeAll: "See all reviews",
-    taLang: "en_US",
   },
 }
 
@@ -127,42 +129,56 @@ export function SocialProofSection({ translations: t, language }: SocialProofSec
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem" }}>
           <div
-            className="flex flex-col gap-4 rounded-2xl bg-white p-5 text-neutral-900"
+            className="flex flex-col gap-6 rounded-2xl bg-white p-6 text-neutral-900"
             style={{ flex: "1 1 320px", minWidth: 0 }}
           >
-            <div className="flex items-center justify-between gap-3">
-              <h3 className="text-base font-semibold">{c.tripadvisorLabel}</h3>
+            <div className="flex items-center gap-4">
+              <span className="relative h-20 w-20 flex-shrink-0">
+                <span className="relative block h-20 w-20 overflow-hidden rounded-full ring-4 ring-[#d4af37]">
+                  <Image
+                    src="/images/google-reviews-badge.png"
+                    alt={c.badgeAlt}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </span>
+                <span className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full bg-white p-1.5 shadow-md">
+                  <Image src="/logos/google.svg" alt="" width={20} height={20} className="h-5 w-5 object-contain" />
+                </span>
+              </span>
+              <div className="flex flex-col gap-1">
+                <h3 className="text-lg font-semibold">{c.googleReviewsLabel}</h3>
+                <div className="flex gap-1" aria-label={c.starsLabel}>
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="h-4 w-4 fill-[#d4af37] text-[#d4af37]" aria-hidden="true" />
+                  ))}
+                </div>
+                <p className="text-sm text-neutral-600">BogotourVIP · Bogotá</p>
+              </div>
+            </div>
+
+            <p className="text-pretty text-base leading-relaxed text-neutral-700">{c.googleReviewsText}</p>
+
+            <div className="mt-auto flex flex-wrap gap-3">
               <a
-                href={TRIPADVISOR_URL}
+                href={GOOGLE_REVIEWS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-neutral-600 hover:text-neutral-900"
+                className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-700"
               >
                 {c.seeAll}
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
               </a>
+              <a
+                href={GOOGLE_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-5 py-3 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900"
+              >
+                {c.writeReview}
+              </a>
             </div>
-            <div className="flex min-h-[18rem] items-center justify-center">
-              <div id={`TA_selfserveprop${TA_WIDGET_UNIQ}`} className="TA_selfserveprop">
-                <ul id={`ta_list${TA_WIDGET_UNIQ}`} className="TA_links">
-                  <li>
-                    <a target="_blank" rel="noopener noreferrer" href={TRIPADVISOR_URL}>
-                      <img
-                        src="https://www.tripadvisor.com/img/cdsi/img2/branding/v2/Tripadvisor_lockup_horizontal_secondary-11900-2.svg"
-                        alt="Tripadvisor"
-                        width={180}
-                        height={40}
-                      />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <Script
-              id="tripadvisor-widget"
-              strategy="lazyOnload"
-              src={`https://www.jscache.com/wejs?wtype=selfserveprop&uniq=${TA_WIDGET_UNIQ}&locationId=${TRIPADVISOR_LOCATION_ID}&lang=${c.taLang}&rating=true&nreviews=3&writereviewlink=true&popIdx=true&iswide=false&border=false&display_version=2`}
-            />
           </div>
 
           <div className="flex flex-1 flex-col gap-4 rounded-2xl bg-white p-5 text-neutral-900">

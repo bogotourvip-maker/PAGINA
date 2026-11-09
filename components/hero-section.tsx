@@ -60,7 +60,7 @@ export function HeroSection({ translations, scrollToCotizacion, WHATSAPP_LINK, l
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink pb-6 pt-28 sm:pb-8"
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink pb-6 pt-28 sm:pb-8 lg:pt-44"
       onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
       onTouchEnd={handleTouchEnd}
     >
