@@ -13,7 +13,7 @@ import { MarqueeSection } from "@/components/marquee-section"
 import { ServicesSection } from "@/components/services-section"
 import { ScrollProgress } from "@/components/scroll-progress"
 import { TrustBar } from "@/components/trust-bar"
-import { SocialProofSection } from "@/components/social-proof-section"
+import { SocialProofSection } from "@/components/google-reviews-section"
 import { FaqSection } from "@/components/faq-section"
 import { Reveal } from "@/components/reveal"
 
