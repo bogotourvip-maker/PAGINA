@@ -6,6 +6,11 @@ import { Phone, Mail, MapPin, Clock, Instagram, Facebook } from "lucide-react"
 const WHATSAPP_LINK =
   "https://wa.me/573108677635?text=Hola%20BogotourVIP%2C%20quiero%20cotizar%20tu%20servicio.%20%C2%BFMe%20pueden%20ayudar%20con%20la%20informacion%20y%20el%20precio%3F"
 
+const CONTACTS = [
+  { name: "Jesús Contreras", display: "+57 310 699 8224", tel: "+573106998224" },
+  { name: "William Aldana", display: "+57 310 867 7635", tel: "+573108677635" },
+]
+
 export function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -153,6 +158,21 @@ export function Footer() {
                   <p className="text-xs text-gray-500">WhatsApp disponible 24/7</p>
                 </div>
               </li>
+              {CONTACTS.map((contact) => (
+                <li key={contact.tel} className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-[#d4af37] mt-0.5 flex-shrink-0" aria-hidden="true" />
+                  <div>
+                    <p className="text-sm text-white">{contact.name}</p>
+                    <a
+                      href={`tel:${contact.tel}`}
+                      className="text-sm hover:text-[#d4af37] transition-colors"
+                      aria-label={`Llamar a ${contact.name} al ${contact.display}`}
+                    >
+                      {contact.display}
+                    </a>
+                  </div>
+                </li>
+              ))}
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#d4af37] mt-0.5 flex-shrink-0" />
                 <a href="mailto:info@bogotourvip.com" className="text-sm hover:text-[#d4af37] transition-colors">
